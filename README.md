@@ -29,8 +29,8 @@
 <br/> 
 직장에 다닐때 돈 코인과 담배 코인이 나옵니다. 돈 코인은 상단에, 담배 코인은 하단에 표시됩니다.<br/> 
 돈은 직업에 따라, 직업 이벤트 성공에 따라 지급되는 양이 다릅니다.<br/> 
-![image](https://user-images.githubusercontent.com/73771420/229376593-bce22343-bd42-4386-95da-ca350f2c4057.png)
-돈 코인은 프로포즈나 집을 구매할 때 사용할 수 있습니다.<br/> 
+돈 코인은 프로포즈나 집을 구매할 때 사용할 수 있습니다.
+<br/> 
 
 4. 앨범 코인, 시계 코인<br/> 
 ![image](https://user-images.githubusercontent.com/73771420/229376690-a542c26a-dc2a-416f-9ab3-8c8dfc038ccc.png)
@@ -52,8 +52,8 @@
 스킬 레벨에 따라 엔딩이 달라집니다.<br/> 
 
 # 엔딩
-![image](https://user-images.githubusercontent.com/73771420/229376959-8baea979-821a-46c6-9d1c-a8320218ab5c.png)<br/> 
-노년기에서 건강이 0이 되면 엔딩을 볼 수 있습니다. 플레이어의 선택에 따라 여러 다른 엔딩들을 볼 수 있습니다.<br/> 
+![image](https://user-images.githubusercontent.com/73771420/229376959-8baea979-821a-46c6-9d1c-a8320218ab5c.png)
+<br/> 노년기에서 건강이 0이 되면 엔딩을 볼 수 있습니다. 플레이어의 선택에 따라 여러 다른 엔딩들을 볼 수 있습니다.<br/> 
 
 
 # 개발 범위
@@ -63,9 +63,14 @@
 - 청년기: 취미 코인에 따른 직업 3가지(회사원, 가수, 미술가), 프로포즈 선택, 직업 이벤트 선택, 돈 코인, 담배 코인<br/> 
 - 중년기: 직업 이벤트 선택, 돈 코인, 담배코인, 집 선택<br/> 
 - 노년기: 시계 코인, 앨범 코인<br/> 
-- 스킬(취미, 친구, 가족)<br/> 
 - 게임오버, 엔딩 화면<br/> 
+<br/>- 코인: 7가지(책, 음표, 팔레트, 돈, 담배, 시계, 앨범)<br/> 
+- 스킬(취미, 친구, 가족)<br/> 
 
 # 예상 게임 흐름도
-![image](https://user-images.githubusercontent.com/73771420/229378243-6515e6af-96f1-4b94-ae0b-ab0debe7566c.png)<br/> 
+![image](https://user-images.githubusercontent.com/73771420/229431307-37bcd4ab-8fbb-403e-aa4f-0053d35c1d36.png)
+
+
+# 개발 일정
+![image](https://user-images.githubusercontent.com/73771420/229430849-d7408f1c-4884-4e87-9bdf-0c825c5e1098.png)
 
