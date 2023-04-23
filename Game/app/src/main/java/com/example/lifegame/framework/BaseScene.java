@@ -21,6 +21,10 @@ public class BaseScene {
         return stack.size();
     }
 
+    public void popScene() {
+        stack.remove(this);
+    }
+
     public int add(IGameObject gobj) {
         handler.post(new Runnable() {
             @Override
