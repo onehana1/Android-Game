@@ -20,7 +20,7 @@ public class HorzScrollBackground extends Sprite {
     }
     @Override
     public void update() {
-        scroll += speed * BaseScene.frameTime;
+        scroll -= speed * BaseScene.frameTime;
     }
 
     @Override
