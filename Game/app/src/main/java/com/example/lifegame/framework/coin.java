@@ -10,9 +10,9 @@ import com.example.lifegame.game.MainScene;
 import java.util.Random;
 
 public class coin extends MapObject{
-    public static final int COIN_COUNT = 10;
+    public static final int COIN_COUNT = 50;
     private static final int ITEMS_IN_A_ROW = 7;
-    private static final int SIZE = 66;
+    private static final int SIZE = 40;
     private static final int BORDER = 1;
     protected Rect srcRect = new Rect();
 
@@ -43,7 +43,7 @@ public class coin extends MapObject{
         int x = index % ITEMS_IN_A_ROW;
         int y = index / ITEMS_IN_A_ROW;
         int left = x * (SIZE + BORDER) + BORDER;
-        int top = y * (SIZE + BORDER) + BORDER;
+        int top = 0;
         srcRect.set(left, top, left + SIZE, top + SIZE);
     }
 
