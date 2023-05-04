@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.lifegame.R;
+import com.example.lifegame.framework.BaseScene;
 import com.example.lifegame.framework.GameView;
 import com.example.lifegame.game.MainScene;
 
@@ -19,4 +19,18 @@ public class MainActivity extends AppCompatActivity {
 
         new MainScene().pushScene();
     }
+
+    protected void onPause() {
+        gameView.pauseGame();
+        super.onPause();
+    }
+    protected void onResume() {
+        super.onResume();
+        gameView.resumeGame();
+    }
+    protected void onDestroy() {
+        BaseScene.popAll();
+        super.onDestroy();
+    }
+
 }

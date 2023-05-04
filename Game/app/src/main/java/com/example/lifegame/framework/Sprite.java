@@ -8,6 +8,7 @@ public class Sprite implements IGameObject {
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
     protected float x, y, width, height;
+    protected Sprite() {}
     public Sprite(int bitmapResId, float cx, float cy, float width, float height) {
         this.x = cx;
         this.y = cy;
@@ -19,14 +20,22 @@ public class Sprite implements IGameObject {
         fixDstRect();
     }
 
+    public float getWidth() { return width; }
+    public float getHeight() { return height; }
+    public float getDstWidth() {
+        return dstRect.width();
+    }
+
+    public float getDstHeight() {
+        return dstRect.height();
+    }
+
     protected void setBitmapResource(int bitmapResId) {
         bitmap = BitmapPool.get(bitmapResId);
     }
 
     protected void fixDstRect() {
-        float half_width = width / 2;
-        float half_height = height / 2;
-        dstRect.set(x - half_width, y - half_height, x + half_width, y + half_height);
+        setSize(width, height);
     }
 
     protected void setSize(float width, float height) {
