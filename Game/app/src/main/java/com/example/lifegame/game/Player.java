@@ -30,7 +30,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     };
 
     protected static float[][] edgeInsetRatios = {
-            { 0.1f, 0.01f, 0.1f, 0.0f }, // State.running
+            { 0.0f, 0.0f, 0.0f, 0.0f }, // State.running
     };
 
     protected static Rect[] makeRects(int... indices) {
@@ -67,6 +67,6 @@ public class Player extends AnimSprite implements IBoxCollidable {
     }
 
     public RectF getCollisionRect() {
-        return collisionRect;
+        return dstRect;
     }
 }
