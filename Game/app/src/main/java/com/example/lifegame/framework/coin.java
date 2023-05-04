@@ -10,7 +10,7 @@ import com.example.lifegame.game.MainScene;
 import java.util.Random;
 
 public class coin extends MapObject{
-    public static final int COIN_COUNT = 50;
+    public static final int COIN_COUNT = 7;
     private static final int ITEMS_IN_A_ROW = 7;
     private static final int SIZE = 40;
     private static final int BORDER = 1;

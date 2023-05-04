@@ -1,9 +1,15 @@
 package com.example.lifegame.game;
 
+import static android.content.ContentValues.TAG;
+
+import android.util.Log;
+
 import com.example.lifegame.R;
 import com.example.lifegame.framework.BaseScene;
+import com.example.lifegame.framework.Button;
 import com.example.lifegame.framework.MapLoader;
 import com.example.lifegame.framework.Metrics;
+import com.example.lifegame.framework.Sprite;
 import com.example.lifegame.framework.coin;
 
 import java.util.Random;
@@ -12,7 +18,7 @@ public class MainScene extends BaseScene {
     private final Player player;
 
     public enum Layer {
-        bg, item, player, controller, COUNT
+        bg, item, player, ui,touch, controller, COUNT
         }
 
     public MainScene() {
@@ -25,11 +31,23 @@ public class MainScene extends BaseScene {
         player = new Player();
         add(Layer.player, player);
 
+        add(Layer.touch, new Button(R.mipmap.jump, 14.5f, 7.7f, 3.0f, 2.0f, new Button.Callback() {
+            public boolean onTouch(Button.Action action) {
+                if (action == Button.Action.pressed) {
+                    player.jump();
+                }
+                return true;
+            }
+        }));
+
+
         add(Layer.controller, new MapLoader());
         add(Layer.controller, new CollisionChecker(player));
     }
 
-
+    protected int getTouchLayerIndex() {
+        return Layer.touch.ordinal();
+    }
 
 
 
