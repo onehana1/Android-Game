@@ -9,6 +9,8 @@ import com.example.lifegame.framework.coin;
 import java.util.Random;
 
 public class MainScene extends BaseScene {
+    private final Player player;
+
     public enum Layer {
         bg, item, player, controller, COUNT
         }
@@ -20,8 +22,11 @@ public class MainScene extends BaseScene {
        // add(new HorzScrollBackground(R.mipmap.school, 0.2f));
         add(Layer.bg, new HorzScrollBackground(R.mipmap.school, 0.2f));
 
-        add(Layer.player, new Player());
+        player = new Player();
+        add(Layer.player, player);
+
         add(Layer.controller, new MapLoader());
+        add(Layer.controller, new CollisionChecker(player));
     }
 
 
