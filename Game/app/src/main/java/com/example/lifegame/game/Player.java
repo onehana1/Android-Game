@@ -16,6 +16,13 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float JUMP_POWER = 9.0f;
     private static final float GRAVITY = 17.0f;
 
+    private static final float RUN_SPEED = 1.0f;
+    private static final float CHOICE_SPEED = 0.1f;
+
+    float bgspeed = 0.0f;
+    private long choiceStartTime = 0;
+    private static final long CHOICE_DURATION = 2000; // 2초
+
 
     public Player() {
         super(R.mipmap.player, 2.0f, 7.0f, 2.0f, 2.0f, 8, 1);
@@ -23,19 +30,22 @@ public class Player extends AnimSprite implements IBoxCollidable {
     }
 
     protected enum State {
-        running,jump, COUNT
+        running,jump, CHOICE, COUNT
     }
     protected State state = State.running;
 
 
     protected static Rect[][] srcRects = {
             makeRects(0, 1, 2, 3), //student run
+            makeRects(4), //student jump
             makeRects(4) //student jump
+
     };
 
     protected static float[][] edgeInsetRatios = {
             { 0.0f, 0.0f, 0.0f, 0.0f }, // State.running
             { 0.0f, 0.0f, 0.0f, 0.0f }, // State.jump
+            { 0.0f, 0.0f, 0.0f, 0.0f }  // State.CHOICE
 
     };
 
@@ -50,11 +60,18 @@ public class Player extends AnimSprite implements IBoxCollidable {
         return rects;
     }
     public void jump() {
-        if (state == State.running) {
+        if (state != State.CHOICE && state == State.running){
             state = State.jump;
             jumpSpeed = -JUMP_POWER;
         }
     }
+
+    public void choice() {
+        state = State.CHOICE;
+        choiceStartTime = System.currentTimeMillis();// choice 시작 시간 기록
+        System.out.println("Player is in choice state.");
+    }
+
 
     public void update() {
         if (state == State.jump) {
@@ -67,7 +84,31 @@ public class Player extends AnimSprite implements IBoxCollidable {
             y += dy;
             fixDstRect();
         }
+
+        else if (state == State.CHOICE) {
+            {
+                if (System.currentTimeMillis() - choiceStartTime > CHOICE_DURATION) {
+                    state = State.running;
+                    setBgSpeed(RUN_SPEED);
+                }
+                else {
+                    fixDstRect();
+                    setBgSpeed(CHOICE_SPEED);
+                }
+            }
+        }
+        else {
+            state = State.running;
+        }
     }
+
+    public void setBgSpeed(float newspeed) {
+        this.bgspeed = newspeed;
+    }
+    public float getBgSpeed() {
+        return bgspeed;
+    }
+
 
     private void fixCollisionRect() {
         float[] insets = edgeInsetRatios[state.ordinal()];

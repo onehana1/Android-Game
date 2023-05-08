@@ -16,25 +16,35 @@ import java.util.Random;
 
 public class MainScene extends BaseScene {
     private final Player player;
+    private final float bgspeed = 1.0f;
 
     public enum Layer {
-        bg, item, player, ui,touch, controller, COUNT
+        bg, item,choiceobj, player, ui,touch, controller, COUNT
         }
 
     public MainScene() {
         Metrics.setGameSize(16.0f, 9.0f);
         initLayers(Layer.COUNT);
+        player = new Player();
 
        // add(new HorzScrollBackground(R.mipmap.school, 0.2f));
-        add(Layer.bg, new HorzScrollBackground(R.mipmap.school, 0.2f));
+        add(Layer.bg, new HorzScrollBackground(R.mipmap.school, bgspeed, player));
 
-        player = new Player();
         add(Layer.player, player);
 
         add(Layer.touch, new Button(R.mipmap.jump, 14.5f, 7.7f, 3.0f, 2.0f, new Button.Callback() {
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
                     player.jump();
+                }
+                return true;
+            }
+        }));
+
+        add(Layer.touch, new Button(R.mipmap.choice, 11.5f, 7.7f, 3.0f, 2.0f, new Button.Callback() {
+            public boolean onTouch(Button.Action action) {
+                if (action == Button.Action.pressed) {
+                    player.choice();
                 }
                 return true;
             }
