@@ -7,8 +7,10 @@ import java.util.Random;
 
 public class ChoiceObj extends MapObject{
     private Type type;
-    public static final float SPEED = 2.0f;
+    float speed = 1.0f;
     private boolean spawned = false;
+
+
 
     public enum Type {
         c_art, c_music, c_study, COUNT;
@@ -38,15 +40,6 @@ public class ChoiceObj extends MapObject{
         this.spawned = spawned;
     }
 
-    public void update() {
-        float dx = -SPEED * BaseScene.frameTime;
-
-        dstRect.offset(dx, 0);
-
-        if (dstRect.right < 0) {
-            setSpawned(false);
-        }
-    }
 
     public void setX(float x) {
         dstRect.offset(x - dstRect.left, 0);

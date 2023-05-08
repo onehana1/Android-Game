@@ -8,6 +8,7 @@ import com.example.lifegame.R;
 import com.example.lifegame.framework.BaseScene;
 import com.example.lifegame.framework.Button;
 import com.example.lifegame.framework.MapLoader;
+import com.example.lifegame.framework.MapLoaderObject;
 import com.example.lifegame.framework.Metrics;
 import com.example.lifegame.framework.Sprite;
 import com.example.lifegame.framework.coin;
@@ -51,7 +52,8 @@ public class MainScene extends BaseScene {
         }));
 
 
-        add(Layer.controller, new MapLoader());
+        add(Layer.controller, new MapLoader(player));
+        add(Layer.controller, new MapLoaderObject(player));
         add(Layer.controller, new CollisionChecker(player));
     }
 

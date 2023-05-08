@@ -3,10 +3,12 @@ package com.example.lifegame.framework;
 import android.graphics.Canvas;
 
 import com.example.lifegame.game.MainScene;
+import com.example.lifegame.game.Player;
 
 import java.util.Random;
 
 public class MapLoader implements IGameObject {
+    private final Player player;
     private Random random = new Random();
     private float BottomX, itemX;
 
@@ -18,13 +20,15 @@ public class MapLoader implements IGameObject {
     boolean studySpawned= false;
     boolean artSpawned = false;
 
-
+    public MapLoader(Player player) {
+        this.player = player;
+    }
 
 
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
-        BottomX -= MapObject.SPEED * BaseScene.frameTime;
 
+        BottomX -= MapObject.SPEED * BaseScene.frameTime;
         itemX -= MapObject.SPEED * BaseScene.frameTime;
         while (itemX < Metrics.game_width) {
             coin coinItem = coin.get(coin.getRandomIndex(random), itemX, random.nextInt(7));
@@ -33,25 +37,26 @@ public class MapLoader implements IGameObject {
         }
 
 // 맵의 스크롤 위치가 전체 너비의 1/4 지점인 경우 ChoiceObj 객체 생성
-        if (BottomX < -Metrics.game_width / 7.5 && !artSpawned) {
-            artSpawned = true;
-            ChoiceObj artObj = new ChoiceObj();
-            artObj.init(ChoiceObj.Type.c_art, Metrics.game_width, 5.6f);
-            scene.add(MainScene.Layer.choiceobj, artObj);
-        }
-        if (BottomX < -Metrics.game_width / 4 && !studySpawned) {
-            studySpawned = true;
-            ChoiceObj studyObj = new ChoiceObj();
-            studyObj.init(ChoiceObj.Type.c_study, Metrics.game_width, 5.6f);
-            scene.add(MainScene.Layer.choiceobj, studyObj);
-        }
 
-        if (BottomX < -Metrics.game_width / 2.5 && !musicSpawned) {
-            musicSpawned = true;
-            ChoiceObj musicObj = new ChoiceObj();
-            musicObj.init(ChoiceObj.Type.c_music, Metrics.game_width, 5.6f);
-            scene.add(MainScene.Layer.choiceobj, musicObj);
-        }
+//        if (BottomX < -Metrics.game_width / 7.5 && !artSpawned) {
+//            artSpawned = true;
+//            ChoiceObj artObj = new ChoiceObj();
+//            artObj.init(ChoiceObj.Type.c_art, Metrics.game_width, 5.6f);
+//            scene.add(MainScene.Layer.choiceobj, artObj);
+//        }
+//        if (BottomX < -Metrics.game_width / 4 && !studySpawned) {
+//            studySpawned = true;
+//            ChoiceObj studyObj = new ChoiceObj();
+//            studyObj.init(ChoiceObj.Type.c_study, Metrics.game_width, 5.6f);
+//            scene.add(MainScene.Layer.choiceobj, studyObj);
+//        }
+//
+//        if (BottomX < -Metrics.game_width / 2.5 && !musicSpawned) {
+//            musicSpawned = true;
+//            ChoiceObj musicObj = new ChoiceObj();
+//            musicObj.init(ChoiceObj.Type.c_music, Metrics.game_width, 5.6f);
+//            scene.add(MainScene.Layer.choiceobj, musicObj);
+//        }
 
     }
 

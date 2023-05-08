@@ -6,10 +6,10 @@ import com.example.lifegame.game.MainScene;
 
 public class MapObject extends Sprite implements IBoxCollidable, IRecyclable{
     public static final float SPEED = 2.0f;
-    public static final float COB_SPEED = 2.0f;
-
+    public static final float COB_SPEED = 1.0f;
+    float speed= 2.0f;
     public void update() {
-        float dx = -SPEED * BaseScene.frameTime;
+        float dx = -speed * BaseScene.frameTime;
 
         dstRect.offset(dx, 0);
 
@@ -18,6 +18,12 @@ public class MapObject extends Sprite implements IBoxCollidable, IRecyclable{
         }
     }
 
+    public void setSpeed(float newspeed){
+        speed =newspeed;
+    }
+    public float getSpeed(){
+       return speed;
+    }
 
     protected MainScene.Layer getLayer() {
         return MainScene.Layer.choiceobj;

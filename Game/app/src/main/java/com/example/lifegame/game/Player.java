@@ -19,7 +19,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float RUN_SPEED = 1.0f;
     private static final float CHOICE_SPEED = 0.1f;
 
-    float bgspeed = 0.0f;
+    float bgspeed = 1.0f;
     private long choiceStartTime = 0;
     private static final long CHOICE_DURATION = 2000; // 2초
 
@@ -29,7 +29,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
         this.ground = y;
     }
 
-    protected enum State {
+    public enum State {
         running,jump, CHOICE, COUNT
     }
     protected State state = State.running;
@@ -59,6 +59,11 @@ public class Player extends AnimSprite implements IBoxCollidable {
         }
         return rects;
     }
+
+    public State getState() {
+        return this.state;
+    }
+
     public void jump() {
         if (state != State.CHOICE && state == State.running){
             state = State.jump;
@@ -90,15 +95,20 @@ public class Player extends AnimSprite implements IBoxCollidable {
                 if (System.currentTimeMillis() - choiceStartTime > CHOICE_DURATION) {
                     state = State.running;
                     setBgSpeed(RUN_SPEED);
+
                 }
                 else {
                     fixDstRect();
                     setBgSpeed(CHOICE_SPEED);
+                    System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
+
                 }
             }
         }
         else {
             state = State.running;
+            System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
+
         }
     }
 

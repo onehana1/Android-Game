@@ -16,6 +16,8 @@ public class coin extends MapObject{
     private static final int BORDER = 1;
     protected Rect srcRect = new Rect();
 
+    float speed = 1.0f;
+
     public coin() {
         setBitmapResource(R.mipmap.coins);
         width = height = 1;
