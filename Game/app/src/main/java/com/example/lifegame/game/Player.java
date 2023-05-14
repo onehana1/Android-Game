@@ -101,7 +101,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
                     fixDstRect();
                     setBgSpeed(CHOICE_SPEED);
                     System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
-
+                    y = ground;
                 }
             }
         }
