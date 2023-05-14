@@ -51,6 +51,33 @@ public class MainScene extends BaseScene {
             }
         }));
 
+        add(Layer.touch, new Button(R.mipmap.hobby_1, 1.0f, 8.3f, 1.0f, 1.0f, new Button.Callback() {
+            public boolean onTouch(Button.Action action) {
+                if (action == Button.Action.pressed) {
+                    player.choice();
+                }
+                return true;
+            }
+        }));
+
+        add(Layer.touch, new Button(R.mipmap.hobby_2, 2.0f, 8.3f, 1.0f, 1.0f, new Button.Callback() {
+            public boolean onTouch(Button.Action action) {
+                if (action == Button.Action.pressed) {
+                    player.choice();
+                }
+                return true;
+            }
+        }));
+
+        add(Layer.touch, new Button(R.mipmap.hobby_3, 3.0f, 8.3f, 1.0f, 1.0f, new Button.Callback() {
+            public boolean onTouch(Button.Action action) {
+                if (action == Button.Action.pressed) {
+                    player.choice();
+                }
+                return true;
+            }
+        }));
+
 
         add(Layer.controller, new MapLoader(player));
         add(Layer.controller, new MapLoaderObject(player));
