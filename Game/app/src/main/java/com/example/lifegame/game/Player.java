@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import com.example.lifegame.R;
 import com.example.lifegame.framework.AnimSprite;
 import com.example.lifegame.framework.BaseScene;
+import com.example.lifegame.framework.Emotion;
 import com.example.lifegame.framework.IBoxCollidable;
 
 public class Player extends AnimSprite implements IBoxCollidable {
@@ -23,10 +24,13 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private long choiceStartTime = 0;
     private static final long CHOICE_DURATION = 2000; // 2초
 
+    private Emotion emotion; // Emotion 객체 추가
 
     public Player() {
         super(R.mipmap.player, 2.0f, 7.0f, 2.0f, 2.0f, 8, 1);
         this.ground = y;
+
+        emotion = new Emotion();
     }
 
     public enum State {
@@ -100,14 +104,14 @@ public class Player extends AnimSprite implements IBoxCollidable {
                 else {
                     fixDstRect();
                     setBgSpeed(CHOICE_SPEED);
-                    System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
+                   // System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
                     y = ground;
                 }
             }
         }
         else {
             state = State.running;
-            System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
+           // System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
 
         }
     }
@@ -136,6 +140,15 @@ public class Player extends AnimSprite implements IBoxCollidable {
         Rect[] rects = srcRects[state.ordinal()];
         int frameIndex = Math.round(time * fps) % rects.length;
         canvas.drawBitmap(bitmap, rects[frameIndex], dstRect, null);
+
+
+        // Player의 상태가 CHOICE일 때 Emotion 객체 그리기
+        if (state == State.CHOICE) {
+            emotion.setPosition(dstRect.left, dstRect.top);
+            emotion.draw(canvas);
+            System.out.println("초이스");
+        }
+
     }
 
     public RectF getCollisionRect() {
