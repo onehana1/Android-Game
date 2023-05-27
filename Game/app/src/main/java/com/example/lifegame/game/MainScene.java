@@ -23,13 +23,15 @@ public class MainScene extends BaseScene {
         bg, item,choiceobj, player, ui,touch, controller, COUNT
         }
 
+    int[] imageResources = {R.mipmap.school, R.mipmap.company, R.mipmap.playground};
+
     public MainScene() {
         Metrics.setGameSize(16.0f, 9.0f);
         initLayers(Layer.COUNT);
         player = new Player();
 
        // add(new HorzScrollBackground(R.mipmap.school, 0.2f));
-        add(Layer.bg, new HorzScrollBackground(R.mipmap.school, bgspeed, player));
+        add(Layer.bg, new HorzScrollBackground(imageResources, bgspeed, player));
 
         add(Layer.player, player);
 
