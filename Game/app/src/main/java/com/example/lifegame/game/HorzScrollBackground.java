@@ -1,9 +1,11 @@
 package com.example.lifegame.game;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
 import com.example.lifegame.framework.BaseScene;
+import com.example.lifegame.framework.BitmapPool;
 import com.example.lifegame.framework.ChoiceObj;
 import com.example.lifegame.framework.Metrics;
 import com.example.lifegame.framework.Sprite;
@@ -15,9 +17,8 @@ public class HorzScrollBackground extends Sprite {
     private final float width;
     private float scroll;
 
-    private int scrollCount; // 현재까지 스크롤한 횟수
     private int[] bitmapResIds; // 이미지 리소스 ID 배열
-    private int currentBitmapIndex; // 현재 사용 중인 이미지 리소스의 인덱스
+    private int currentIndex; // 현재 사용 중인 이미지 리소스의 인덱스
 
 
     public HorzScrollBackground(int[] bitmapResIds, float speed, Player player) {
@@ -28,44 +29,51 @@ public class HorzScrollBackground extends Sprite {
         this.player = player;// Player 객체를 저장
 
         this.bitmapResIds = bitmapResIds;
-        this.currentBitmapIndex = 0; // 처음에는 첫 번째 이미지 리소스를 사용
+        this.currentIndex = 0; // 처음에는 첫 번째 이미지 리소스를 사용
     }
+
     @Override
     public void update() {
-        if(player.getBgSpeed()!=0)
+        if (player.getBgSpeed() != 0)
             speed = player.getBgSpeed();
         scroll -= speed * BaseScene.frameTime;
-
 
         // 이미지 전환을 위해 체크
         if (scroll <= -width) {
             scroll += width;
-            currentBitmapIndex++;
-            if (currentBitmapIndex >= bitmapResIds.length) {
-                currentBitmapIndex = 0;
+
+            // 다음 이미지로 전환
+            currentIndex++;
+            if (currentIndex >= bitmapResIds.length) {
+                currentIndex = 0;
             }
-            setBitmapResource(bitmapResIds[currentBitmapIndex]);
         }
-
     }
-
 
     @Override
     public void draw(Canvas canvas) {
         float curr = scroll % width;
-        if (curr > 0) curr -= width;
+        float next = curr + width;
 
         while (curr < Metrics.game_width) {
-            dstRect.set(curr, 0, curr + width, Metrics.game_height);
-            canvas.drawBitmap(bitmap, null, dstRect, null);
+            if (next > 0) {
+                int index = currentIndex;
+                if (next > Metrics.game_width) {
+                    index++;
+                    if (index >= bitmapResIds.length) {
+                        index = 0;
+                    }
+                }
+
+                setBitmapResource(bitmapResIds[index]);
+                dstRect.set(curr, 0, next, Metrics.game_height);
+                canvas.drawBitmap(bitmap, null, dstRect, null);
+            }
+
             curr += width;
+            next += width;
         }
     }
-
-
-
-
-
 
 
 }
