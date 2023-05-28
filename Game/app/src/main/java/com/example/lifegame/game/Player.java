@@ -29,7 +29,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private int age; // 플레이어의 나이 변수
 
     public Player() {
-        super(R.mipmap.player, 2.0f, 7.0f, 2.0f, 2.0f, 8, 1);
+        super(R.mipmap.player1, 2.0f, 7.0f, 2.0f, 2.0f, 8, 1);
         this.ground = y;
 
         emotion = new Emotion();
@@ -47,9 +47,55 @@ public class Player extends AnimSprite implements IBoxCollidable {
     protected static Rect[][] srcRects = {
             makeRects(0, 1, 2, 3), //student run
             makeRects(4), //student jump
-            makeRects(4) //student jump
+            makeRects(4), //student choice
+
+            makeRects(100, 101, 102, 103), //baby run
+            makeRects(104), //baby jump
+            makeRects(104), //baby choice
+
+            makeRects(200, 201, 202, 203), //worker run
+            makeRects(204), //worker jump
+            makeRects(204), //worker choice
+
+            makeRects(300, 301, 302, 303), //old worker run
+            makeRects(304), //old worker jump
+            makeRects(304), //old worker choice
 
     };
+
+    private void updateSrcRects() {
+        if (age == 0) {
+            srcRects = new Rect[][]{
+                    makeRects(0, 1, 2, 3), // student run
+                    makeRects(4), // student jump
+                    makeRects(4), // student choice
+            };
+        } else if (age == 1) {
+            srcRects = new Rect[][]{
+                    makeRects(100, 101, 102, 103), // baby run
+                    makeRects(104), // baby jump
+                    makeRects(104), // baby choice
+            };
+        } else if (age == 2) {
+            srcRects = new Rect[][]{
+                    makeRects(200, 201, 202, 203), // worker run
+                    makeRects(204), // worker jump
+                    makeRects(204), // worker choice
+            };
+        } else if (age == 3) {
+            srcRects = new Rect[][]{
+                    makeRects(300, 301, 302, 303), // elderly run
+                    makeRects(304), // elderly jump
+                    makeRects(304), // elderly choice
+            };
+        }
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+        updateSrcRects();
+    }
+
 
     protected static float[][] edgeInsetRatios = {
             { 0.0f, 0.0f, 0.0f, 0.0f }, // State.running
@@ -86,9 +132,6 @@ public class Player extends AnimSprite implements IBoxCollidable {
         System.out.println("Player is in choice state.");
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 
 
     public void update() {

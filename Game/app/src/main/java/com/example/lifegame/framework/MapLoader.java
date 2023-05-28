@@ -36,6 +36,9 @@ public class MapLoader implements IGameObject {
             itemX += coinItem.getWidth();
         }
 
+
+
+
 // 맵의 스크롤 위치가 전체 너비의 1/4 지점인 경우 ChoiceObj 객체 생성
 
 //        if (BottomX < -Metrics.game_width / 7.5 && !artSpawned) {
