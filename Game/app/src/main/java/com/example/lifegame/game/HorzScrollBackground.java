@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
+import com.example.lifegame.R;
 import com.example.lifegame.framework.BaseScene;
 import com.example.lifegame.framework.BitmapPool;
 import com.example.lifegame.framework.ChoiceObj;
@@ -22,7 +23,7 @@ public class HorzScrollBackground extends Sprite {
 
 
     public HorzScrollBackground(int[] bitmapResIds, float speed, Player player) {
-        super(bitmapResIds[0], Metrics.game_width / 2, Metrics.game_height / 2, Metrics.game_width, Metrics.game_height);
+        super(bitmapResIds[1], Metrics.game_width / 2, Metrics.game_height / 2, Metrics.game_width, Metrics.game_height);
         this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
         setSize(Metrics.game_height, width);
         this.speed = speed;
@@ -30,6 +31,31 @@ public class HorzScrollBackground extends Sprite {
 
         this.bitmapResIds = bitmapResIds;
         this.currentIndex = 0; // 처음에는 첫 번째 이미지 리소스를 사용
+    }
+
+    public int getCurrentImageResourceId() {
+        return bitmapResIds[currentIndex];
+    }
+
+
+    public void setPlayerAgeBasedOnCurrentImage() {
+        int currentImageResId = bitmapResIds[currentIndex];
+        int age = 0;
+        // 이미지 리소스 ID에 따라 플레이어의 나이를 설정
+        if (currentImageResId == R.mipmap.school) {
+            age = 1;
+            System.out.println("setAge 1!");
+
+        } else if (currentImageResId == R.mipmap.company) {
+            age = 2;
+            System.out.println("setAge 2!");
+
+        } else if (currentImageResId == R.mipmap.playground) {
+            age = 3;
+            System.out.println("setAge 3!");
+
+        }
+        player.setAge(age);
     }
 
     @Override
@@ -47,6 +73,9 @@ public class HorzScrollBackground extends Sprite {
             if (currentIndex >= bitmapResIds.length) {
                 currentIndex = 0;
             }
+
+            // 플레이어의 나이 업데이트
+            setPlayerAgeBasedOnCurrentImage();
         }
     }
 

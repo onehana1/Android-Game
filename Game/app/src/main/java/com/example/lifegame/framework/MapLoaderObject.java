@@ -32,9 +32,6 @@ public class MapLoaderObject implements IGameObject {
         BottomX -= player.getBgSpeed() * BaseScene.frameTime;
         itemX -= player.getBgSpeed() * BaseScene.frameTime;
 
-
-        //System.out.println("초이스오브젝트: " + player.getBgSpeed());
-
 // 맵의 스크롤 위치가 전체 너비의 1/4 지점인 경우 ChoiceObj 객체 생성
 
         if (BottomX < -Metrics.game_width / 7.5 && !artSpawned) {

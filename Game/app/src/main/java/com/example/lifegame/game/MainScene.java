@@ -29,11 +29,14 @@ public class MainScene extends BaseScene {
         Metrics.setGameSize(16.0f, 9.0f);
         initLayers(Layer.COUNT);
         player = new Player();
+        add(Layer.player, player);
 
        // add(new HorzScrollBackground(R.mipmap.school, 0.2f));
-        add(Layer.bg, new HorzScrollBackground(imageResources, bgspeed, player));
+        HorzScrollBackground background = new HorzScrollBackground(imageResources, bgspeed, player);
+        add(Layer.bg, background);
 
-        add(Layer.player, player);
+        // 플레이어의 나이 설정
+        background.setPlayerAgeBasedOnCurrentImage();
 
         add(Layer.touch, new Button(R.mipmap.jump, 14.5f, 7.7f, 3.0f, 2.0f, new Button.Callback() {
             public boolean onTouch(Button.Action action) {

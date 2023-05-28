@@ -26,16 +26,21 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
     private Emotion emotion; // Emotion 객체 추가
 
+    private int age; // 플레이어의 나이 변수
+
     public Player() {
         super(R.mipmap.player, 2.0f, 7.0f, 2.0f, 2.0f, 8, 1);
         this.ground = y;
 
         emotion = new Emotion();
+        age = 0; // 초기 나이 설정
     }
 
     public enum State {
         running,jump, CHOICE, COUNT
     }
+
+
     protected State state = State.running;
 
 
@@ -81,6 +86,10 @@ public class Player extends AnimSprite implements IBoxCollidable {
         System.out.println("Player is in choice state.");
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
 
     public void update() {
         if (state == State.jump) {
@@ -114,6 +123,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
            // System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
 
         }
+
     }
 
     public void setBgSpeed(float newspeed) {
