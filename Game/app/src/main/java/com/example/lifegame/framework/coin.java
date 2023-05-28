@@ -36,6 +36,20 @@ public class coin extends MapObject{
         return random.nextInt(COIN_COUNT);
     }
 
+    public static int getCoinIndex(Random random, int age) {
+        // 플레이어의 나이에 따라 코인 인덱스 선택
+        switch (age) {
+            case 0:
+                return random.nextInt(3);
+            case 1:
+                return random.nextInt(3) + 3;
+            case 2:
+                return random.nextInt(3) + 6;
+            default:
+                return random.nextInt(1);
+        }
+    }
+
     private void init(int index, float left, float top) {
         setSrcRect(index);
         dstRect.set(left, top, left + width, top + height);

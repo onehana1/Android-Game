@@ -95,6 +95,9 @@ public class Player extends AnimSprite implements IBoxCollidable {
         this.age = age;
         updateSrcRects();
     }
+    public int getAge() {
+        return age;
+    }
 
 
     protected static float[][] edgeInsetRatios = {

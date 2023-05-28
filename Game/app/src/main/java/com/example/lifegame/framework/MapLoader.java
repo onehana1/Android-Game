@@ -30,36 +30,14 @@ public class MapLoader implements IGameObject {
 
         BottomX -= MapObject.SPEED * BaseScene.frameTime;
         itemX -= MapObject.SPEED * BaseScene.frameTime;
+
+
         while (itemX < Metrics.game_width) {
-            coin coinItem = coin.get(coin.getRandomIndex(random), itemX, random.nextInt(7));
+            //coin coinItem = coin.get(coin.getRandomIndex(random), itemX, random.nextInt(8));
+            coin coinItem = coin.get(coin.getCoinIndex(random, player.getAge()), itemX, random.nextInt(8));
             scene.add(MainScene.Layer.item, coinItem);
             itemX += coinItem.getWidth();
         }
-
-
-
-
-// 맵의 스크롤 위치가 전체 너비의 1/4 지점인 경우 ChoiceObj 객체 생성
-
-//        if (BottomX < -Metrics.game_width / 7.5 && !artSpawned) {
-//            artSpawned = true;
-//            ChoiceObj artObj = new ChoiceObj();
-//            artObj.init(ChoiceObj.Type.c_art, Metrics.game_width, 5.6f);
-//            scene.add(MainScene.Layer.choiceobj, artObj);
-//        }
-//        if (BottomX < -Metrics.game_width / 4 && !studySpawned) {
-//            studySpawned = true;
-//            ChoiceObj studyObj = new ChoiceObj();
-//            studyObj.init(ChoiceObj.Type.c_study, Metrics.game_width, 5.6f);
-//            scene.add(MainScene.Layer.choiceobj, studyObj);
-//        }
-//
-//        if (BottomX < -Metrics.game_width / 2.5 && !musicSpawned) {
-//            musicSpawned = true;
-//            ChoiceObj musicObj = new ChoiceObj();
-//            musicObj.init(ChoiceObj.Type.c_music, Metrics.game_width, 5.6f);
-//            scene.add(MainScene.Layer.choiceobj, musicObj);
-//        }
 
     }
 
