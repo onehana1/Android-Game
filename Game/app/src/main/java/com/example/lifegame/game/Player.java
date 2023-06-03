@@ -8,6 +8,7 @@ import com.example.lifegame.R;
 import com.example.lifegame.framework.AnimSprite;
 import com.example.lifegame.framework.BaseScene;
 import com.example.lifegame.framework.Emotion;
+import com.example.lifegame.framework.Emotions;
 import com.example.lifegame.framework.IBoxCollidable;
 
 public class Player extends AnimSprite implements IBoxCollidable {
@@ -25,6 +26,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final long CHOICE_DURATION = 2000; // 2초
 
     private Emotion emotion; // Emotion 객체 추가
+    private Emotions emotions; // Emotions 객체 추가
 
     private int age; // 플레이어의 나이 변수
     private boolean ageChanged = false; // 나이 변경 여부 변수
@@ -34,6 +36,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
         this.ground = y;
 
         emotion = new Emotion();
+        emotions = new Emotions();
         age = 0; // 초기 나이 설정
     }
 
@@ -223,8 +226,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
         // Player의 상태가 CHOICE일 때 Emotion 객체 그리기
         if (state == State.CHOICE) {
-            emotion.setPosition(dstRect.left, dstRect.top);
-            emotion.draw(canvas);
+            emotions.setPosition(dstRect.left, dstRect.top);
+            emotions.draw(canvas);
             //System.out.println("초이스");
         }
 
