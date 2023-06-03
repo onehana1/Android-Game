@@ -53,7 +53,7 @@ public class MapLoaderObject implements IGameObject {
             // 원하는 숫자에 따라 ChoiceObj 객체 생성 및 초기화
             if (ratioIndex == 1 && !artSpawned) {
                 choiceObj = new ChoiceObj();
-                choiceObj.init(ChoiceObj.Type.c_art, spawnX, spawnY);
+                choiceObj.init(ChoiceObj.Type.c_art, spawnX  - 10.0f, spawnY);
                 artSpawned = true;
             } else if (ratioIndex == 2 && !studySpawned) {
                 choiceObj = new ChoiceObj();

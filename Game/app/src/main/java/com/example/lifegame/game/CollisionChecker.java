@@ -30,6 +30,21 @@ public class CollisionChecker implements IGameObject {
                 scene.remove(MainScene.Layer.item, gobj);
             }
         }
+
+        ArrayList<IGameObject> choiceobjs = scene.getObjectsAt(MainScene.Layer.choiceobj);
+        for (int i = choiceobjs.size() - 1; i >= 0; i--) {
+            IGameObject gobj = choiceobjs.get(i);
+            if (!(gobj instanceof IBoxCollidable)) {
+                continue;
+            }
+            if (CollisionHelper.collides(player, (IBoxCollidable) gobj)) {
+                player.setCanchoice(true);
+            }
+            else {
+                player.setCanchoice(false);
+
+            }
+        }
     }
 
     @Override

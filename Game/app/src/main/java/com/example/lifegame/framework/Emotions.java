@@ -13,8 +13,12 @@ import java.util.Random;
 public class Emotions implements IGameObject {
     private static final float EMOTION_SIZE = 5.0f; // Emotion 이미지의 크기
     private static final int SUCCESS_IMAGE = R.mipmap.success; // success 이미지 리소스 ID
+    private static final int FAIL_IMAGE = R.mipmap.fail; // success 이미지 리소스 ID
+
 
     private Bitmap successBitmap; // success 이미지 비트맵
+    private Bitmap failBitmap; // success 이미지 비트맵
+
     private RectF dstRect; // Emotion 이미지의 목적 사각형
     private boolean  callemotion;
     private Random random; // 랜덤 객체
@@ -24,11 +28,13 @@ public class Emotions implements IGameObject {
     private Paint paint; // 투명도를 조절하는 Paint 객체
 
 
-    private boolean emply = false;
+    private int emply = 0;
 
 
     public Emotions() {
-        successBitmap = BitmapPool.get(SUCCESS_IMAGE);
+        successBitmap = BitmapPool.get(SUCCESS_IMAGE); //성공
+        failBitmap = BitmapPool.get(FAIL_IMAGE); //실패
+
         dstRect = new RectF();
         random = new Random();
 
@@ -48,29 +54,47 @@ public class Emotions implements IGameObject {
 
     }
 
-    public void setplay(boolean i){
+    public void setplay(int i){
         emply = i;
     }
 
-    public boolean getplay(){
+    public int getplay(){
         return emply;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        if (emply) {
+        if (emply == 1) {
             offsetY += 0.02;
             int alpha = (int) (255 - (255 * offsetY / 1.02)); // 투명도 계산
             paint.setAlpha(alpha); // 투명도 설정
 
             if (offsetY >= 1.0) {
-                emply=false;
+                emply=0;
                 offsetY = 0.0f;
             }
             float adjustedY = dstRect.top - offsetY;
             dstRect.set(dstRect.left, adjustedY, dstRect.right, adjustedY + EMOTION_SIZE);
+
             canvas.drawBitmap(successBitmap, null, dstRect, paint);
+
             // canvas.drawBitmap(successBitmap, null, dstRect, null);
+        }
+
+        if (emply == 2) {
+            offsetY -= 0.02;
+            int alpha = (int) (255 - (255 * -(offsetY) / 1.02)); // 투명도 계산
+            paint.setAlpha(alpha); // 투명도 설정
+
+            if (offsetY <= -1.0) {
+                emply=0;
+                offsetY = 0.0f;
+            }
+            float adjustedY = dstRect.top - offsetY;
+            dstRect.set(dstRect.left, adjustedY, dstRect.right, adjustedY + EMOTION_SIZE);
+
+            canvas.drawBitmap(failBitmap, null, dstRect, paint);
+
         }
     }
 }

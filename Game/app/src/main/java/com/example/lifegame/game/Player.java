@@ -31,6 +31,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private int age; // 플레이어의 나이 변수
     private boolean ageChanged = false; // 나이 변경 여부 변수
 
+    private boolean canchoice = false;
+
     public Player() {
         super(R.mipmap.player1, 2.0f, 7.0f, 2.0f, 2.0f, 8, 1);
         this.ground = y;
@@ -155,12 +157,16 @@ public class Player extends AnimSprite implements IBoxCollidable {
     }
 
     public void choice() {
-        state = State.CHOICE;
-        choiceStartTime = System.currentTimeMillis();// choice 시작 시간 기록
-        System.out.println("Player is in choice state.");
-        emotions.setplay(true);
+        if(canchoice) {
+            state = State.CHOICE;
+            choiceStartTime = System.currentTimeMillis();// choice 시작 시간 기록
+            System.out.println("Player is in choice state.");
+            emotions.setplay(2);
+        }
     }
-
+    public void setCanchoice(boolean i){
+        canchoice = i;
+    }
 
 
     public void update() {
