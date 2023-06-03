@@ -158,6 +158,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
         state = State.CHOICE;
         choiceStartTime = System.currentTimeMillis();// choice 시작 시간 기록
         System.out.println("Player is in choice state.");
+        emotions.setplay(true);
     }
 
 
