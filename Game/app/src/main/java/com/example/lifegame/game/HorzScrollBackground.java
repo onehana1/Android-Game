@@ -36,11 +36,23 @@ public class HorzScrollBackground extends Sprite {
         int currentImageResId = bitmapResIds[currentIndex];
         // 이미지 리소스 ID에 따라 플레이어의 나이를 설정
         if (currentImageResId == R.mipmap.playground) {
+            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+            setSize(Metrics.game_height, width);
             age = 1;
         } else if (currentImageResId == R.mipmap.school) {
+            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+            setSize(Metrics.game_height, width);
             age = 2;
-        } else if (currentImageResId == R.mipmap.company) {
+        }
+            else if (currentImageResId == R.mipmap.school2) {
+            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+            setSize(Metrics.game_height, width);
             age = 3;
+        }
+        else if (currentImageResId == R.mipmap.company) {
+            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+            setSize(Metrics.game_height, width);
+            age = 4;
         }
         player.setAge(age);
     }
@@ -48,8 +60,7 @@ public class HorzScrollBackground extends Sprite {
     @Override
     public void update() {
 
-        this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-        setSize(Metrics.game_height, width);
+
 
         if (player.getBgSpeed() != 0)
             speed = player.getBgSpeed();
@@ -58,6 +69,9 @@ public class HorzScrollBackground extends Sprite {
         // 이미지 전환을 위해 체크
         if (scroll <= -width) {
             scroll += width;
+            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+            setSize(Metrics.game_height, width);
+
             currentIndex++;
             if (currentIndex >= bitmapResIds.length) {
                 currentIndex = 0;

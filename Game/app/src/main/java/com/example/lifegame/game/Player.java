@@ -79,25 +79,25 @@ public class Player extends AnimSprite implements IBoxCollidable {
     };
 
     private void updateSrcRects() {
-        if (age == 0) {
+        if (age == 1||age==2) {
             srcRects = new Rect[][]{
                     makeRects(0, 1, 2, 3), // student run
                     makeRects(4), // student jump
                     makeRects(4), // student choice
             };
-        } else if (age == 1) {
+        } else if (age == 0) {
             srcRects = new Rect[][]{
                     makeRects(100, 101, 102, 103), // baby run
                     makeRects(104), // baby jump
                     makeRects(104), // baby choice
             };
-        } else if (age == 2) {
+        } else if (age == 3) {
             srcRects = new Rect[][]{
                     makeRects(200, 201, 202, 203), // worker run
                     makeRects(204), // worker jump
                     makeRects(204), // worker choice
             };
-        } else if (age == 3) {
+        } else if (age == 4) {
             srcRects = new Rect[][]{
                     makeRects(300, 301, 302, 303), // elderly run
                     makeRects(304), // elderly jump
