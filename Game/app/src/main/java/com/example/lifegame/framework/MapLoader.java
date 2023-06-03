@@ -12,18 +12,16 @@ public class MapLoader implements IGameObject {
     private Random random = new Random();
     private float BottomX, itemX;
 
-    private final float[] ratios = {4f, 5f, 6f}; // 각 지점의 비율
-    private int ratioIndex = 0; // 비율 인덱스
-
-    private ChoiceObj choiceObj;
-    boolean musicSpawned= false;
-    boolean studySpawned= false;
-    boolean artSpawned = false;
+    private static int coinCount = 0; // 생성된 코인 수
 
     public MapLoader(Player player) {
         this.player = player;
     }
+    public static void resetCoinCount() {
+        coinCount = 0; // 코인 생성 수 초기화
+    }
 
+    int maxCoinCount = 10; // 플레이어 나이에 따른 최대 코인 생성 수
 
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
@@ -32,14 +30,25 @@ public class MapLoader implements IGameObject {
         itemX -= MapObject.SPEED * BaseScene.frameTime;
 
 
+        int age = player.getAge();
+
+        // 플레이어의 나이가 변경되었을 때 코인 생성 수 초기화
+        if (player.isAgeChanged()) {
+            coinCount = 0;
+            player.resetAgeChanged();
+
+        }
+
         while (itemX < Metrics.game_width) {
-            //coin coinItem = coin.get(coin.getRandomIndex(random), itemX, random.nextInt(8));
-            coin coinItem = coin.get(coin.getCoinIndex(random, player.getAge()), itemX, random.nextInt(8));
+            coin coinItem = coin.get(coin.getCoinIndex(random, age), itemX, random.nextInt(8));
             scene.add(MainScene.Layer.item, coinItem);
             itemX += coinItem.getWidth();
+            coinCount++;
+           // System.out.println(coinCount); // 새로운 줄로 이동하여 출력
         }
 
     }
+
 
     public void draw(Canvas canvas) {}
 }

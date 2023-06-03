@@ -20,6 +20,8 @@ public class MapLoaderObject implements IGameObject {
     boolean studySpawned= false;
     boolean artSpawned = false;
 
+    private float mapScrollSpeed = 0.0f; // 맵의 스크롤 속도
+
     public MapLoaderObject(Player player) {
         this.player = player;
     }
@@ -28,33 +30,54 @@ public class MapLoaderObject implements IGameObject {
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
 
+        float scrollSpeed = player.getBgSpeed(); // 배경의 속도
 
-        BottomX -= player.getBgSpeed() * BaseScene.frameTime;
-        itemX -= player.getBgSpeed() * BaseScene.frameTime;
+        Player.State playerState = player.getState();
 
-// 맵의 스크롤 위치가 전체 너비의 1/4 지점인 경우 ChoiceObj 객체 생성
+        BottomX -= scrollSpeed * BaseScene.frameTime;
+        itemX -= scrollSpeed * BaseScene.frameTime;
 
-        if (BottomX < -Metrics.game_width / 7.5 && !artSpawned) {
-            artSpawned = true;
-            ChoiceObj artObj = new ChoiceObj();
-            artObj.init(ChoiceObj.Type.c_art, Metrics.game_width, 5.6f);
-            scene.add(MainScene.Layer.choiceobj, artObj);
+
+
+        // 맵의 스크롤 위치가 비율에 따라 ChoiceObj 객체 생성
+        if (BottomX < -Metrics.game_width / ratios[ratioIndex]) {
+            ratioIndex++;
+            if (ratioIndex >= ratios.length) {
+                ratioIndex = 0;
+            }
+
+            float spawnX = Metrics.game_width;
+            float spawnY = 5.6f;
+
+            ChoiceObj choiceObj;
+            // 원하는 숫자에 따라 ChoiceObj 객체 생성 및 초기화
+            if (ratioIndex == 1 && !artSpawned) {
+                choiceObj = new ChoiceObj();
+                choiceObj.init(ChoiceObj.Type.c_art, spawnX, spawnY);
+                artSpawned = true;
+            } else if (ratioIndex == 2 && !studySpawned) {
+                choiceObj = new ChoiceObj();
+                choiceObj.init(ChoiceObj.Type.c_study, spawnX, spawnY);
+                studySpawned = true;
+            } else if (ratioIndex == 0 && !musicSpawned) {
+                choiceObj = new ChoiceObj();
+                choiceObj.init(ChoiceObj.Type.c_music, spawnX, spawnY);
+                musicSpawned = true;
+            } else {
+                return; // 이미 생성된 ChoiceObj가 있는 경우 종료
+            }
+
+            choiceObj.setSpeed((player.getBgSpeed()));
+            scene.add(MainScene.Layer.choiceobj, choiceObj);
         }
-        if (BottomX < -Metrics.game_width / 4 && !studySpawned) {
-            studySpawned = true;
-            ChoiceObj studyObj = new ChoiceObj();
-            studyObj.init(ChoiceObj.Type.c_study, Metrics.game_width, 5.6f);
-            scene.add(MainScene.Layer.choiceobj, studyObj);
-        }
 
-        if (BottomX < -Metrics.game_width / 2.5 && !musicSpawned) {
-            musicSpawned = true;
-            ChoiceObj musicObj = new ChoiceObj();
-            musicObj.init(ChoiceObj.Type.c_music, Metrics.game_width, 5.6f);
-            scene.add(MainScene.Layer.choiceobj, musicObj);
-        }
+
 
     }
 
+
+    public void setMapScrollSpeed(float scrollSpeed) {
+        this.mapScrollSpeed = scrollSpeed;
+    }
     public void draw(Canvas canvas) {}
 }

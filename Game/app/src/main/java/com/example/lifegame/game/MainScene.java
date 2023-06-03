@@ -20,7 +20,7 @@ public class MainScene extends BaseScene {
     private final float bgspeed = 1.0f;
 
     public enum Layer {
-        bg, item,choiceobj, player, ui,touch, controller, COUNT
+        bg, item, choiceobj, player, ui,touch, controller, COUNT
         }
 
     int[] imageResources = {R.mipmap.school, R.mipmap.company, R.mipmap.playground};
@@ -85,7 +85,7 @@ public class MainScene extends BaseScene {
 
 
         add(Layer.controller, new MapLoader(player));
-        add(Layer.controller, new MapLoaderObject(player));
+        add(Layer.choiceobj, new MapLoaderObject(player));
         add(Layer.controller, new CollisionChecker(player));
     }
 

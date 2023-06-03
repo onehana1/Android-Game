@@ -51,7 +51,7 @@ public class HorzScrollBackground extends Sprite {
             System.out.println("setAge 2!");
 
         } else if (currentImageResId == R.mipmap.playground) {
-            age = 3;
+            age = 1 ;
             System.out.println("setAge 3!");
 
         }
