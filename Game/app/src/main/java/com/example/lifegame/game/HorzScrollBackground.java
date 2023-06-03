@@ -23,7 +23,7 @@ public class HorzScrollBackground extends Sprite {
 
 
     public HorzScrollBackground(int[] bitmapResIds, float speed, Player player) {
-        super(bitmapResIds[1], Metrics.game_width / 2, Metrics.game_height / 2, Metrics.game_width, Metrics.game_height);
+        super(bitmapResIds[0], Metrics.game_width / 2, Metrics.game_height / 2, Metrics.game_width, Metrics.game_height);
         this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
         setSize(Metrics.game_height, width);
         this.speed = speed;
@@ -42,18 +42,17 @@ public class HorzScrollBackground extends Sprite {
         int currentImageResId = bitmapResIds[currentIndex];
         int age = 0;
         // 이미지 리소스 ID에 따라 플레이어의 나이를 설정
-        if (currentImageResId == R.mipmap.school) {
+        if (currentImageResId == R.mipmap.playground) {
             age = 1;
             System.out.println("setAge 1!");
 
-        } else if (currentImageResId == R.mipmap.company) {
+        } else if (currentImageResId == R.mipmap.school) {
             age = 2;
             System.out.println("setAge 2!");
 
-        } else if (currentImageResId == R.mipmap.playground) {
-            age = 1 ;
+        } else if (currentImageResId == R.mipmap.school) {
+            age = 3;
             System.out.println("setAge 3!");
-
         }
         player.setAge(age);
     }

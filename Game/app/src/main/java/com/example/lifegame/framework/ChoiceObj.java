@@ -10,6 +10,13 @@ public class ChoiceObj extends MapObject{
     float speed = 1.0f;
     private boolean spawned = false;
 
+    private float x;
+    private float y;
+
+    public void setPosition(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 
 
     public enum Type {

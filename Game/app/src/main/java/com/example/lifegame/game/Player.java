@@ -21,7 +21,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float RUN_SPEED = 1.0f;
     private static final float CHOICE_SPEED = 0.1f;
 
-    float bgspeed = 1.0f;
+    float bgspeed = 4.0f;
     private long choiceStartTime = 0;
     private static final long CHOICE_DURATION = 2000; // 2초
 
@@ -161,7 +161,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
             state = State.CHOICE;
             choiceStartTime = System.currentTimeMillis();// choice 시작 시간 기록
             System.out.println("Player is in choice state.");
-            emotions.setplay(2);
+            emotions.setplay(1);
         }
     }
     public void setCanchoice(boolean i){
