@@ -25,15 +25,16 @@ public class MapLoaderObject implements IGameObject {
     boolean musicSpawned= false;
     boolean studySpawned= false;
     boolean artSpawned = false;
-
+    float scrollSpeed;
     private float mapScrollSpeed = 0.0f; // 맵의 스크롤 속도
 
     public MapLoaderObject(Player player) {
 
         this.player = player;
+        scrollSpeed = player.getBgSpeed(); // 배경의 속도
 
-        choiceObj = new ChoiceObj(); // ChoiceObj 객체 생성
-        choiceObj.init(ChoiceObj.Type.c_study, 0, -0);
+//        choiceObj = new ChoiceObj(); // ChoiceObj 객체 생성
+//        choiceObj.init(ChoiceObj.Type.c_study, 0, -0);
 
         choiceObjs = new ChoiceObj[3];
         choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 0, 0);
@@ -43,10 +44,10 @@ public class MapLoaderObject implements IGameObject {
 
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
-        float scrollSpeed = player.getBgSpeed(); // 배경의 속도
 
         BottomX -= scrollSpeed * BaseScene.frameTime;
         itemX -= scrollSpeed * BaseScene.frameTime;
+        scrollSpeed = player.getBgSpeed();
 
         // 맵의 스크롤 위치가 비율에 따라 ChoiceObj 객체 생성
         if (player.isAgeChanged()) {
@@ -61,9 +62,9 @@ public class MapLoaderObject implements IGameObject {
             else if (playerAge == 2) { // 플레이어의 나이가 2일 때
                 System.out.println("2일때");
                 choiceObjs = new ChoiceObj[3];
-                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 5, by);
-                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, by);
-                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_art, 13, by);
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_m, 5, by);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_mm, 8, by);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_mmm, 13, by);
 
 
             } else if (playerAge == 3) { // 플레이어의 나이가 3일 때
@@ -98,21 +99,21 @@ public class MapLoaderObject implements IGameObject {
         this.mapScrollSpeed = scrollSpeed;
     }
     public void draw(Canvas canvas) {
-//        // ChoiceObj가 있을 때만 그림
-//        if (choiceObj != null) {
-//            choiceObj.draw(canvas); // ChoiceObj를 그림 (필요한 로직으로 대체)
-//        }
-//
-//        // ChoiceObj가 있을 때만 그림
-//        if (choiceObjs != null) {
-//            for (ChoiceObj choiceObj : choiceObjs) {
-//                if (choiceObj != null && choiceObj.isSpawned()) {
-//                    choiceObj.draw(canvas);
-//                    System.out.println("ajdla;");
-//
-//                }
-//            }
-//        }
+        // ChoiceObj가 있을 때만 그림
+        if (choiceObj != null) {
+            choiceObj.draw(canvas); // ChoiceObj를 그림 (필요한 로직으로 대체)
+        }
+
+        // ChoiceObj가 있을 때만 그림
+        if (choiceObjs != null) {
+            for (ChoiceObj choiceObj : choiceObjs) {
+                if (choiceObj != null && choiceObj.isSpawned()) {
+                    choiceObj.draw(canvas);
+                    System.out.println("ajdla;");
+
+                }
+            }
+        }
 
     }
 }

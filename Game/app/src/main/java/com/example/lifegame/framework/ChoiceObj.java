@@ -20,7 +20,9 @@ public class ChoiceObj extends MapObject{
 
 
     public enum Type {
-        c_art, c_music, c_study, COUNT;
+        c_art, c_music, c_study,
+        c_m, c_mm, c_mmm,
+        COUNT;
         int resId() { return resIds[this.ordinal()]; }
         float width() { return widths[this.ordinal()]; }
         float height() { return heights[this.ordinal()]; }
@@ -28,9 +30,14 @@ public class ChoiceObj extends MapObject{
                 R.mipmap.c_art,
                 R.mipmap.c_music,
                 R.mipmap.c_study,
+
+                R.mipmap.c_m,
+                R.mipmap.c_mm,
+                R.mipmap.c_mmm,
+
         };
-        static float[] widths = { 2.0f, 5.2f, 2.0f };
-        static float[] heights = { 2.3f, 2.3f, 2.3f };
+        static float[] widths = { 2.0f, 5.2f, 2.0f, 1.8f,1.8f,1.8f };
+        static float[] heights = { 2.3f, 2.3f, 2.3f, 2.2f,2.2f,2.2f };
         static Type random(Random random) {
             return Type.values()[random.nextInt(2)];
         }
