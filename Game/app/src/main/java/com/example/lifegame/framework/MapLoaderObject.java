@@ -47,6 +47,8 @@ public class MapLoaderObject implements IGameObject {
                 choiceObj.init(ChoiceObj.Type.c_art, 8, 5.6f);
             } else { // 플레이어의 나이에 해당하지 않는 경우
                 choiceObj = null; // ChoiceObj를 null로 설정
+                choiceObj = new ChoiceObj(); // ChoiceObj 객체 생성 (필요한 로직으로 대체)
+                choiceObj.init(ChoiceObj.Type.c_study, 5, 0.0f);
             }
 
             scene.add(MainScene.Layer.choiceobj, choiceObj);

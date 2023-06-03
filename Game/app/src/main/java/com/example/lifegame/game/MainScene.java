@@ -23,7 +23,7 @@ public class MainScene extends BaseScene {
         bg, item, choiceobj, player, ui,touch, controller, COUNT
         }
 
-    int[] imageResources = {R.mipmap.playground, R.mipmap.school, R.mipmap.company};
+    int[] imageResources = {R.mipmap.playground, R.mipmap.school, R.mipmap.school2, R.mipmap.company};
 
     public MainScene() {
         Metrics.setGameSize(16.0f, 9.0f);
