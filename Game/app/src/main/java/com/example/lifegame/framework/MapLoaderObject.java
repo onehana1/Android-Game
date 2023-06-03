@@ -15,6 +15,8 @@ public class MapLoaderObject implements IGameObject {
     private final float[] ratios = {4f, 5f, 6f}; // 각 지점의 비율
     private int ratioIndex = 0; // 비율 인덱스
 
+
+    private  float  by = 5.3f;
     private ChoiceObj choiceObj;
 
 
@@ -51,32 +53,32 @@ public class MapLoaderObject implements IGameObject {
             int playerAge = player.getAge();
             if (playerAge == 1) { // 플레이어의 나이가 1일 때
                 choiceObjs = new ChoiceObj[3];
-                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_art, 5, 5.6f);
-                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, 5.6f);
-                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_study, 13, 5.6f);
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_art, 5, by);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, by);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_study, 13, by);
 
             }
             else if (playerAge == 2) { // 플레이어의 나이가 2일 때
                 System.out.println("2일때");
                 choiceObjs = new ChoiceObj[3];
-                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 5, 5.6f);
-                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, 5.6f);
-                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_art, 13, 5.6f);
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 5, by);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, by);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_art, 13, by);
 
 
             } else if (playerAge == 3) { // 플레이어의 나이가 3일 때
                 System.out.println("3일때");
                 choiceObjs = new ChoiceObj[3];
-                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 5, 5.6f);
-                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, 5.6f);
-                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_art, 13, 5.6f);
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 5, by);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, by);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_art, 13, by);
             }
             else if (playerAge == 4) { // 플레이어의 나이가 3일 때
                 System.out.println("4일때");
                 choiceObjs = new ChoiceObj[3];
-                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 5, 5.6f);
-                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, 5.6f);
-                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_art, 13, 5.6f);
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 5, by);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 8, by);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_art, 13, by);
             }else { // 플레이어의 나이에 해당하지 않는 경우
 //                choiceObj = null; // ChoiceObj를 null로 설정
 //                choiceObj = new ChoiceObj(); // ChoiceObj 객체 생성

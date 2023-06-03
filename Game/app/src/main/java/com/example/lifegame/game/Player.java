@@ -34,7 +34,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private boolean canchoice = false;
 
     public Player() {
-        super(R.mipmap.player1, 2.0f, 7.0f, 2.0f, 2.0f, 8, 1);
+        super(R.mipmap.player1, 2.0f, 6.8f, 2.0f, 2.0f, 8, 1);
         this.ground = y;
 
         emotion = new Emotion();

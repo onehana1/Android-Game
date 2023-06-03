@@ -56,7 +56,7 @@ public class MainScene extends BaseScene {
             }
         }));
 
-        add(Layer.touch, new Button(R.mipmap.hobby_1, 1.0f, 8.3f, 1.0f, 1.0f, new Button.Callback() {
+        add(Layer.touch, new Button(R.mipmap.hobby_1, 1.0f, 8.4f, 1.0f, 1.0f, new Button.Callback() {
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
 
@@ -65,7 +65,7 @@ public class MainScene extends BaseScene {
             }
         }));
 
-        add(Layer.touch, new Button(R.mipmap.hobby_2, 2.0f, 8.3f, 1.0f, 1.0f, new Button.Callback() {
+        add(Layer.touch, new Button(R.mipmap.hobby_2, 2.3f, 8.4f, 1.0f, 1.0f, new Button.Callback() {
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
 
@@ -74,7 +74,7 @@ public class MainScene extends BaseScene {
             }
         }));
 
-        add(Layer.touch, new Button(R.mipmap.hobby_3, 3.0f, 8.3f, 1.0f, 1.0f, new Button.Callback() {
+        add(Layer.touch, new Button(R.mipmap.hobby_3, 3.5f, 8.4f, 1.0f, 1.0f, new Button.Callback() {
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
 

@@ -98,7 +98,7 @@ public class HorzScrollBackground extends Sprite {
                 }
 
                 setBitmapResource(bitmapResIds[index]);
-                dstRect.set(curr, 0, next, Metrics.game_height);
+                dstRect.set(curr, 1, next, Metrics.game_height -1);
                 canvas.drawBitmap(bitmap, null, dstRect, null);
             }
 
