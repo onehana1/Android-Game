@@ -18,7 +18,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float JUMP_POWER = 9.0f;
     private static final float GRAVITY = 17.0f;
 
-    private static final float RUN_SPEED = 1.0f;
+    private static final float RUN_SPEED = 4.0f;
     private static final float CHOICE_SPEED = 0.1f;
 
     float bgspeed = 4.0f;

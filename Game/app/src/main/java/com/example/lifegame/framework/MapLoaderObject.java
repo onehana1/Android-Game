@@ -44,10 +44,10 @@ public class MapLoaderObject implements IGameObject {
 
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
+        scrollSpeed = player.getBgSpeed();
 
         BottomX -= scrollSpeed * BaseScene.frameTime;
         itemX -= scrollSpeed * BaseScene.frameTime;
-        scrollSpeed = player.getBgSpeed();
 
         // 맵의 스크롤 위치가 비율에 따라 ChoiceObj 객체 생성
         if (player.isAgeChanged()) {

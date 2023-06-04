@@ -22,7 +22,7 @@ public class MainScene extends BaseScene {
     public enum Layer {
         bg, item, choiceobj, player, ui,touch, controller, COUNT
         }
-
+    public Score score;
     int[] imageResources = {R.mipmap.playground, R.mipmap.school, R.mipmap.school2, R.mipmap.company};
 
     public MainScene() {
@@ -83,6 +83,9 @@ public class MainScene extends BaseScene {
             }
         }));
 
+        score = new Score(R.mipmap.gold_number, 15, 0.2f, 0.5f);
+        score.setScore(100);
+        add(Layer.ui, score);
 
         add(Layer.controller, new MapLoader(player));
         add(Layer.choiceobj, new MapLoaderObject(player));
