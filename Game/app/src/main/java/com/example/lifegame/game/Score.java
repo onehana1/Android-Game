@@ -21,6 +21,9 @@ public class Score implements IGameObject {
     private RectF dstRect = new RectF();
     private int score, displayScore;
 
+    private int moneyScore;
+    private int lifeScore;
+
     public Score(int mipmapResId, float right, float top, float width) {
         this.bitmap = BitmapPool.get(mipmapResId);
         this.right = right;
@@ -29,6 +32,10 @@ public class Score implements IGameObject {
         this.srcCharWidth = bitmap.getWidth() / 10;
         this.srcCharHeight = bitmap.getHeight();
         this.dstCharHeight = dstCharWidth * srcCharHeight / srcCharWidth;
+
+
+        this.moneyScore = 0; // 돈 점수 초기화
+        this.lifeScore = 0; // 생명 점수 초기화
     }
 
     public void setScore(int score) {
@@ -67,5 +74,20 @@ public class Score implements IGameObject {
 
     public void add(int amount) {
         score += amount;
+
+        if (amount > 0 && amount == 1) {
+            moneyScore++; // 인덱스 1의 코인을 얻으면 돈 점수 상승
+        }
+        if (amount > 0 && amount == 7) {
+            lifeScore--; // 인덱스 7의 코인을 얻으면 생명 점수 하락
+        }
+    }
+
+    public int getMoneyScore() {
+        return moneyScore;
+    }
+
+    public int getLifeScore() {
+        return lifeScore;
     }
 }

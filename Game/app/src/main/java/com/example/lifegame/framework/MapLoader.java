@@ -23,6 +23,8 @@ public class MapLoader implements IGameObject {
 
     int maxCoinCount = 10; // 플레이어 나이에 따른 최대 코인 생성 수
 
+
+
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
 

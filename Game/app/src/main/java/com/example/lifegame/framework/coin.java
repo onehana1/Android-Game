@@ -18,6 +18,11 @@ public class coin extends MapObject{
 
     float speed = 1.0f;
 
+    public enum CoinType {
+        C1, C2, C3, C4, C5, C6, C7
+    }
+
+
     public coin() {
         setBitmapResource(R.mipmap.coins);
         width = height = 1;
@@ -42,9 +47,15 @@ public class coin extends MapObject{
             case 0:
                 return random.nextInt(3);
             case 1:
-                return random.nextInt(3) + 3;
+                return -1; // 나이가 1이면 코인이 나오지 않도록 -1을 반환
             case 2:
-                return random.nextInt(3) + 6;
+                return random.nextInt(3) + 2;
+            case 3:
+                return random.nextInt(3) + 2;
+            case 4:
+                return random.nextInt(2) * 6; //1,7
+            case 5:
+                return random.nextInt(2) + 5; // 5, 6
             default:
                 return random.nextInt(1);
         }
