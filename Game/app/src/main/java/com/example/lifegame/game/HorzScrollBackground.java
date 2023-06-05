@@ -79,14 +79,22 @@ public class HorzScrollBackground extends Sprite {
 
             currentIndex++;
 
-            if(currentIndex==2) {
-                if (scene.score.getMoneyScore() > 100 && forhouse == 0) {
-                    currentIndex++;
+            if(currentIndex==3) {
+                if (scene.score.getMoneyScore() > 1000 && forhouse == 0) {
+                    currentIndex=3;
                     forhouse = 1;
                 }
+                else if (scene.score.getMoneyScore() > 500 && forhouse == 0) {
+                    currentIndex=5;
+                    forhouse = 1;
+                }
+                else if (forhouse == 0) {
+                    currentIndex=7;
+                    forhouse = 1;
+                }
+
+
             }
-
-
 
 
             if (currentIndex >= bitmapResIds.length) {
@@ -102,6 +110,9 @@ public class HorzScrollBackground extends Sprite {
     public void draw(Canvas canvas) {
         float curr = scroll % width;
         float next = curr + width;
+        float nextNext = curr + width + width;
+
+        int nextNextIndex = currentIndex; // 다다음 비트맵 리소스의 인덱스
 
         while (curr < width) {
             if (next > 0) {
@@ -114,12 +125,14 @@ public class HorzScrollBackground extends Sprite {
                 }
 
                 setBitmapResource(bitmapResIds[index]);
-                dstRect.set(curr, 1, next, Metrics.game_height -1);
+                dstRect.set(curr, 1, next, Metrics.game_height - 1);
                 canvas.drawBitmap(bitmap, null, dstRect, null);
             }
 
             curr += width;
             next += width;
+
+
         }
     }
 }

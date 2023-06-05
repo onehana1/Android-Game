@@ -57,13 +57,13 @@ public class coin extends MapObject{
             case 1:
                 int a1 = random.nextInt(1); //
                 coinindex = a1 + 1;
-                System.out.println("coinindex : " +coinindex);
+                //System.out.println("coinindex : " +coinindex);
                 return a1;
               // return -1;
             case 2:
                 int a2 = random.nextInt(2) * 6; //1,7
                 coinindex = a2 + 1;
-                System.out.println("coinindex : " +coinindex);
+               // System.out.println("coinindex : " +coinindex);
                 return a2;
             case 3:
                 int a3 = random.nextInt(3) + 2;

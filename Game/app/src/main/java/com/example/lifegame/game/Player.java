@@ -21,7 +21,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float RUN_SPEED = 4.0f;
     private static final float CHOICE_SPEED = 0.1f;
 
-    float bgspeed = 4.0f;
+    float bgspeed = 12.0f;
     private long choiceStartTime = 0;
     private static final long CHOICE_DURATION = 2000; // 2초
 

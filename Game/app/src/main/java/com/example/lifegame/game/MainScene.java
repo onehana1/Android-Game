@@ -19,7 +19,7 @@ public class MainScene extends BaseScene {
        freind, h_study, h_paint, h_music, COUNT
     }
     public Score score;
-    int[] imageResources = {R.mipmap.playground1, R.mipmap.school1, R.mipmap.company1, R.mipmap.house};
+    int[] imageResources = {R.mipmap.playground1, R.mipmap.school1, R.mipmap.company1, R.mipmap.house1, R.mipmap.house, R.mipmap.house2, R.mipmap.house_2,R.mipmap.house3, R.mipmap.house_3 };
 
     public MainScene() {
         Metrics.setGameSize(16.0f, 9.0f);
