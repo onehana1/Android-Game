@@ -33,6 +33,11 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
     private boolean canchoice = false;
 
+
+
+    public enum Hobby {NONE, STUDY, PAINT, MUSIC;}
+    private Hobby hobby;
+
     public Player() {
         super(R.mipmap.player1, 2.0f, 6.8f, 2.0f, 2.0f, 8, 1);
         this.ground = y;
@@ -40,8 +45,18 @@ public class Player extends AnimSprite implements IBoxCollidable {
         emotion = new Emotion();
         emotions = new Emotions();
         age = 0; // 초기 나이 설정
+
+        hobby = Hobby.NONE;
+
     }
 
+    public void setHobby(Hobby i){
+        hobby = i;
+    }
+
+    public Hobby getHobby(){
+       return hobby;
+    }
 
     public boolean isAgeChanged() {
         return ageChanged;
@@ -156,11 +171,25 @@ public class Player extends AnimSprite implements IBoxCollidable {
         }
     }
 
+    public void aa(){
+        MainScene scene = (MainScene) BaseScene.getTopScene();
+
+
+    }
+
+
+    public void pressHobby(){
+
+    }
+
     public void choice() {
         if(canchoice) {
             state = State.CHOICE;
             choiceStartTime = System.currentTimeMillis();// choice 시작 시간 기록
             System.out.println("Player is in choice state.");
+
+
+
             emotions.setplay(1);
         }
     }

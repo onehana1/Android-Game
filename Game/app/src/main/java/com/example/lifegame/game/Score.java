@@ -23,6 +23,16 @@ public class Score implements IGameObject {
 
     private int moneyScore;
     private int lifeScore;
+    private int hobbyScore;
+
+    private int hp;
+
+    private int happyScore;
+
+
+    private int friendScore;
+
+    private int smokeScore;
 
     public Score(int mipmapResId, float right, float top, float width) {
         this.bitmap = BitmapPool.get(mipmapResId);
@@ -36,6 +46,7 @@ public class Score implements IGameObject {
 
         this.moneyScore = 0; // 돈 점수 초기화
         this.lifeScore = 0; // 생명 점수 초기화
+        this.hobbyScore =0; // 취미 점수 초기화
     }
 
     public void setScore(int score) {
@@ -72,15 +83,47 @@ public class Score implements IGameObject {
         }
     }
 
-    public void add(int amount) {
+    public void add(int amount, int index) {
         score += amount;
 
-        if (amount > 0 && amount == 1) {
-            moneyScore++; // 인덱스 1의 코인을 얻으면 돈 점수 상승
+        //1~7 코인 / 8choice
+
+        if (index == 1) {
+            //moneyScore++; // 인덱스 1의 코인을 얻으면 돈 점수 상승
+            moneyScore += amount;
+      //      System.out.println("moneyScore - " + moneyScore);
         }
-        if (amount > 0 && amount == 7) {
-            lifeScore--; // 인덱스 7의 코인을 얻으면 생명 점수 하락
+
+        if (index == 2||index == 3||index == 4) {
+            hobbyScore += 1; // 2,3,4 취미 코인
+            happyScore += amount;
+         //   System.out.println("happyScore - " + happyScore);
         }
+        //5시계 6앨범
+        if (index == 5) {
+            happyScore += amount;
+            hp -= 1;
+         //   System.out.println("hp - " + hp);
+        }
+        if (index == 6) {
+            happyScore += amount;
+          //  System.out.println("happyScore - " + happyScore);
+        }
+
+        if (index == 7) {
+            //  lifeScore--; // 인덱스 7의 코인을 얻으면 생명 점수 하락
+            smokeScore += 1;
+            hp -= 1;
+            lifeScore -=amount;
+           // System.out.println("hp - " + hp);
+        }
+
+        if (index == 8) {
+            friendScore += amount;
+            System.out.println("friendScore - " + friendScore);
+        }
+
+
     }
 
     public int getMoneyScore() {
@@ -89,5 +132,9 @@ public class Score implements IGameObject {
 
     public int getLifeScore() {
         return lifeScore;
+    }
+
+    public int getHobbyScore() {
+        return hobbyScore;
     }
 }

@@ -64,6 +64,11 @@ public class BaseScene {
         ArrayList<IGameObject> objects = layers.get(layerEnum.ordinal());
         objects.add(gobj);
     }
+
+    public <E extends Enum<E>> void add_choice(E choiceEnum, IGameObject gobj) {
+        ArrayList<IGameObject> objects = choices.get(choiceEnum.ordinal());
+        objects.add(gobj);
+    }
     public <E extends Enum> void remove(E layerEnum, IGameObject gobj, boolean immediate) {
         if (immediate) {
             remove(layerEnum, gobj);
@@ -128,6 +133,12 @@ public class BaseScene {
     protected ArrayList<ArrayList<IGameObject>> layers = new ArrayList<>();
     public <E extends Enum> ArrayList<IGameObject> getObjectsAt(E layerEnum) {
         return layers.get(layerEnum.ordinal());
+    }
+
+
+    protected ArrayList<ArrayList<IGameObject>> choices = new ArrayList<>();
+    public <E extends Enum> ArrayList<IGameObject> getObjectsCHOICE(E layerEnum) {
+        return choices.get(layerEnum.ordinal());
     }
 
     public boolean onTouchEvent(MotionEvent event) {

@@ -19,6 +19,9 @@ public class HorzScrollBackground extends Sprite {
     private float scroll;
     private int currentIndex;
 
+    static int forhouse =0;
+
+
     private int[] bitmapResIds;
 
     public HorzScrollBackground(int[] bitmapResIds, float speed, Player player) {
@@ -32,24 +35,24 @@ public class HorzScrollBackground extends Sprite {
     }
 
     public void setPlayerAgeBasedOnCurrentImage() {
-        int age = 0;
+        int age = 1;
         int currentImageResId = bitmapResIds[currentIndex];
         // 이미지 리소스 ID에 따라 플레이어의 나이를 설정
-        if (currentImageResId == R.mipmap.playground) {
+        if (currentImageResId == R.mipmap.playground1) {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
             age = 1;
-        } else if (currentImageResId == R.mipmap.school) {
+        } else if (currentImageResId == R.mipmap.school1) {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
             age = 2;
         }
-            else if (currentImageResId == R.mipmap.school2) {
+            else if (currentImageResId == R.mipmap.company1) {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
             age = 3;
         }
-        else if (currentImageResId == R.mipmap.company) {
+        else if (currentImageResId == R.mipmap.house) {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
             age = 4;
@@ -59,7 +62,7 @@ public class HorzScrollBackground extends Sprite {
 
     @Override
     public void update() {
-
+        MainScene scene = (MainScene) BaseScene.getTopScene();
 
 
         if (player.getBgSpeed() != 0)
@@ -72,7 +75,20 @@ public class HorzScrollBackground extends Sprite {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
 
+
+
             currentIndex++;
+
+            if(currentIndex==2) {
+                if (scene.score.getMoneyScore() > 100 && forhouse == 0) {
+                    currentIndex++;
+                    forhouse = 1;
+                }
+            }
+
+
+
+
             if (currentIndex >= bitmapResIds.length) {
                 currentIndex = 0;
             }

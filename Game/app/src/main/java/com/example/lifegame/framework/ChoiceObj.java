@@ -18,10 +18,17 @@ public class ChoiceObj extends MapObject{
         this.y = y;
     }
 
+    public int getChoiceindex() {
+        return 1;
+    }
+
 
     public enum Type {
         c_art, c_music, c_study,
         c_m, c_mm, c_mmm,
+
+        c_off1,c_off2,c_off3,
+
         COUNT;
         int resId() { return resIds[this.ordinal()]; }
         float width() { return widths[this.ordinal()]; }
@@ -35,9 +42,15 @@ public class ChoiceObj extends MapObject{
                 R.mipmap.c_mm,
                 R.mipmap.c_mmm,
 
+                R.mipmap.c_off1,
+                R.mipmap.c_off2,
+                R.mipmap.c_off3,
+
         };
-        static float[] widths = { 2.0f, 5.2f, 2.0f, 1.8f,1.8f,1.8f };
-        static float[] heights = { 2.3f, 2.3f, 2.3f, 2.2f,2.2f,2.2f };
+
+
+        static float[] widths = { 2.0f, 5.2f, 2.0f, 1.8f,1.8f,1.8f,1.8f,1.8f,1.8f };
+        static float[] heights = { 2.3f, 2.3f, 2.3f, 2.2f,2.2f,2.2f,2.2f,2.2f,2.2f };
         static Type random(Random random) {
             return Type.values()[random.nextInt(2)];
         }
@@ -53,6 +66,15 @@ public class ChoiceObj extends MapObject{
     public void setSpawned(boolean spawned) {
         this.spawned = spawned;
     }
+
+    public void setType(Type i){
+     type = i;
+    }
+
+    public Type getType(){
+        return type;
+    }
+
 
 
     public void setX(float x) {
@@ -84,5 +106,9 @@ public class ChoiceObj extends MapObject{
 
     protected MainScene.Layer getLayer() {
         return MainScene.Layer.choiceobj;
+    }
+
+    protected MainScene.Choiced getChoice() {
+        return MainScene.Choiced.h_study;
     }
 }

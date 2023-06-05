@@ -18,6 +18,8 @@ public class coin extends MapObject{
 
     float speed = 1.0f;
 
+    static int coinindex;
+
     public enum CoinType {
         C1, C2, C3, C4, C5, C6, C7
     }
@@ -26,6 +28,7 @@ public class coin extends MapObject{
     public coin() {
         setBitmapResource(R.mipmap.coins);
         width = height = 1;
+        coinindex = 0;
     }
 
     public static coin get(int index, float left, float top) {
@@ -41,23 +44,44 @@ public class coin extends MapObject{
         return random.nextInt(COIN_COUNT);
     }
 
-    public static int getCoinIndex(Random random, int age) {
+
+    public static int getCoinindex() {
+        return coinindex;
+    }
+
+    public static int getRandomCoinIndex(Random random, int age) {
         // 플레이어의 나이에 따라 코인 인덱스 선택
         switch (age) {
             case 0:
                 return random.nextInt(3);
             case 1:
-                return -1; // 나이가 1이면 코인이 나오지 않도록 -1을 반환
+                int a1 = random.nextInt(1); //
+                coinindex = a1 + 1;
+                System.out.println("coinindex : " +coinindex);
+                return a1;
+              // return -1;
             case 2:
-                return random.nextInt(3) + 2;
+                int a2 = random.nextInt(2) * 6; //1,7
+                coinindex = a2 + 1;
+                System.out.println("coinindex : " +coinindex);
+                return a2;
             case 3:
-                return random.nextInt(3) + 2;
+                int a3 = random.nextInt(3) + 2;
+                coinindex = a3 + 1;
+                return a3;
             case 4:
-                return random.nextInt(2) * 6; //1,7
+                int a4 = random.nextInt(2) * 6; //1,7
+                coinindex = a4 + 1;
+                return a4;
+
             case 5:
-                return random.nextInt(2) + 5; // 5, 6
+                int a5 = random.nextInt(2) + 5; //5,6
+                coinindex = a5 + 1;
+                return a5;
+
             default:
-                return random.nextInt(1);
+                System.out.println("안오면 좋겠어");
+                return -1;
         }
     }
 
@@ -79,6 +103,21 @@ public class coin extends MapObject{
     }
 
     protected MainScene.Layer getLayer() {
-        return MainScene.Layer.item;
+//        if(coinindex==1)
+//            return MainScene.Layer.item_1;
+//        if(coinindex==2)
+//            return MainScene.Layer.item_1;
+//        if(coinindex==3)
+//            return MainScene.Layer.item_1;
+//        if(coinindex==4)
+//            return MainScene.Layer.item_1;
+//        if(coinindex==5)
+//            return MainScene.Layer.item_1;
+//        if(coinindex==6)
+//            return MainScene.Layer.item_1;
+//        if(coinindex==7)
+//            return MainScene.Layer.item_1;
+//        else
+            return MainScene.Layer.item_1;
     }
 }

@@ -1,29 +1,25 @@
 package com.example.lifegame.game;
 
-import static android.content.ContentValues.TAG;
-
-import android.util.Log;
-
 import com.example.lifegame.R;
 import com.example.lifegame.framework.BaseScene;
 import com.example.lifegame.framework.Button;
 import com.example.lifegame.framework.MapLoader;
 import com.example.lifegame.framework.MapLoaderObject;
 import com.example.lifegame.framework.Metrics;
-import com.example.lifegame.framework.Sprite;
-import com.example.lifegame.framework.coin;
-
-import java.util.Random;
 
 public class MainScene extends BaseScene {
     private final Player player;
     private final float bgspeed = 1.0f;
 
     public enum Layer {
-        bg, item, choiceobj, player, ui,touch, controller, COUNT
+        bg, item_1, choiceobj, player, ui,touch, controller, COUNT
         }
+
+    public enum Choiced {
+       freind, h_study, h_paint, h_music, COUNT
+    }
     public Score score;
-    int[] imageResources = {R.mipmap.playground, R.mipmap.school, R.mipmap.school2, R.mipmap.company};
+    int[] imageResources = {R.mipmap.playground1, R.mipmap.school1, R.mipmap.company1, R.mipmap.house};
 
     public MainScene() {
         Metrics.setGameSize(16.0f, 9.0f);
@@ -89,6 +85,7 @@ public class MainScene extends BaseScene {
 
         add(Layer.controller, new MapLoader(player));
         add(Layer.choiceobj, new MapLoaderObject(player));
+
         add(Layer.controller, new CollisionChecker(player));
     }
 
