@@ -16,12 +16,15 @@ public class coin extends MapObject{
     private static final int BORDER = 1;
     protected Rect srcRect = new Rect();
 
-    float speed = 1.0f;
+    float speed = 4.0f;
 
     static int coinindex;
 
     public enum CoinType {
         C1, C2, C3, C4, C5, C6, C7
+    }
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 
 
@@ -120,4 +123,15 @@ public class coin extends MapObject{
 //        else
             return MainScene.Layer.item_1;
     }
+
+    public void update() {
+        float dx = -speed * BaseScene.frameTime;
+        // System.out.println("speed" + speed);
+        dstRect.offset(dx, 0);
+
+        if (dstRect.right < 0){
+            BaseScene.getTopScene().remove(getLayer(), this);
+        }
+    }
 }
+

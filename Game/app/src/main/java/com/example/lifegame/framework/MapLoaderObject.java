@@ -125,7 +125,7 @@ public class MapLoaderObject implements IGameObject {
             for (ChoiceObj choiceObj : choiceObjs) {
                 if (choiceObj != null && choiceObj.isSpawned()) {
                     choiceObj.draw(canvas);
-                    System.out.println("ajdla;");
+                //    System.out.println("ajdla;");
 
                 }
             }

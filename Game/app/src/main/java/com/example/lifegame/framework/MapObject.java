@@ -5,9 +5,9 @@ import android.graphics.RectF;
 import com.example.lifegame.game.MainScene;
 
 public class MapObject extends Sprite implements IBoxCollidable, IRecyclable{
-    public static final float SPEED = 2.0f;
+    public static final float SPEED = 8.0f;
     public static final float COB_SPEED = 1.0f;
-    float speed= 4.0f;
+    float speed= SPEED;
     public void update() {
         float dx = -speed * BaseScene.frameTime;
 

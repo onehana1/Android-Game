@@ -15,15 +15,15 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private RectF collisionRect = new RectF();
     private final float ground;
     private float jumpSpeed;
-    private static final float JUMP_POWER = 9.0f;
+    private static final float JUMP_POWER = 10.0f;
     private static final float GRAVITY = 17.0f;
 
     private static final float RUN_SPEED = 2.0f;
-    private static final float CHOICE_SPEED = 0.1f;
+    private static final float CHOICE_SPEED = 0.01f;
 
     float bgspeed = RUN_SPEED;
     private long choiceStartTime = 0;
-    private static final long CHOICE_DURATION = 2000; // 2초
+    private static final long CHOICE_DURATION = 900;
 
     private Emotion emotion; // Emotion 객체 추가
     private Emotions emotions; // Emotions 객체 추가
@@ -94,13 +94,13 @@ public class Player extends AnimSprite implements IBoxCollidable {
     };
 
     private void updateSrcRects() {
-        if (age == 1||age==2) {
+        if (age==2) {
             srcRects = new Rect[][]{
                     makeRects(0, 1, 2, 3), // student run
                     makeRects(4), // student jump
                     makeRects(4), // student choice
             };
-        } else if (age == 0) {
+        } else if (age == 1) {
             srcRects = new Rect[][]{
                     makeRects(100, 101, 102, 103), // baby run
                     makeRects(104), // baby jump

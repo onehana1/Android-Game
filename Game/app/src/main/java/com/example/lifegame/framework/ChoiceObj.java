@@ -120,7 +120,7 @@ public class ChoiceObj extends MapObject{
 
     public void update() {
         float dx = -speed * BaseScene.frameTime;
-        System.out.println("speed" + speed);
+       // System.out.println("speed" + speed);
         dstRect.offset(dx, 0);
 
         if (dstRect.right < 0){

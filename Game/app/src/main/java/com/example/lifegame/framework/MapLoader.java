@@ -10,6 +10,7 @@ import java.util.Random;
 public class MapLoader implements IGameObject {
     private final Player player;
     private Random random = new Random();
+
     private float BottomX, itemX;
 
     private static int coinCount = 0; // 생성된 코인 수
@@ -27,7 +28,6 @@ public class MapLoader implements IGameObject {
 
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
-
         BottomX -= MapObject.SPEED * BaseScene.frameTime;
         itemX -= MapObject.SPEED * BaseScene.frameTime;
 
@@ -37,18 +37,31 @@ public class MapLoader implements IGameObject {
         // 플레이어의 나이가 변경되었을 때 코인 생성 수 초기화
         if (player.isAgeChanged()) {
             coinCount = 0;
+            System.out.println("0ㅇ로!!");
             player.resetAgeChanged();
 
         }
 
         while (itemX < Metrics.game_width) {
-            coin coinItem = coin.get(coin.getRandomCoinIndex(random, age), itemX, random.nextInt(4)+1.8f);
-            scene.add(coinItem.getLayer(), coinItem);
-           // System.out.println("get : " + coinItem.getLayer());
-            itemX += coinItem.getWidth();
-            coinCount++;
-           // System.out.println(coinCount); // 새로운 줄로 이동하여 출력
+            if(coinCount < 15) {
+                float randomNumber = random.nextFloat() * (7 - 3) + 3;
+                    coin coinItem = coin.get(coin.getRandomCoinIndex(random, age), 30.0f + randomNumber, random.nextInt(4) + 1.8f);
+                    scene.add(coinItem.getLayer(), coinItem);
+                    // System.out.println("get : " + coinItem.getLayer());
+                    itemX += coinItem.getWidth();
+
+                    coinCount++;
+                    coinItem.setSpeed(randomNumber);
+
+                }
+
+            else {
+                break;
+            }
         }
+
+
+
 
     }
 
