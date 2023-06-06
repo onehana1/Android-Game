@@ -123,6 +123,11 @@ public class Score implements IGameObject {
             System.out.println("friendScore - " + friendScore);
         }
 
+        if (index == 9) {
+            hobbyScore += amount;
+            System.out.println("hobbyScore - " + hobbyScore);
+        }
+
 
     }
 

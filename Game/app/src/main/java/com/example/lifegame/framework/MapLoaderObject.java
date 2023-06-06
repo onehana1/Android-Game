@@ -33,6 +33,7 @@ public class MapLoaderObject implements IGameObject {
         this.player = player;
         scrollSpeed = player.getBgSpeed(); // 배경의 속도
 
+
 //        choiceObj = new ChoiceObj(); // ChoiceObj 객체 생성
 //        choiceObj.init(ChoiceObj.Type.c_study, 0, -0);
 
@@ -49,6 +50,8 @@ public class MapLoaderObject implements IGameObject {
 
         BottomX -= scrollSpeed * BaseScene.frameTime;
         itemX -= scrollSpeed * BaseScene.frameTime;
+
+
 
         // 맵의 스크롤 위치가 비율에 따라 ChoiceObj 객체 생성
         if (player.isAgeChanged()) {
@@ -91,12 +94,19 @@ public class MapLoaderObject implements IGameObject {
 //                choiceObj = new ChoiceObj(); // ChoiceObj 객체 생성
 //                choiceObj.init(ChoiceObj.Type.c_study, 5, 0.0f);
             }
+
+
+
             scene.add(MainScene.Layer.choiceobj, choiceObjs[0]);
             scene.add(MainScene.Layer.choiceobj, choiceObjs[1]);
             scene.add(MainScene.Layer.choiceobj, choiceObjs[2]);
 
            // scene.add(MainScene.Layer.choiceobj, choiceObj);
         }
+
+        choiceObjs[0].setSpeed(scrollSpeed);
+        choiceObjs[1].setSpeed(scrollSpeed);
+        choiceObjs[2].setSpeed(scrollSpeed);
 
     }
 

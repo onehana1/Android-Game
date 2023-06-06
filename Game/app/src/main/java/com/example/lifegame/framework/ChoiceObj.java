@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class ChoiceObj extends MapObject{
     private Type type;
-    float speed = 1.0f;
+    float speed = 2.0f;
     private boolean spawned = false;
 
     private float x;
@@ -22,6 +22,10 @@ public class ChoiceObj extends MapObject{
         return 1;
     }
 
+    @Override
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
 
     public enum Type {
         c_art, c_music, c_study,
@@ -111,4 +115,19 @@ public class ChoiceObj extends MapObject{
     protected MainScene.Choiced getChoice() {
         return MainScene.Choiced.h_study;
     }
+
+
+
+    public void update() {
+        float dx = -speed * BaseScene.frameTime;
+        System.out.println("speed" + speed);
+        dstRect.offset(dx, 0);
+
+        if (dstRect.right < 0){
+            BaseScene.getTopScene().remove(getLayer(), this);
+        }
+    }
+
 }
+
+

@@ -42,7 +42,7 @@ public class MapLoader implements IGameObject {
         }
 
         while (itemX < Metrics.game_width) {
-            coin coinItem = coin.get(coin.getRandomCoinIndex(random, age), itemX, random.nextInt(8));
+            coin coinItem = coin.get(coin.getRandomCoinIndex(random, age), itemX, random.nextInt(4)+1.8f);
             scene.add(coinItem.getLayer(), coinItem);
            // System.out.println("get : " + coinItem.getLayer());
             itemX += coinItem.getWidth();

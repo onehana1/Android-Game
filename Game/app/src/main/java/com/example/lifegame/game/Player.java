@@ -18,10 +18,10 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float JUMP_POWER = 9.0f;
     private static final float GRAVITY = 17.0f;
 
-    private static final float RUN_SPEED = 4.0f;
+    private static final float RUN_SPEED = 2.0f;
     private static final float CHOICE_SPEED = 0.1f;
 
-    float bgspeed = 12.0f;
+    float bgspeed = RUN_SPEED;
     private long choiceStartTime = 0;
     private static final long CHOICE_DURATION = 2000; // 2초
 
@@ -179,7 +179,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
 
     public void pressHobby(){
-
+        MainScene scene = (MainScene) BaseScene.getTopScene();
+        scene.score.add(1, 9);
     }
 
     public void choice() {
