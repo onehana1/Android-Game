@@ -6,6 +6,10 @@ android {
     namespace 'com.example.lifegame'
     compileSdk 33
 
+    viewBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.example.lifegame"
         minSdk 24
