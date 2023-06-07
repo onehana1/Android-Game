@@ -52,11 +52,18 @@ public class HorzScrollBackground extends Sprite {
             setSize(Metrics.game_height, width);
             age = 3;
         }
-        else if (currentImageResId == R.mipmap.house) {
+        else if (currentImageResId == R.mipmap.house1||currentImageResId == R.mipmap.house2||currentImageResId == R.mipmap.house3) {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
             age = 4;
         }
+
+        else if (currentImageResId == R.mipmap.house_1||currentImageResId == R.mipmap.house_2||currentImageResId == R.mipmap.house_3) {
+            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+            setSize(Metrics.game_height, width);
+            age = 5;
+        }
+
         player.setAge(age);
     }
 
