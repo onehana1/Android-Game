@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 import com.example.lifegame.BuildConfig;
+import com.example.lifegame.R;
 import com.example.lifegame.framework.BaseScene;
 import com.example.lifegame.framework.BitmapPool;
 import com.example.lifegame.framework.IGameObject;
@@ -38,9 +39,15 @@ public class Score implements IGameObject {
     private final int maxHp = 20; // 최대 체력
     private final float hpGaugeWidth = 4.f; // 체력 게이지 너비
     private final float hpGaugeHeight = 0.5f; // 체력 게이지 높이
-    private final float hpGaugeX = 0.5f; // 체력 게이지 위치 X 좌표
+    private final float hpGaugeX = 0.8f; // 체력 게이지 위치 X 좌표
     private final float hpGaugeY = 0.2f; // 체력 게이지 위치 Y 좌표
     private final Paint hpGaugePaint; // 체력 게이지를 그리기 위한 Paint 객체
+    //=====================================
+    private final Bitmap lifeImage; // 체력 이미지
+    private final float lifeImageWidth = 0.5f; // 체력 이미지 너비
+    private final float lifeImageHeight = 0.5f; // 체력 이미지 높이
+    private final float lifeImageX = 0.2f; // 체력 이미지 위치 X 좌표
+    private final float lifeImageY = 1.f; // 체력 이미지 위치 Y 좌표
     //=====================================
 
     public Score(int mipmapResId, float right, float top, float width) {
@@ -61,6 +68,11 @@ public class Score implements IGameObject {
 
         hpGaugePaint = new Paint();
         hpGaugePaint.setColor(Color.RED);
+
+
+        // 체력 이미지 초기화
+        lifeImage = BitmapPool.get(R.mipmap.life);
+
 
     }
 
@@ -98,10 +110,16 @@ public class Score implements IGameObject {
         }
 
 
+        for (int i = 0; i < hp; i++) {
+            dstRect.set(lifeImageX, top, lifeImageX + lifeImageWidth, top + lifeImageHeight);
+            canvas.drawBitmap(lifeImage, null, dstRect, null);
+        }
+
         // 체력 게이지 그리기
         float hpRatio = (float) hp / maxHp; // 현재 체력 비율 계산
         float hpGaugeWidthCurrent = hpGaugeWidth * hpRatio; // 현재 체력에 맞는 너비 계산
         canvas.drawRect(hpGaugeX, hpGaugeY, hpGaugeX + hpGaugeWidthCurrent, hpGaugeY + hpGaugeHeight, hpGaugePaint);
+
 
     }
 
