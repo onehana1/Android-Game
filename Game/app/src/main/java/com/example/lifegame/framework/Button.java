@@ -11,6 +11,8 @@ public class Button extends Sprite implements ITouchable {
     private final int defaultImageResId;  // 기본 이미지 리소스 ID
     private boolean isCooling;  // 쿨타임 상태 여부
 
+    private boolean activation;
+
 
     public enum Action {
         pressed, released,
@@ -24,10 +26,14 @@ public class Button extends Sprite implements ITouchable {
         this.coolImageResId = coolImageResId;
         this.callback = callback;
         this.isCooling = false;  // 초기 상태는 쿨타임 상태가 아님
+        this.activation = false;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
+        if (!activation) {
+            return false; // 비활성화된 버튼은 터치 이벤트를 처리하지 않음
+        }
         float x = Metrics.toGameX(e.getX());
         float y = Metrics.toGameY(e.getY());
         if (!dstRect.contains(x, y)) {
@@ -51,7 +57,7 @@ public class Button extends Sprite implements ITouchable {
     }
 
     public void draw(Canvas canvas) {
-        if (isCooling) {
+        if (isCooling==true||activation==false) {
             // 쿨타임 상태인 경우 쿨타임 이미지 그리기
             canvas.drawBitmap(BitmapPool.get(coolImageResId), null, dstRect, null);
         } else {
@@ -62,6 +68,10 @@ public class Button extends Sprite implements ITouchable {
 
     public void setCooling(boolean cooling) {
         this.isCooling = cooling;
+    }
+
+    public void setActivation(boolean activation) {
+        this.activation = activation;
     }
 
 }

@@ -69,6 +69,16 @@ public class Player extends AnimSprite implements IBoxCollidable {
        return hobby;
     }
 
+    public boolean getHobbytrue(Hobby hobby){
+        if(hobby == Hobby.PAINT)
+            return hobby_p;
+        if(hobby == Hobby.MUSIC)
+            return  hobby_m;
+        if(hobby == Hobby.STUDY)
+            return hobby_s;
+        return false;
+    }
+
     public boolean isAgeChanged() {
         return ageChanged;
     }

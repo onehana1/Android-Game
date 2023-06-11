@@ -27,6 +27,11 @@ public class MainScene extends BaseScene {
     public Button hobbyButton2;
     public Button hobbyButton3;
 
+    public Button jumpButton,choiceButton, pauseButton;
+
+
+
+
 
     int[] imageResources = {R.mipmap.playground1, R.mipmap.school1, R.mipmap.company1, R.mipmap.house1, R.mipmap.house_1, R.mipmap.house2, R.mipmap.house_2,R.mipmap.house3, R.mipmap.house_3 };
 
@@ -43,23 +48,36 @@ public class MainScene extends BaseScene {
         // 플레이어의 나이 설정
         background.setPlayerAgeBasedOnCurrentImage();
 
-        add(Layer.touch, new Button(R.mipmap.jump, R.mipmap.jump, 14.5f, 7.7f, 3.0f, 2.0f, new Button.Callback() {
+        jumpButton =  new Button(R.mipmap.jump, R.mipmap.jump, 14.5f, 7.7f, 3.0f, 2.0f, new Button.Callback(){
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
                     player.jump();
                 }
                 return true;
             }
-        }));
+        });
+        jumpButton.setActivation(true);
+        add(Layer.touch, jumpButton) ;
 
-        add(Layer.touch, new Button(R.mipmap.choice, R.mipmap.choice, 11.5f, 7.7f, 3.0f, 2.0f, new Button.Callback() {
+        choiceButton =  new Button(R.mipmap.choice, R.mipmap.choice, 11.5f, 7.7f, 3.0f, 2.0f, new Button.Callback(){
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
                     player.choice();
                 }
+
+                if(player.getHobby()==Player.Hobby.PAINT)
+                    hobbyButton3.setActivation(true);
+                if(player.getHobby()==Player.Hobby.STUDY)
+                    hobbyButton2.setActivation(true);
+                if(player.getHobby()==Player.Hobby.MUSIC)
+                    hobbyButton1.setActivation(true);
+
                 return true;
             }
-        }));
+        });
+
+        choiceButton.setActivation(true);
+        add(Layer.touch, choiceButton);
 
         hobbyButton1 = new Button(R.mipmap.hobby_1, R.mipmap.hobby_1_cool,  1.0f, 8.4f, 1.0f, 1.0f, new Button.Callback() {
             public boolean onTouch(Button.Action action) {
@@ -114,11 +132,12 @@ public class MainScene extends BaseScene {
             }
         });
 
+
+
         cooltime3 = new cooltime(R.mipmap.red_number, 3.75f, 8.1f, 0.4f);
         cooltime3.setcoltime(5);
         cooltime3.setButtoncool(hobbyButton3); // cooltime 클래스에 hobbyButton 설정
         add(Layer.coolui, cooltime3);
-
         add(Layer.touch, hobbyButton3);
 
 
@@ -128,15 +147,16 @@ public class MainScene extends BaseScene {
         score.setScore(100);
         add(Layer.ui, score);
 
-        add(Layer.touch, new Button(R.mipmap.pause, R.mipmap.pause,15.50f, 0.5f, 0.6f, 0.6f, new Button.Callback() {
+        pauseButton = new Button(R.mipmap.pause, R.mipmap.pause,15.50f, 0.5f, 0.6f, 0.6f, new Button.Callback() {
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
                     new PauseScene().pushScene();
                 }
                 return true;
             }
-        }));
-
+        });
+        pauseButton.setActivation(true);
+        add(Layer.touch, pauseButton);
 
         add(Layer.controller, new MapLoader(player));
         add(Layer.choiceobj, new MapLoaderObject(player));
