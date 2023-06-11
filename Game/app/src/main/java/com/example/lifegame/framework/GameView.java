@@ -1,6 +1,8 @@
 package com.example.lifegame.framework;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,6 +21,7 @@ import com.example.lifegame.BuildConfig;
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
     public static Resources res;
+    public static GameView view;
     //    private Ball ball1, ball2;
     protected Paint fpsPaint;
     protected Paint borderPaint;
@@ -123,7 +126,11 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        boolean handled = BaseScene.getTopScene().onTouchEvent(event);
+        BaseScene topScene = BaseScene.getTopScene();
+        if (topScene == null) return false;
+
+        boolean handled = topScene.onTouchEvent(event);
+
         if (handled) {
             return true;
         }
@@ -132,6 +139,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     public void pauseGame() {
         running = false;
+        BaseScene topScene = BaseScene.getTopScene();
+        if (topScene == null) return;
+        topScene.pauseScene();
     }
 
     public void resumeGame() {
@@ -140,6 +150,18 @@ public class GameView extends View implements Choreographer.FrameCallback {
         }
         previousNanos = 0;
         running = true;
+        BaseScene.getTopScene().resumeScene();
         Choreographer.getInstance().postFrameCallback(this);
+    }
+
+    public Activity getActivity() {
+        Context context = getContext();
+        while (context instanceof ContextWrapper) {
+            if (context instanceof Activity) {
+                return (Activity)context;
+            }
+            context = ((ContextWrapper)context).getBaseContext();
+        }
+        return null;
     }
 }

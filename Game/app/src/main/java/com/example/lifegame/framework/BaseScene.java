@@ -7,6 +7,8 @@ import android.graphics.RectF;
 import android.os.Handler;
 import android.view.MotionEvent;
 
+import androidx.annotation.NonNull;
+
 import com.example.lifegame.BuildConfig;
 
 import java.util.ArrayList;
@@ -31,13 +33,48 @@ public class BaseScene {
     }
 
     public int pushScene() {
+        BaseScene scene = getTopScene();
+        if (scene != null) {
+            scene.onPause();
+        }
+
         stack.add(this);
         return stack.size();
     }
+    public void resumeScene() {
+        onResume();
+    }
+    public void pauseScene() {
+    }
+
+    public boolean isTransparent() {
+        return false;
+    }
+
+    protected void onStart() {
+    }
+    protected void onEnd() {
+    }
+    private void onPause() {
+    }
+
+
+    private void onResume() {
+    }
 
     public void popScene() {
+        this.onEnd();
         stack.remove(this);
-        // TODO: additional callback should be called
+        BaseScene scene = getTopScene();
+        if (scene != null) {
+            scene.onResume();
+            return;
+        }
+
+        finishActivity();
+    }
+    public void finishActivity() {
+        GameView.view.getActivity().finish();
     }
 
     protected <E extends Enum<E>> void initLayers(E countEnum) {
@@ -107,6 +144,14 @@ public class BaseScene {
     }
 
     public void draw(Canvas canvas) {
+        draw(canvas, stack.size() - 1);
+    }
+    protected void draw(Canvas canvas, int index) {
+        BaseScene scene = stack.get(index);
+        if (scene.isTransparent() && index > 0) {
+            draw(canvas, index - 1);
+        }
+        ArrayList<ArrayList<IGameObject>> layers = scene.layers;
         for (ArrayList<IGameObject> objects: layers) {
             for (IGameObject gobj : objects) {
                 gobj.draw(canvas);
@@ -131,7 +176,7 @@ public class BaseScene {
     }
 
     protected ArrayList<ArrayList<IGameObject>> layers = new ArrayList<>();
-    public <E extends Enum> ArrayList<IGameObject> getObjectsAt(E layerEnum) {
+    public <E extends Enum> ArrayList<IGameObject> getObjectsAt(@NonNull E layerEnum) {
         return layers.get(layerEnum.ordinal());
     }
 
@@ -163,5 +208,17 @@ public class BaseScene {
 
     public boolean clipsRect() {
         return true;
+    }
+
+
+    public int changeScene() {
+        BaseScene scene = getTopScene();
+        if (scene != null) {
+            scene.onEnd();
+        }
+        int topIndex = stack.size() - 1;
+        stack.set(topIndex, this);
+        this.onStart();
+        return stack.size();
     }
 }

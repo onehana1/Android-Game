@@ -6,6 +6,7 @@ import com.example.lifegame.framework.Button;
 import com.example.lifegame.framework.MapLoader;
 import com.example.lifegame.framework.MapLoaderObject;
 import com.example.lifegame.framework.Metrics;
+import com.example.lifegame.framework.PauseScene;
 
 public class MainScene extends BaseScene {
     private final Player player;
@@ -123,15 +124,45 @@ public class MainScene extends BaseScene {
 
 
 
-        score = new Score(R.mipmap.gold_number, 15, 0.2f, 0.5f);
+        score = new Score(R.mipmap.gold_number, 14.5f, 0.2f, 0.5f);
         score.setScore(100);
         add(Layer.ui, score);
+
+        add(Layer.touch, new Button(R.mipmap.pause, R.mipmap.pause,15.50f, 0.5f, 0.6f, 0.6f, new Button.Callback() {
+            public boolean onTouch(Button.Action action) {
+                if (action == Button.Action.pressed) {
+                    new PauseScene().pushScene();
+                }
+                return true;
+            }
+        }));
 
 
         add(Layer.controller, new MapLoader(player));
         add(Layer.choiceobj, new MapLoaderObject(player));
 
         add(Layer.controller, new CollisionChecker(player));
+    }
+
+
+    protected void onStart() {
+       // Sound.playMusic(R.raw.main);
+    }
+
+
+    protected void onEnd() {
+        //Sound.stopMusic();
+    }
+
+
+    protected void onPause() {
+       // Sound.pauseMusic();
+        System.out.println("dd");
+    }
+
+
+    protected void onResume() {
+       // Sound.resumeMusic();
     }
 
     protected int getTouchLayerIndex() {
