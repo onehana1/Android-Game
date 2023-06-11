@@ -38,6 +38,10 @@ public class Player extends AnimSprite implements IBoxCollidable {
     public enum Hobby {NONE, STUDY, PAINT, MUSIC;}
     private Hobby hobby;
 
+
+    private boolean hobby_s, hobby_p,hobby_m;
+
+
     public Player() {
         super(R.mipmap.player1, 2.0f, 6.8f, 2.0f, 2.0f, 8, 1);
         this.ground = y;
@@ -52,6 +56,13 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
     public void setHobby(Hobby i){
         hobby = i;
+        if(hobby == Hobby.PAINT)
+            hobby_p = true;
+        if(hobby == Hobby.MUSIC)
+            hobby_m = true;
+        if(hobby == Hobby.STUDY)
+            hobby_s = true;
+        System.out.println(hobby);
     }
 
     public Hobby getHobby(){

@@ -41,7 +41,11 @@ public class MapLoaderObject implements IGameObject {
         choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_study, 0, 0);
         choiceObjs[0].setType(ChoiceObj.Type.c_study);
         choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_music, 0, 0);
+        choiceObjs[1].setType(ChoiceObj.Type.c_music);
         choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_art, 0, 0);
+        choiceObjs[2].setType(ChoiceObj.Type.c_art);
+
+
     }
 
     public void update() {

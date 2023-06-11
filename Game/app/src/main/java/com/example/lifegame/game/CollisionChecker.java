@@ -101,7 +101,8 @@ public class CollisionChecker implements IGameObject {
             }
             if (CollisionHelper.collides(player, (IBoxCollidable) gobj)) {
                 player.setCanchoice(true);
-                handleChoiceCollision((ChoiceObj) gobj);
+                if(player.getState()== player.state.CHOICE)
+                    handleChoiceCollision((ChoiceObj) gobj);
             }
             else {
                 player.setCanchoice(false);
@@ -152,18 +153,18 @@ public class CollisionChecker implements IGameObject {
         int amount = 100;
 
         if (choiceIndex == CT.c_art) {
-            //System.out.println("art!!");
-            if(player.getHobby() ==Player.Hobby.NONE)
+           // System.out.println("art!!");
+            if(player.getHobby() != Player.Hobby.PAINT)
                 player.setHobby(Player.Hobby.PAINT);
         }
         if (choiceIndex == CT.c_music) {
-            //System.out.println("c_music!!");
-            if(player.getHobby() ==Player.Hobby.NONE)
+           // System.out.println("c_music!!");
+            if(player.getHobby() != Player.Hobby.MUSIC)
                 player.setHobby(Player.Hobby.MUSIC);
         }
         if (choiceIndex == CT.c_study) {
-           // System.out.println("c_study!!");
-            if(player.getHobby() ==Player.Hobby.NONE)
+            //System.out.println("c_study!!");
+            if(player.getHobby() !=Player.Hobby.STUDY)
                 player.setHobby(Player.Hobby.STUDY);
         }
 
