@@ -36,7 +36,12 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
 
     public enum Hobby {NONE, STUDY, PAINT, MUSIC;}
+
+    public enum JOB {NONE, employee, painter, singer;}
     private Hobby hobby;
+
+
+    private JOB job;
 
 
     private boolean hobby_s, hobby_p,hobby_m;
@@ -49,7 +54,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
         emotion = new Emotion();
         emotions = new Emotions();
         age = 0; // 초기 나이 설정
-
+        job = JOB.NONE;
         hobby = Hobby.NONE;
 
     }
@@ -199,6 +204,10 @@ public class Player extends AnimSprite implements IBoxCollidable {
         return this.state;
     }
 
+    public JOB getJob(){
+        return job;
+    }
+
     public void jump() {
         if (state != State.CHOICE && state == State.running){
             state = State.jump;
@@ -235,6 +244,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
 
     public void update() {
+        MainScene scene = (MainScene) BaseScene.getTopScene();
+
         if (state == State.jump) {
             float dy = jumpSpeed * BaseScene.frameTime;
             jumpSpeed += GRAVITY * BaseScene.frameTime;
@@ -245,6 +256,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
             y += dy;
             fixDstRect();
         }
+
 
         else if (state == State.CHOICE) {
             {
@@ -267,6 +279,17 @@ public class Player extends AnimSprite implements IBoxCollidable {
            // System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
 
         }
+
+        if(scene.score.getPaintScore()>5){
+            this.job = JOB.painter;
+        }
+        else if(scene.score.getSingScore()>5){
+            this.job = JOB.singer;
+        }
+        else {
+            this.job = JOB.employee;
+        }
+
 
     }
 

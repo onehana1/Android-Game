@@ -28,6 +28,11 @@ public class Score implements IGameObject {
     private int lifeScore;
     private int hobbyScore;
 
+    private int studyScore;
+    private int paintScore;
+    private int singScore;
+
+
     private int hp;
 
     private int happyScore;
@@ -91,6 +96,10 @@ public class Score implements IGameObject {
         this.hobbyScore =0; // 취미 점수 초기화
         this.happyScore = maxhappy;
         this.friendScore=0;
+
+        this.paintScore = 0;
+        this.singScore = 0;
+        this.studyScore = 0;
 
         this.hp = maxHp;
         this.prat = 10;
@@ -200,11 +209,27 @@ public class Score implements IGameObject {
       //      System.out.println("moneyScore - " + moneyScore);
         }
 
-        if (index == 2||index == 3||index == 4) {
-            hobbyScore += 1; // 2,3,4 취미 코인
+        if (index == 2) {
+            studyScore += 1; // 2,3,4 취미 코인
+            hobbyScore += 1;
+
             happyScore += 1;
             score += amount;
-         //   System.out.println("happyScore - " + happyScore);
+            //   System.out.println("happyScore - " + happyScore);
+        }
+        if (index == 3) {
+            paintScore += 1; // 2,3,4 취미 코인
+            hobbyScore += 1;
+            happyScore += 1;
+            score += amount;
+            //   System.out.println("happyScore - " + happyScore);
+        }
+        if (index == 4) {
+            singScore += 1; // 2,3,4 취미 코인
+            hobbyScore += 1;
+            happyScore += 1;
+            score += amount;
+            //   System.out.println("happyScore - " + happyScore);
         }
         //5시계 6앨범
         if (index == 5) {
@@ -264,4 +289,18 @@ public class Score implements IGameObject {
     public int getHappyScore() {
         return happyScore;
     }
+
+
+    public int getPaintScore() {
+        return paintScore;
+    }
+    public int getStudyScore() {
+        return studyScore;
+    }
+    public int getSingScore() {
+        return singScore;
+    }
+
+
+
 }

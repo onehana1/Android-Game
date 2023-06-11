@@ -45,7 +45,7 @@ public class MainScene extends BaseScene {
         imageResourceslist = new ArrayList<>();
         imageResourceslist.add(R.mipmap.playground1);
         imageResourceslist.add(R.mipmap.school1);
-        imageResourceslist.add(R.mipmap.company1);
+
 
         player = new Player();
         add(Layer.player, player);

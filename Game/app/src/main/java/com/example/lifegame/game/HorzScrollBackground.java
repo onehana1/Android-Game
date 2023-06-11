@@ -100,11 +100,22 @@ public class HorzScrollBackground extends Sprite {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
 
-
-
             currentIndex++;
 
-            if(currentIndex==2) {
+            if(currentIndex==1){
+                System.out.println("들어옴?");
+                if(player.getJob() == Player.JOB.employee)
+                    bitmapResIds.add(R.mipmap.company1);
+                else if(player.getJob() == Player.JOB.painter)
+                    bitmapResIds.add(R.mipmap.paintermap);
+                else if(player.getJob() == Player.JOB.singer)
+                    bitmapResIds.add(R.mipmap.singermap);
+                else
+                    bitmapResIds.add(R.mipmap.company1);
+            }
+
+
+                if(currentIndex==2) {
                 if (scene.score.getMoneyScore() > 1000 && forhouse == 0) {
                     bitmapResIds.add(R.mipmap.house1);
                     bitmapResIds.add(R.mipmap.house_1c);
