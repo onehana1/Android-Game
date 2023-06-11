@@ -18,7 +18,7 @@ public class coin extends MapObject{
 
     float speed = 4.0f;
 
-    static int coinindex;
+    private int coinindex;
 
     public enum CoinType {
         C1, C2, C3, C4, C5, C6, C7
@@ -31,7 +31,7 @@ public class coin extends MapObject{
     public coin() {
         setBitmapResource(R.mipmap.coins);
         width = height = 1;
-        coinindex = 0;
+        this.coinindex = 0;
     }
 
     public static coin get(int index, float left, float top) {
@@ -48,38 +48,36 @@ public class coin extends MapObject{
     }
 
 
-    public static int getCoinindex() {
+    public int getCoinindex() {
         return coinindex;
     }
 
+
+    public void setcoinindex(int index){
+        coinindex = index;
+    }
     public static int getRandomCoinIndex(Random random, int age) {
         // 플레이어의 나이에 따라 코인 인덱스 선택
         switch (age) {
             case 0:
                 return random.nextInt(3);
             case 1:
-                int a1 = random.nextInt(1); //
-                coinindex = a1 + 1;
+                int a1 = random.nextInt(2) * 6; //
                 //System.out.println("coinindex : " +coinindex);
                 return a1;
                 //return -1;
             case 2:
                 int a2 = random.nextInt(2) * 6; //1,7
-                coinindex = a2 + 1;
-               // System.out.println("coinindex : " +coinindex);
                 return a2;
             case 3:
                 int a3 = random.nextInt(3) + 2;
-                coinindex = a3 + 1;
                 return a3;
             case 4:
                 int a4 = random.nextInt(2) * 6; //1,7
-                coinindex = a4 + 1;
                 return a4;
 
             case 5:
                 int a5 = random.nextInt(2) + 5; //5,6
-                coinindex = a5 + 1;
                 return a5;
 
             default:
@@ -89,6 +87,7 @@ public class coin extends MapObject{
     }
 
     private void init(int index, float left, float top) {
+        this.coinindex = index + 1;
         setSrcRect(index);
         dstRect.set(left, top, left + width, top + height);
     }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class CollisionChecker implements IGameObject {
     private Player player;
+    private coin coin;
 
     public CollisionChecker(Player player) {
         this.player = player;
@@ -22,19 +23,7 @@ public class CollisionChecker implements IGameObject {
     @Override
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
-//        ArrayList<IGameObject> items = scene.getObjectsAt(MainScene.Layer.item);
-//        for (int i = items.size() - 1; i >= 0; i--) {
-//            IGameObject gobj = items.get(i);
-//
-//            if (!(gobj instanceof IBoxCollidable)) {
-//                continue;
-//            }
-//            if (CollisionHelper.collides(player, (IBoxCollidable) gobj)) {
-//                scene.score.add(100,1);
-//                scene.remove(MainScene.Layer.item, gobj);
-//
-//            }
-//        }
+
 
         ArrayList<IGameObject> itemss = scene.getObjectsAt(MainScene.Layer.item_1);
         for (int i = itemss.size() - 1; i >= 0; i--) {
@@ -118,29 +107,36 @@ public class CollisionChecker implements IGameObject {
     private void handleCoinCollision(coin coinObj) {
         MainScene scene = (MainScene) BaseScene.getTopScene();
 
-        int coinIndex = coin.getCoinindex();  // c의 인덱스 가져오기
+        int coinIndex = coinObj.getCoinindex();  // c의 인덱스 가져오기
         int amount = 100;
 
         if (coinIndex == 1) {
             scene.score.add(amount,1);
+            System.out.println("돈");
         }
         else if (coinIndex == 2) {
             scene.score.add(amount,2);
+            System.out.println("책");
         }
         else if (coinIndex == 3) {
             scene.score.add(amount,3);
+            System.out.println("페인트");
         }
         else if (coinIndex == 4) {
             scene.score.add(amount,4);
+            System.out.println("4기타");
         }
         else if (coinIndex == 5) {
             scene.score.add(amount,5);
+            System.out.println("5시계");
         }
         else if (coinIndex == 6) {
             scene.score.add(amount,6);
+            System.out.println("6앨범");
         }
         else if (coinIndex == 7) {
             scene.score.add(amount,7);
+            System.out.println("담배");
         }
 
     }
@@ -168,9 +164,14 @@ public class CollisionChecker implements IGameObject {
                 player.setHobby(Player.Hobby.STUDY);
         }
 
+        if (choiceIndex == CT.c_m||choiceIndex == CT.c_mm||choiceIndex == CT.c_mmm) {
+            System.out.println("c_m!!");
+            scene.score.add(amount,8);
+        }
+
 
         if (choiceIndex == CT.c_off1||choiceIndex == CT.c_off2||choiceIndex == CT.c_off3) {
-            // System.out.println("c_study!!");
+            System.out.println("c_off1!!");
             scene.score.add(amount,8);
         }
 

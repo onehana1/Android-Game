@@ -73,8 +73,11 @@ public class MapLoaderObject implements IGameObject {
                 System.out.println("2일때");
                 choiceObjs = new ChoiceObj[3];
                 choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_m, 18, by);
+                choiceObjs[0].setType(ChoiceObj.Type.c_m);
                 choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_mm, 25, by);
+                choiceObjs[1].setType(ChoiceObj.Type.c_mm);
                 choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_mmm, 32, by);
+                choiceObjs[2].setType(ChoiceObj.Type.c_mmm);
 
 
             }
@@ -82,8 +85,11 @@ public class MapLoaderObject implements IGameObject {
                 System.out.println("3일때");
                 choiceObjs = new ChoiceObj[3];
                 choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_off1, 18, by);
+                choiceObjs[0].setType(ChoiceObj.Type.c_off1);
                 choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_off2, 25, by);
+                choiceObjs[1].setType(ChoiceObj.Type.c_off2);
                 choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_off3, 32, by);
+                choiceObjs[2].setType(ChoiceObj.Type.c_off3);
             }
 
             else if (playerAge == 4) { // 플레이어의 나이가 4일 때
