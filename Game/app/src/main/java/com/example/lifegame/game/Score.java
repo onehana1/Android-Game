@@ -1,5 +1,6 @@
 package com.example.lifegame.game;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -22,6 +23,7 @@ public class Score implements IGameObject {
     private RectF dstRect = new RectF();
     private int score, displayScore, prat;
 
+    //================점수=================
     private int moneyScore;
     private int lifeScore;
     private int hobbyScore;
@@ -29,25 +31,49 @@ public class Score implements IGameObject {
     private int hp;
 
     private int happyScore;
+    private int maxhappy = 10;
+
 
 
     private int friendScore;
 
     private int smokeScore;
+    private final Paint smokeScorePaint; // 체력 게이지를 그리기 위한 Paint 객체
+    private final Bitmap cigaretteImage; // 체력 이미지
+
 
     //================체력=================
-    private final int maxHp = 3; // 최대 체력
-    private final float hpGaugeWidth = 4.f; // 체력 게이지 너비
+    private final int maxHp = 10; // 최대 체력
+    private final float hpGaugeWidth = 3.5f; // 체력 게이지 너비
     private final float hpGaugeHeight = 0.5f; // 체력 게이지 높이
     private final float hpGaugeX = 0.8f; // 체력 게이지 위치 X 좌표
     private final float hpGaugeY = 0.2f; // 체력 게이지 위치 Y 좌표
     private final Paint hpGaugePaint; // 체력 게이지를 그리기 위한 Paint 객체
+
     //=====================================
+
     private final Bitmap lifeImage; // 체력 이미지
     private final float lifeImageWidth = 0.5f; // 체력 이미지 너비
     private final float lifeImageHeight = 0.5f; // 체력 이미지 높이
     private final float lifeImageX = 0.2f; // 체력 이미지 위치 X 좌표
     private final float lifeImageY = 1.f; // 체력 이미지 위치 Y 좌표
+
+    //=================happy====================
+
+    private final float happyGaugeWidth = 3.5f; // happy 게이지 너비
+    private final float happyGaugeHeight = 0.5f; // happy 게이지 높이
+    private final float happyGaugeX = 5.5f; // happy게이지 위치 X 좌표
+    private final float happyGaugeY = 0.2f; // happy 게이지 위치 Y 좌표
+    private final Paint happyGaugePaint; // happy게이지를 그리기 위한 Paint 객체
+    //=====================================
+    private final Bitmap happyImage; //
+    private final float happyImageWidth = 0.5f;
+    private final float happyImageHeight = 0.5f;
+    private final float happyImageX = 4.8f;
+    private final float happyImageY = 1.f;
+    //=====================================
+
+
     //=====================================
 
     public Score(int mipmapResId, float right, float top, float width) {
@@ -63,15 +89,27 @@ public class Score implements IGameObject {
         this.moneyScore = 0; // 돈 점수 초기화
         this.lifeScore = 0; // 생명 점수 초기화
         this.hobbyScore =0; // 취미 점수 초기화
+        this.happyScore = maxhappy;
+        this.friendScore=0;
+
         this.hp = maxHp;
         this.prat = 10;
 
         hpGaugePaint = new Paint();
         hpGaugePaint.setColor(Color.RED);
 
+        happyGaugePaint = new Paint();
+        happyGaugePaint.setColor(Color.GREEN);
+
+
+        smokeScorePaint= new Paint();
+        smokeScorePaint.setColor(Color.RED);
+
 
         // 체력 이미지 초기화
         lifeImage = BitmapPool.get(R.mipmap.life);
+        happyImage = BitmapPool.get(R.mipmap.happy);
+        cigaretteImage = BitmapPool.get(R.mipmap.cigarette);
 
 
     }
@@ -109,62 +147,92 @@ public class Score implements IGameObject {
             value /= 10;
         }
 
+        // smokeScore 그리기
+        String smokeText = smokeScore + "" ;
+        float smokeTextX = right;
+        float smokeTextY = top + dstCharHeight + 20; // 이동할 Y 좌표 값 조정 가능
 
-        for (int i = 0; i < hp; i++) {
-            dstRect.set(lifeImageX, top, lifeImageX + lifeImageWidth, top + lifeImageHeight);
-            canvas.drawBitmap(lifeImage, null, dstRect, null);
-        }
+        smokeScorePaint.setTextSize(0.5f);
+        canvas.drawText(smokeText, 6, 8.7f, smokeScorePaint);
+        String smoke2Text = "/" ;
+        canvas.drawText(smoke2Text, 6.2f, 8.7f, smokeScorePaint);
+        String smoke3Text = "7" ;
+        canvas.drawText(smoke3Text, 6.4f, 8.7f, smokeScorePaint);
+
+
+
+        dstRect.set(happyImageX, 8.2f, happyImageX + 1.0f, 8.7f);
+        canvas.drawBitmap(cigaretteImage, null, dstRect, null);
+
+
+
+        dstRect.set(lifeImageX, top, lifeImageX + lifeImageWidth, top + lifeImageHeight);
+        canvas.drawBitmap(lifeImage, null, dstRect, null);
+
+
+        dstRect.set(happyImageX, top, happyImageX + happyImageWidth, top + happyImageHeight);
+        canvas.drawBitmap(happyImage, null, dstRect, null);
+
 
         // 체력 게이지 그리기
         float hpRatio = (float) hp / maxHp; // 현재 체력 비율 계산
         float hpGaugeWidthCurrent = hpGaugeWidth * hpRatio; // 현재 체력에 맞는 너비 계산
         canvas.drawRect(hpGaugeX, hpGaugeY, hpGaugeX + hpGaugeWidthCurrent, hpGaugeY + hpGaugeHeight, hpGaugePaint);
 
+        // 체력 게이지 그리기
+        float happyRatio = (float) happyScore / maxhappy; // 현재 체력 비율 계산
+        float happyGaugeWidthCurrent = happyGaugeWidth * happyRatio; // 현재 체력에 맞는 너비 계산
+        canvas.drawRect(happyGaugeX, happyGaugeY, happyGaugeX + happyGaugeWidthCurrent, happyGaugeY + happyGaugeHeight, happyGaugePaint);
+
 
     }
 
+
     public void add(int amount, int index) {
-        score += amount;
 
         //1~7 코인 1돈 2책 3 페인트 4기타 5시계 6앨범 7담배/ 8choice
 
         if (index == 1) {
             //moneyScore++; // 인덱스 1의 코인을 얻으면 돈 점수 상승
             moneyScore += amount;
+            happyScore -= 1;
+            score += amount;
       //      System.out.println("moneyScore - " + moneyScore);
         }
 
         if (index == 2||index == 3||index == 4) {
             hobbyScore += 1; // 2,3,4 취미 코인
-            happyScore += amount;
+            happyScore += 1;
+            score += amount;
          //   System.out.println("happyScore - " + happyScore);
         }
         //5시계 6앨범
         if (index == 5) {
-            happyScore += amount;
+            happyScore += 1;
             hp -= 1;
          //   System.out.println("hp - " + hp);
         }
         if (index == 6) {
-            happyScore += amount;
+            happyScore += 1;
           //  System.out.println("happyScore - " + happyScore);
         }
 
         if (index == 7) {
             //  lifeScore--; // 담배코인
             smokeScore += 1;
+            happyScore += 1;
             hp -= 1;
             lifeScore -=amount;
            // System.out.println("hp - " + hp);
         }
 
         if (index == 8) {
-            friendScore += amount;
+            friendScore += 1;
             System.out.println("friendScore - " + friendScore);
         }
 
         if (index == 9) {
-            hobbyScore += amount;
+            hobbyScore += 1;
             System.out.println("hobbyScore - " + hobbyScore);
         }
 
@@ -178,11 +246,22 @@ public class Score implements IGameObject {
         return moneyScore;
     }
 
+    public int getSmokeScore() {
+        return smokeScore;
+    }
+
     public int getLifeScore() {
         return lifeScore;
     }
 
     public int getHobbyScore() {
         return hobbyScore;
+    }
+
+    public int getFriendScore() {
+        return friendScore;
+    }
+    public int getHappyScore() {
+        return happyScore;
     }
 }

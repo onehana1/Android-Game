@@ -20,6 +20,8 @@ public class HorzScrollBackground extends Sprite {
     private int currentIndex;
 
     static int forhouse =0;
+    static int forend =0;
+
 
 
     private int[] bitmapResIds;
@@ -64,6 +66,12 @@ public class HorzScrollBackground extends Sprite {
             age = 5;
         }
 
+        else if (currentImageResId == R.mipmap.endingmap) {
+            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+            setSize(Metrics.game_height, width);
+            age = 6;
+        }
+
         player.setAge(age);
     }
 
@@ -92,16 +100,17 @@ public class HorzScrollBackground extends Sprite {
                     forhouse = 1;
                 }
                 else if (scene.score.getMoneyScore() > 500 && forhouse == 0) {
-                    currentIndex=5;
+                    currentIndex=6;
                     forhouse = 1;
                 }
                 else if (forhouse == 0) {
-                    currentIndex=7;
+                    currentIndex=9;
                     forhouse = 1;
                 }
 
 
             }
+
 
 
             if (currentIndex >= bitmapResIds.length) {

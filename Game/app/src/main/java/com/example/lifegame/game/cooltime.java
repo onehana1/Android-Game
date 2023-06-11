@@ -23,7 +23,7 @@ public class cooltime implements IGameObject {
 
     private boolean isCooling = false;
 
-    private Button hobbyButton;
+    private Button myButton;
 
     public cooltime(int mipmapResId, float right, float top, float width){
         this.bitmap = BitmapPool.get(mipmapResId);
@@ -34,7 +34,7 @@ public class cooltime implements IGameObject {
         this.srcCharHeight = bitmap.getHeight();
         this.dstCharHeight = dstCharWidth * srcCharHeight / srcCharWidth;
 
-        this.hobbyButton = hobbyButton;  // hobbyButton 객체 전달받기
+        this.myButton = myButton;  // hobbyButton 객체 전달받기
     }
 
     public void setCoolingTime(int seconds) {
@@ -72,7 +72,7 @@ public class cooltime implements IGameObject {
 
         if (time <= 0) {
             // 쿨타임 종료 시 hobbyButton의 쿨타임 상태를 해제
-            hobbyButton.setCooling(false);
+            myButton.setCooling(false);
         }
     }
 
@@ -81,8 +81,8 @@ public class cooltime implements IGameObject {
         this.cool = time;
     }
 
-    public void setButtoncool(Button hobbyButton) {
-        this.hobbyButton = hobbyButton;
+    public void setButtoncool(Button iButton) {
+        this.myButton = iButton;
     }
 
 }

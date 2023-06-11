@@ -39,50 +39,6 @@ public class CollisionChecker implements IGameObject {
         }
 
 
-
-//        ArrayList<IGameObject> items_1 = scene.getObjectsAt(MainScene.Layer.item_1);
-//        for (int i = items_1.size() - 1; i >= 0; i--) {
-//            IGameObject gobj = items_1.get(i);
-//
-//            if (!(gobj instanceof IBoxCollidable)) {
-//                continue;
-//            }
-//            if (CollisionHelper.collides(player, (IBoxCollidable) gobj)) {
-//                scene.score.add(100,1);
-//                scene.remove(MainScene.Layer.item_1, gobj);
-//
-//            }
-//        }
-//
-//        ArrayList<IGameObject> items_7 = scene.getObjectsAt(MainScene.Layer.item_7);
-//        for (int i = items_7.size() - 1; i >= 0; i--) {
-//            IGameObject gobj = items_7.get(i);
-//
-//            if (!(gobj instanceof IBoxCollidable)) {
-//                continue;
-//            }
-//            if (CollisionHelper.collides(player, (IBoxCollidable) gobj)) {
-//                scene.score.add(-100,7);
-//                scene.remove(MainScene.Layer.item_7, gobj);
-//
-//            }
-//        }
-//
-//        ArrayList<IGameObject> items_2 = scene.getObjectsAt(MainScene.Layer.item_2);
-//        for (int i = items_2.size() - 1; i >= 0; i--) {
-//            IGameObject gobj = items_2.get(i);
-//
-//            if (!(gobj instanceof IBoxCollidable)) {
-//                continue;
-//            }
-//            if (CollisionHelper.collides(player, (IBoxCollidable) gobj)) {
-//
-//                scene.score.add(100,2);
-//                scene.remove(MainScene.Layer.item_2, gobj);
-//
-//            }
-//        }
-
         ArrayList<IGameObject> choiceobjs = scene.getObjectsAt(MainScene.Layer.choiceobj);
         for (int i = choiceobjs.size() - 1; i >= 0; i--) {
             IGameObject gobj = choiceobjs.get(i);

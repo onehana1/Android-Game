@@ -24,7 +24,7 @@ public class MainScene extends BaseScene {
     }
     public Score score;
 
-    public cooltime cooltime1,cooltime2,cooltime3;
+    public cooltime cooltime1,cooltime2,cooltime3,cooltimeChoice;
 
     public Button hobbyButton1;
     public Button hobbyButton2;
@@ -36,7 +36,7 @@ public class MainScene extends BaseScene {
 
 
 
-    int[] imageResources = {R.mipmap.playground1, R.mipmap.school1, R.mipmap.company1, R.mipmap.house1, R.mipmap.house_1, R.mipmap.house2, R.mipmap.house_2,R.mipmap.house3, R.mipmap.house_3 };
+    int[] imageResources = {R.mipmap.playground1, R.mipmap.school1, R.mipmap.company1, R.mipmap.house1, R.mipmap.house_1, R.mipmap.endingmap , R.mipmap.house2, R.mipmap.house_2, R.mipmap.endingmap ,R.mipmap.house3, R.mipmap.house_3, R.mipmap.endingmap };
 
     public MainScene() {
         Metrics.setGameSize(16.0f, 9.0f);
@@ -62,10 +62,14 @@ public class MainScene extends BaseScene {
         jumpButton.setActivation(true);
         add(Layer.touch, jumpButton) ;
 
-        choiceButton =  new Button(R.mipmap.choice, R.mipmap.choice, 11.5f, 7.7f, 3.0f, 2.0f, new Button.Callback(){
+        choiceButton =  new Button(R.mipmap.choice_c, R.mipmap.choice, 11.5f, 7.7f, 3.0f, 2.0f, new Button.Callback(){
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
                     player.choice();
+
+                    cooltimeChoice.setCoolingTime(3);
+                    choiceButton.setCooling(true);
+
                 }
 
                 if(player.getHobby()==Player.Hobby.PAINT)
@@ -80,6 +84,15 @@ public class MainScene extends BaseScene {
         });
 
         choiceButton.setActivation(true);
+
+        cooltimeChoice = new cooltime(R.mipmap.blue_number, 12.5f, 8.1f, 0.2f);
+        cooltimeChoice.setcoltime(3);
+        cooltimeChoice.setButtoncool(choiceButton); // cooltime 클래스에 hobbyButton 설정
+        add(Layer.coolui, cooltimeChoice);
+        add(Layer.touch, choiceButton);
+
+
+
         add(Layer.touch, choiceButton);
 
         hobbyButton1 = new Button(R.mipmap.hobby_1, R.mipmap.hobby_1_cool,  1.0f, 8.4f, 1.0f, 1.0f, new Button.Callback() {
@@ -209,9 +222,14 @@ public class MainScene extends BaseScene {
 
         if (score.getHP() <= 0) {
             // 엔딩씬으로 전환
-            System.out.println("엔딩씬으로");
             BaseScene.getTopScene().changeToEndingScene();
            // new EndingScene().pushScene();
+        }
+
+        if (score.getSmokeScore() >= 7) {
+            // 엔딩씬으로 전환
+            BaseScene.getTopScene().changeToEndingScene();
+            // new EndingScene().pushScene();
         }
 
 
