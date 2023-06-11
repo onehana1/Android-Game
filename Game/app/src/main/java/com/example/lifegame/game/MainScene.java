@@ -232,6 +232,11 @@ public class MainScene extends BaseScene {
             // new EndingScene().pushScene();
         }
 
+        if (player.getAge() == 6) {
+            BaseScene.getTopScene().changeToEndingScene();
+            // new EndingScene().pushScene();
+        }
+
 
     }
 
