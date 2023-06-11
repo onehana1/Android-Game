@@ -31,6 +31,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     public GameView(Context context) {
         super(context);
         init(null, 0);
+        view = this;  // view 멤버 변수 초기화
     }
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);

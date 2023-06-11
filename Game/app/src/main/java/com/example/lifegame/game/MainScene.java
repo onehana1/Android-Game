@@ -3,10 +3,13 @@ package com.example.lifegame.game;
 import com.example.lifegame.R;
 import com.example.lifegame.framework.BaseScene;
 import com.example.lifegame.framework.Button;
+import com.example.lifegame.framework.IGameObject;
 import com.example.lifegame.framework.MapLoader;
 import com.example.lifegame.framework.MapLoaderObject;
 import com.example.lifegame.framework.Metrics;
 import com.example.lifegame.framework.PauseScene;
+
+import java.util.ArrayList;
 
 public class MainScene extends BaseScene {
     private final Player player;
@@ -194,4 +197,25 @@ public class MainScene extends BaseScene {
         new PauseScene().pushScene();
         return true;
     }
+
+    public void update(long elapsedNanos) {
+        frameTime = elapsedNanos / 1_000_000_000f;
+        for (ArrayList<IGameObject> objects: layers) {
+            for (int i = objects.size() - 1; i >= 0; i--) {
+                IGameObject gobj = objects.get(i);
+                gobj.update();
+            }
+        }
+
+        if (score.getHP() <= 0) {
+            // 엔딩씬으로 전환
+            System.out.println("엔딩씬으로");
+            BaseScene.getTopScene().changeToEndingScene();
+           // new EndingScene().pushScene();
+        }
+
+
+    }
+
+
 }

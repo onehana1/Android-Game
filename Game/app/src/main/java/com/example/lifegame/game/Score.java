@@ -36,7 +36,7 @@ public class Score implements IGameObject {
     private int smokeScore;
 
     //================체력=================
-    private final int maxHp = 20; // 최대 체력
+    private final int maxHp = 3; // 최대 체력
     private final float hpGaugeWidth = 4.f; // 체력 게이지 너비
     private final float hpGaugeHeight = 0.5f; // 체력 게이지 높이
     private final float hpGaugeX = 0.8f; // 체력 게이지 위치 X 좌표
@@ -63,7 +63,7 @@ public class Score implements IGameObject {
         this.moneyScore = 0; // 돈 점수 초기화
         this.lifeScore = 0; // 생명 점수 초기화
         this.hobbyScore =0; // 취미 점수 초기화
-        this.hp = 10;
+        this.hp = maxHp;
         this.prat = 10;
 
         hpGaugePaint = new Paint();
@@ -169,6 +169,9 @@ public class Score implements IGameObject {
         }
 
 
+    }
+    public int getHP() {
+        return hp;
     }
 
     public int getMoneyScore() {

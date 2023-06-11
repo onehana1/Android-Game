@@ -7,6 +7,7 @@ import com.example.lifegame.framework.ChoiceObj;
 import com.example.lifegame.framework.CollisionHelper;
 import com.example.lifegame.framework.IBoxCollidable;
 import com.example.lifegame.framework.IGameObject;
+import com.example.lifegame.framework.PauseScene;
 import com.example.lifegame.framework.coin;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class CollisionChecker implements IGameObject {
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
 
-
         ArrayList<IGameObject> itemss = scene.getObjectsAt(MainScene.Layer.item_1);
         for (int i = itemss.size() - 1; i >= 0; i--) {
             IGameObject gobj = itemss.get(i);
@@ -37,6 +37,7 @@ public class CollisionChecker implements IGameObject {
                 scene.remove(MainScene.Layer.item_1, gobj);
             }
         }
+
 
 
 //        ArrayList<IGameObject> items_1 = scene.getObjectsAt(MainScene.Layer.item_1);

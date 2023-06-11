@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import androidx.annotation.NonNull;
 
 import com.example.lifegame.BuildConfig;
+import com.example.lifegame.game.EndingScene;
 
 import java.util.ArrayList;
 
@@ -220,6 +221,13 @@ public class BaseScene {
         stack.set(topIndex, this);
         this.onStart();
         return stack.size();
+    }
+
+    public void changeToEndingScene() {
+        EndingScene endingScene = new EndingScene();
+        BaseScene.getTopScene().pauseScene();
+        endingScene.onStart();
+        endingScene.pushScene();
     }
 
     public boolean handleBackKey() {
