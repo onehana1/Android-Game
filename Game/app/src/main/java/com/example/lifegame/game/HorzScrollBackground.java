@@ -11,6 +11,8 @@ import com.example.lifegame.framework.ChoiceObj;
 import com.example.lifegame.framework.Metrics;
 import com.example.lifegame.framework.Sprite;
 
+import java.util.ArrayList;
+
 
 public class HorzScrollBackground extends Sprite {
     private final Player player;
@@ -24,10 +26,13 @@ public class HorzScrollBackground extends Sprite {
 
 
 
-    private int[] bitmapResIds;
+    private int[] bitmapResIdsS;
 
-    public HorzScrollBackground(int[] bitmapResIds, float speed, Player player) {
-        super(bitmapResIds[0], Metrics.game_width / 2, Metrics.game_height / 2, Metrics.game_width, Metrics.game_height);
+    private ArrayList<Integer> bitmapResIds;
+
+
+    public HorzScrollBackground(ArrayList<Integer> bitmapResIds, float speed, Player player) {
+        super(bitmapResIds.get(0), Metrics.game_width / 2, Metrics.game_height / 2, Metrics.game_width, Metrics.game_height);
         this.bitmapResIds = bitmapResIds;
         this.speed = speed;
         this.player = player;
@@ -38,7 +43,7 @@ public class HorzScrollBackground extends Sprite {
 
     public void setPlayerAgeBasedOnCurrentImage() {
         int age = 1;
-        int currentImageResId = bitmapResIds[currentIndex];
+        int currentImageResId = bitmapResIds.get(currentIndex);
         // 이미지 리소스 ID에 따라 플레이어의 나이를 설정
         if (currentImageResId == R.mipmap.playground1) {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
@@ -61,6 +66,11 @@ public class HorzScrollBackground extends Sprite {
         }
 
         else if (currentImageResId == R.mipmap.house_1||currentImageResId == R.mipmap.house_2||currentImageResId == R.mipmap.house_3) {
+            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+            setSize(Metrics.game_height, width);
+            age = 5;
+        }
+        else if (currentImageResId == R.mipmap.house_1c||currentImageResId == R.mipmap.house_2c||currentImageResId == R.mipmap.house_3c) {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
             age = 5;
@@ -94,26 +104,32 @@ public class HorzScrollBackground extends Sprite {
 
             currentIndex++;
 
-            if(currentIndex==3) {
+            if(currentIndex==2) {
                 if (scene.score.getMoneyScore() > 1000 && forhouse == 0) {
-                    currentIndex=3;
+                    bitmapResIds.add(R.mipmap.house1);
+                    bitmapResIds.add(R.mipmap.house_1c);
+                    bitmapResIds.add(R.mipmap.endingmap);
                     forhouse = 1;
                 }
                 else if (scene.score.getMoneyScore() > 500 && forhouse == 0) {
-                    currentIndex=6;
+                    bitmapResIds.add(R.mipmap.house2);
+                    bitmapResIds.add(R.mipmap.house_2c);
+                    bitmapResIds.add(R.mipmap.endingmap);
                     forhouse = 1;
                 }
                 else if (forhouse == 0) {
-                    currentIndex=9;
+                    bitmapResIds.add(R.mipmap.house3);
+                    bitmapResIds.add(R.mipmap.house_3c);
+                    bitmapResIds.add(R.mipmap.endingmap);
                     forhouse = 1;
                 }
-
 
             }
 
 
 
-            if (currentIndex >= bitmapResIds.length) {
+
+            if (currentIndex >= bitmapResIds.size()) {
                 currentIndex = 0;
             }
 
@@ -135,20 +151,19 @@ public class HorzScrollBackground extends Sprite {
                 int index = currentIndex;
                 if (next > width) {
                     index++;
-                    if (index >= bitmapResIds.length) {
+                    if (index >= bitmapResIds.size()) {
                         index = 0;
                     }
                 }
 
-                setBitmapResource(bitmapResIds[index]);
+                setBitmapResource(bitmapResIds.get(index));
                 dstRect.set(curr, 1, next, Metrics.game_height - 1);
                 canvas.drawBitmap(bitmap, null, dstRect, null);
             }
 
             curr += width;
             next += width;
-
-
         }
+
     }
 }

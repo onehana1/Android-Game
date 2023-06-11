@@ -86,7 +86,7 @@ public class Score implements IGameObject {
         this.dstCharHeight = dstCharWidth * srcCharHeight / srcCharWidth;
 
 
-        this.moneyScore = 0; // 돈 점수 초기화
+        this.moneyScore =0; // 돈 점수 초기화
         this.lifeScore = 0; // 생명 점수 초기화
         this.hobbyScore =0; // 취미 점수 초기화
         this.happyScore = maxhappy;

@@ -35,17 +35,23 @@ public class MainScene extends BaseScene {
 
 
 
+    private ArrayList<Integer> imageResourceslist;
 
     int[] imageResources = {R.mipmap.playground1, R.mipmap.school1, R.mipmap.company1, R.mipmap.house1, R.mipmap.house_1, R.mipmap.endingmap , R.mipmap.house2, R.mipmap.house_2, R.mipmap.endingmap ,R.mipmap.house3, R.mipmap.house_3, R.mipmap.endingmap };
 
     public MainScene() {
         Metrics.setGameSize(16.0f, 9.0f);
         initLayers(Layer.COUNT);
+        imageResourceslist = new ArrayList<>();
+        imageResourceslist.add(R.mipmap.playground1);
+        imageResourceslist.add(R.mipmap.school1);
+        imageResourceslist.add(R.mipmap.company1);
+
         player = new Player();
         add(Layer.player, player);
 
        // add(new HorzScrollBackground(R.mipmap.school, 0.2f));
-        HorzScrollBackground background = new HorzScrollBackground(imageResources, bgspeed, player);
+        HorzScrollBackground background = new HorzScrollBackground(imageResourceslist, bgspeed, player);
         add(Layer.bg, background);
 
         // 플레이어의 나이 설정
@@ -222,8 +228,8 @@ public class MainScene extends BaseScene {
 
         if (score.getHP() <= 0) {
             // 엔딩씬으로 전환
-            BaseScene.getTopScene().changeToEndingScene();
-           // new EndingScene().pushScene();
+            //BaseScene.getTopScene().changeToEndingScene();
+            new EndingScene().pushScene();
         }
 
         if (score.getSmokeScore() >= 7) {
