@@ -19,7 +19,7 @@ public class Score implements IGameObject {
     private final float dstCharWidth, dstCharHeight;
     private Rect srcRect = new Rect();
     private RectF dstRect = new RectF();
-    private int score, displayScore;
+    private int score, displayScore, prat;
 
     private int moneyScore;
     private int lifeScore;
@@ -47,6 +47,9 @@ public class Score implements IGameObject {
         this.moneyScore = 0; // 돈 점수 초기화
         this.lifeScore = 0; // 생명 점수 초기화
         this.hobbyScore =0; // 취미 점수 초기화
+
+
+        this.prat = 10;
     }
 
     public void setScore(int score) {
