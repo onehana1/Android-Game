@@ -221,4 +221,9 @@ public class BaseScene {
         this.onStart();
         return stack.size();
     }
+
+    public boolean handleBackKey() {
+        popScene();
+        return true;
+    }
 }

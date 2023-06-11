@@ -170,5 +170,8 @@ public class MainScene extends BaseScene {
     }
 
 
-
+    public boolean handleBackKey() {
+        new PauseScene().pushScene();
+        return true;
+    }
 }
