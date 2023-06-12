@@ -25,7 +25,7 @@ public class MainScene extends BaseScene {
     }
     public Score score;
 
-    public cooltime cooltime1,cooltime2,cooltime3,cooltimeChoice;
+    public cooltime cooltime1,cooltime2,cooltime3,cooltimeChoice,cooltimeJump;
 
     public Button hobbyButton1;
     public Button hobbyButton2;
@@ -58,15 +58,24 @@ public class MainScene extends BaseScene {
         // 플레이어의 나이 설정
         background.setPlayerAgeBasedOnCurrentImage();
 
-        jumpButton =  new Button(R.mipmap.jump, R.mipmap.jump, 14.5f, 7.7f, 3.0f, 2.0f, new Button.Callback(){
+        jumpButton =  new Button(R.mipmap.jump_c, R.mipmap.jump, 14.5f, 7.7f, 3.0f, 2.0f, new Button.Callback(){
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
                     player.jump();
                     Sound.playEffect(R.raw.jump);
+
+                    cooltimeJump.setCoolingTime(2);
+                    jumpButton.setCooling(true);
                 }
                 return true;
             }
         });
+
+        cooltimeJump = new cooltime(R.mipmap.blue_number, 13.5f, 8.1f, 0.2f);
+        cooltimeJump.setcoltime(2);
+        cooltimeJump.setButtoncool(jumpButton); // cooltime 클래스에 hobbyButton 설정
+        add(Layer.coolui, cooltimeJump);
+
         jumpButton.setActivation(true);
         add(Layer.touch, jumpButton) ;
 
@@ -236,13 +245,13 @@ public class MainScene extends BaseScene {
             }
         }
 
-        if (score.getHP() <= -500) {
+        if (score.getHP() <= -0) {
             // 엔딩씬으로 전환
             //BaseScene.getTopScene().changeToEndingScene();
             new EndingScene().pushScene();
         }
 
-        if (score.getSmokeScore() >= 170) {
+        if (score.getSmokeScore() >= 7) {
             // 엔딩씬으로 전환
             BaseScene.getTopScene().changeToEndingScene();
             // new EndingScene().pushScene();

@@ -121,28 +121,8 @@ public class MapLoaderObject implements IGameObject {
                 choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_off3, 28, by);
                 choiceObjs[2].setType(ChoiceObj.Type.c_off3);
             }
-            else if (playerAge == 4&&job==Player.JOB.painter) { // 플레이어의 나이가 4일 때
+            else if (playerAge == 4) { // 플레이어의 나이가 4일 때
                 System.out.println("4일때");
-                choiceObjs = new ChoiceObj[3];
-                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.p1, 17, by);
-                choiceObjs[0].setType(ChoiceObj.Type.p1);
-                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.p2, 24, by);
-                choiceObjs[1].setType(ChoiceObj.Type.p2);
-                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.p3, 28, by);
-                choiceObjs[2].setType(ChoiceObj.Type.p3);
-            }
-            else if (playerAge == 4&&job==Player.JOB.singer) { // 플레이어의 나이가 4일 때
-                System.out.println("4일때");
-                choiceObjs = new ChoiceObj[3];
-                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.s1, 17, by);
-                choiceObjs[0].setType(ChoiceObj.Type.s1);
-                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.s2, 24, by);
-                choiceObjs[1].setType(ChoiceObj.Type.s2);
-                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.s3, 28, by);
-                choiceObjs[2].setType(ChoiceObj.Type.s3);
-            }
-            else if (playerAge == 5) { // 플레이어의 나이가 4일 때
-                System.out.println("5일때");
                 choiceObjs = new ChoiceObj[3];
                 choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.b1, 17, by);
                 choiceObjs[0].setType(ChoiceObj.Type.s1);
@@ -151,6 +131,38 @@ public class MapLoaderObject implements IGameObject {
                 choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.b2, 0, -by);
                 choiceObjs[2].setType(ChoiceObj.Type.s2);
             }
+
+            else if (playerAge == 5&&job==Player.JOB.painter) { // 플레이어의 나이가 4일 때
+                System.out.println("3일때");
+                choiceObjs = new ChoiceObj[3];
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.p1, 17, by);
+                choiceObjs[0].setType(ChoiceObj.Type.p1);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.p2, 24, by);
+                choiceObjs[1].setType(ChoiceObj.Type.p2);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.p3, 28, by);
+                choiceObjs[2].setType(ChoiceObj.Type.p3);
+            }
+            else if (playerAge == 5&&job==Player.JOB.singer) { // 플레이어의 나이가 4일 때
+                System.out.println("3일때");
+                choiceObjs = new ChoiceObj[3];
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.s1, 17, by);
+                choiceObjs[0].setType(ChoiceObj.Type.s1);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.s2, 24, by);
+                choiceObjs[1].setType(ChoiceObj.Type.s2);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.s3, 28, by);
+                choiceObjs[2].setType(ChoiceObj.Type.s3);
+            }
+            else if (playerAge == 5&&job==Player.JOB.employee) { // 플레이어의 나이가 3일 때
+                System.out.println("3일때");
+                choiceObjs = new ChoiceObj[3];
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.c_off1, 17, by);
+                choiceObjs[0].setType(ChoiceObj.Type.c_off1);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.c_off2, 24, by);
+                choiceObjs[1].setType(ChoiceObj.Type.c_off2);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.c_off3, 28, by);
+                choiceObjs[2].setType(ChoiceObj.Type.c_off3);
+            }
+
             else if (playerAge == 6) { // 플레이어의 나이가 4일 때
                 System.out.println("6일때");
                 choiceObjs = new ChoiceObj[3];

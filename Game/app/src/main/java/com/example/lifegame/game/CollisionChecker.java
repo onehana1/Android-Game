@@ -71,32 +71,39 @@ public class CollisionChecker implements IGameObject {
         if (coinIndex == 1) {
             scene.score.add(amount,1);
             System.out.println("돈");
+            Sound.playEffect(coinObj.soundId());
         }
         else if (coinIndex == 2) {
             scene.score.add(amount,2);
             System.out.println("책");
+            Sound.playEffect(coinObj.soundId());
         }
         else if (coinIndex == 3) {
             scene.score.add(amount,3);
             System.out.println("페인트");
+            Sound.playEffect(coinObj.soundId());
         }
         else if (coinIndex == 4) {
             scene.score.add(amount,4);
             System.out.println("4기타");
+            Sound.playEffect(coinObj.soundId());
         }
         else if (coinIndex == 5) {
             scene.score.add(amount,5);
             System.out.println("5시계");
+            Sound.playEffect(coinObj.soundId());
         }
         else if (coinIndex == 6) {
             scene.score.add(amount,6);
             System.out.println("6앨범");
+            Sound.playEffect(coinObj.soundId());
         }
         else if (coinIndex == 7) {
             scene.score.add(amount,7);
             System.out.println("담배");
+            Sound.playEffect(coinObj.soundId());
         }
-        Sound.playEffect(coinObj.soundId());
+
 
     }
 
