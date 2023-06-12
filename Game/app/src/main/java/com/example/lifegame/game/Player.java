@@ -188,7 +188,6 @@ public class Player extends AnimSprite implements IBoxCollidable {
             }
         }
 
-
         else if (age == 5) {
             if (this.job == JOB.employee) {
                 srcRects = new Rect[][]{
@@ -211,8 +210,54 @@ public class Player extends AnimSprite implements IBoxCollidable {
                         makeRects(704), //old worker choice
                 };
             }
+        }
 
+        else if (age == 6) {
+            if (this.job == JOB.employee) {
+                srcRects = new Rect[][]{
+                        makeRects(300, 301, 302, 303), //old worker run
+                        makeRects(304), //old worker jump
+                        makeRects(304), //old worker choice
+                };
+            }
+            else if (this.job == JOB.painter) {
+                srcRects = new Rect[][]{
+                        makeRects(500, 501, 502, 503), //old worker run
+                        makeRects(504), //old worker jump
+                        makeRects(504), //old worker choice
+                };
+            }
+            else if (this.job == JOB.singer) {
+                srcRects = new Rect[][]{
+                        makeRects(700, 701, 702, 703), //old worker run
+                        makeRects(704), //old worker jump
+                        makeRects(704), //old worker choice
+                };
+            }
+        }
 
+        else if (age == 7) {
+            if (this.job == JOB.employee) {
+                srcRects = new Rect[][]{
+                        makeRects(300, 301, 302, 303), //old worker run
+                        makeRects(304), //old worker jump
+                        makeRects(304), //old worker choice
+                };
+            }
+            else if (this.job == JOB.painter) {
+                srcRects = new Rect[][]{
+                        makeRects(500, 501, 502, 503), //old worker run
+                        makeRects(504), //old worker jump
+                        makeRects(504), //old worker choice
+                };
+            }
+            else if (this.job == JOB.singer) {
+                srcRects = new Rect[][]{
+                        makeRects(700, 701, 702, 703), //old worker run
+                        makeRects(704), //old worker jump
+                        makeRects(704), //old worker choice
+                };
+            }
         }
 
 

@@ -226,19 +226,19 @@ public class MainScene extends BaseScene {
             }
         }
 
-        if (score.getHP() <= 0) {
+        if (score.getHP() <= -500) {
             // 엔딩씬으로 전환
             //BaseScene.getTopScene().changeToEndingScene();
             new EndingScene().pushScene();
         }
 
-        if (score.getSmokeScore() >= 7) {
+        if (score.getSmokeScore() >= 70) {
             // 엔딩씬으로 전환
             BaseScene.getTopScene().changeToEndingScene();
             // new EndingScene().pushScene();
         }
 
-        if (player.getAge() == 6) {
+        if (player.getAge() == 8) {
             BaseScene.getTopScene().changeToEndingScene();
             // new EndingScene().pushScene();
         }

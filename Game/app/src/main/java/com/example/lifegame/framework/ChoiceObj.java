@@ -33,6 +33,8 @@ public class ChoiceObj extends MapObject{
 
         c_off1,c_off2,c_off3,
 
+        p1, p2, p3, s1,s2,s3, b1, b2,
+
         COUNT;
         int resId() { return resIds[this.ordinal()]; }
         float width() { return widths[this.ordinal()]; }
@@ -49,12 +51,25 @@ public class ChoiceObj extends MapObject{
                 R.mipmap.c_off1,
                 R.mipmap.c_off2,
                 R.mipmap.c_off3,
+                R.mipmap.p1,
+                R.mipmap.p2,
+                R.mipmap.p3,
+                R.mipmap.s1,
+                R.mipmap.s2,
+                R.mipmap.s3,
+
+                R.mipmap.b1,
+                R.mipmap.b2,
+
+
+
+
 
         };
 
 
-        static float[] widths = { 2.0f, 5.2f, 2.0f, 1.8f,1.8f,1.8f,1.8f,1.8f,1.8f };
-        static float[] heights = { 2.3f, 2.3f, 2.3f, 2.2f,2.2f,2.2f,2.2f,2.2f,2.2f };
+        static float[] widths = { 2.0f, 5.2f, 2.0f, 1.8f,1.8f,1.8f,1.8f,1.8f,1.8f, 1.8f,1.8f,1.8f,1.8f,1.8f,1.8f,1.8f,1.8f };
+        static float[] heights = { 2.3f, 2.3f, 2.3f, 2.2f,2.2f,2.2f,2.2f,2.2f,2.2f, 2.2f,2.2f,2.2f,2.2f,2.2f,2.2f,2.2f,2.2f };
         static Type random(Random random) {
             return Type.values()[random.nextInt(2)];
         }

@@ -48,7 +48,7 @@ public class Score implements IGameObject {
 
 
     //================체력=================
-    private final int maxHp = 10; // 최대 체력
+    private final int maxHp = 100; // 최대 체력
     private final float hpGaugeWidth = 3.5f; // 체력 게이지 너비
     private final float hpGaugeHeight = 0.5f; // 체력 게이지 높이
     private final float hpGaugeX = 0.8f; // 체력 게이지 위치 X 좌표
