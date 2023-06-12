@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
     protected void onDestroy() {
         BaseScene.popAll();
+        GameView.clear();
         super.onDestroy();
     }
     public void onBackPressed() {

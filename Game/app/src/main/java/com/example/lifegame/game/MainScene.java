@@ -8,6 +8,7 @@ import com.example.lifegame.framework.MapLoader;
 import com.example.lifegame.framework.MapLoaderObject;
 import com.example.lifegame.framework.Metrics;
 import com.example.lifegame.framework.PauseScene;
+import com.example.lifegame.framework.Sound;
 
 import java.util.ArrayList;
 
@@ -61,6 +62,7 @@ public class MainScene extends BaseScene {
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
                     player.jump();
+                    Sound.playEffect(R.raw.jump);
                 }
                 return true;
             }
@@ -73,6 +75,7 @@ public class MainScene extends BaseScene {
                 if (action == Button.Action.pressed) {
                     player.choice();
 
+                    Sound.playEffect(R.raw.call);
                     cooltimeChoice.setCoolingTime(3);
                     choiceButton.setCooling(true);
 
@@ -188,23 +191,23 @@ public class MainScene extends BaseScene {
 
 
     protected void onStart() {
-       // Sound.playMusic(R.raw.main);
+        Sound.playMusic(R.raw.main2);
     }
 
 
     protected void onEnd() {
-        //Sound.stopMusic();
+        Sound.stopMusic();
     }
 
 
     protected void onPause() {
-       // Sound.pauseMusic();
+        Sound.pauseMusic();
         System.out.println("dd");
     }
 
 
     protected void onResume() {
-       // Sound.resumeMusic();
+        Sound.resumeMusic();
     }
 
     protected int getTouchLayerIndex() {

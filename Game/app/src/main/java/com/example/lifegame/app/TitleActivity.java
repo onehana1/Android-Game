@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.lifegame.R;
+import com.example.lifegame.framework.Sound;
 
 
 public class TitleActivity extends AppCompatActivity {

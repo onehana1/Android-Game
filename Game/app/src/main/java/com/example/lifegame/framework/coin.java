@@ -23,6 +23,15 @@ public class coin extends MapObject{
     public enum CoinType {
         C1, C2, C3, C4, C5, C6, C7
     }
+
+    public int index;
+    protected int[] SOUND_IDS = {
+            R.raw.coin,
+    };
+    public int soundId() {
+        return SOUND_IDS[index % SOUND_IDS.length];
+    }
+
     public void setSpeed(float speed) {
         this.speed = speed;
     }

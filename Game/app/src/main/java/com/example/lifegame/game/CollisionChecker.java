@@ -8,6 +8,7 @@ import com.example.lifegame.framework.CollisionHelper;
 import com.example.lifegame.framework.IBoxCollidable;
 import com.example.lifegame.framework.IGameObject;
 import com.example.lifegame.framework.PauseScene;
+import com.example.lifegame.framework.Sound;
 import com.example.lifegame.framework.coin;
 
 import java.util.ArrayList;
@@ -95,6 +96,7 @@ public class CollisionChecker implements IGameObject {
             scene.score.add(amount,7);
             System.out.println("담배");
         }
+        Sound.playEffect(coinObj.soundId());
 
     }
 

@@ -38,8 +38,9 @@ public class BaseScene {
         if (scene != null) {
             scene.onPause();
         }
-
         stack.add(this);
+        this.onStart();
+
         return stack.size();
     }
     public void resumeScene() {
