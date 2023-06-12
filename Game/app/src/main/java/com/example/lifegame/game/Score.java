@@ -36,7 +36,7 @@ public class Score implements IGameObject {
     private int hp;
 
     private int happyScore;
-    private int maxhappy = 10;
+    private int maxhappy = 100;
 
 
 
@@ -94,7 +94,7 @@ public class Score implements IGameObject {
         this.moneyScore =0; // 돈 점수 초기화
         this.lifeScore = 0; // 생명 점수 초기화
         this.hobbyScore =0; // 취미 점수 초기화
-        this.happyScore = maxhappy;
+        this.happyScore = maxhappy / 2;
         this.friendScore=0;
 
         this.paintScore = 0;
@@ -204,7 +204,7 @@ public class Score implements IGameObject {
         if (index == 1) {
             //moneyScore++; // 인덱스 1의 코인을 얻으면 돈 점수 상승
             moneyScore += amount;
-            happyScore -= 1;
+            happyScore -= 2;
             score += amount;
       //      System.out.println("moneyScore - " + moneyScore);
         }
@@ -213,39 +213,45 @@ public class Score implements IGameObject {
             studyScore += 1; // 2,3,4 취미 코인
             hobbyScore += 1;
 
-            happyScore += 1;
+            if(happyScore<maxhappy)
+                happyScore += 1;
             score += amount;
             //   System.out.println("happyScore - " + happyScore);
         }
         if (index == 3) {
             paintScore += 1; // 2,3,4 취미 코인
             hobbyScore += 1;
-            happyScore += 1;
+            if(happyScore<maxhappy)
+                happyScore += 1;
             score += amount;
             //   System.out.println("happyScore - " + happyScore);
         }
         if (index == 4) {
             singScore += 1; // 2,3,4 취미 코인
             hobbyScore += 1;
-            happyScore += 1;
+            if(happyScore<maxhappy)
+                happyScore += 1;
             score += amount;
             //   System.out.println("happyScore - " + happyScore);
         }
         //5시계 6앨범
         if (index == 5) {
-            happyScore += 1;
+            if(happyScore<maxhappy)
+                happyScore += 1;
             hp -= 1;
          //   System.out.println("hp - " + hp);
         }
         if (index == 6) {
-            happyScore += 1;
+            if(happyScore<maxhappy)
+                happyScore += 1;
           //  System.out.println("happyScore - " + happyScore);
         }
 
         if (index == 7) {
             //  lifeScore--; // 담배코인
             smokeScore += 1;
-            happyScore += 1;
+            if(happyScore<maxhappy)
+                happyScore += 1;
             hp -= 1;
             lifeScore -=amount;
            // System.out.println("hp - " + hp);

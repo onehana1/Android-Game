@@ -42,15 +42,16 @@ public class MapLoader implements IGameObject {
         }
 
         while (itemX < Metrics.game_width) {
-            if(coinCount < 15) {
+            if(coinCount < 7) {
                 float randomNumber = random.nextFloat() * (7 - 3) + 3;
+                int randomNumberint = random.nextInt(8) + 5;
                 int a = coin.getRandomCoinIndex(random, age);
-                coin coinItem = coin.get(a, 30.0f + randomNumber, random.nextInt(4) + 1.8f);
+                coin coinItem = coin.get(a, 30.0f + randomNumber, random.nextInt(5) + 1.8f);
                 coinItem.setcoinindex(a+1);
                 //System.out.println(a+1);
                 scene.add(coinItem.getLayer(), coinItem);
                 itemX += coinItem.getWidth();
-                coinItem.setSpeed(randomNumber);
+                coinItem.setSpeed(randomNumberint);
                 coinCount++;
 
             }

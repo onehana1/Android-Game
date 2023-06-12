@@ -245,14 +245,16 @@ public class MainScene extends BaseScene {
             }
         }
 
-        if (score.getHP() <= -0) {
+        if (score.getHP() <= 0) {
             // 엔딩씬으로 전환
+            System.out.println("건강약화");
+
             //BaseScene.getTopScene().changeToEndingScene();
             new EndingScene().pushScene();
         }
 
         if (score.getSmokeScore() >= 7) {
-            // 엔딩씬으로 전환
+            System.out.println("해비스모커");
             BaseScene.getTopScene().changeToEndingScene();
             // new EndingScene().pushScene();
         }

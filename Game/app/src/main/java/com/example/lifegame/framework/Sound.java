@@ -6,12 +6,13 @@ import android.media.SoundPool;
 
 import java.util.HashMap;
 
-
-
 public class Sound {
     protected static MediaPlayer mediaPlayer;
     protected static SoundPool soundPool;
     private static boolean isSoundPoolLoaded = false;
+    private static HashMap<Integer, Integer> soundIdMap = new HashMap<>();
+    private static HashMap<Integer, Boolean> soundLoadingMap = new HashMap<>();
+
     public static void playMusic(int resId) {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
@@ -20,41 +21,61 @@ public class Sound {
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
     }
+
     public static void stopMusic() {
         if (mediaPlayer == null) return;
         mediaPlayer.stop();
         mediaPlayer = null;
     }
+
     public static void pauseMusic() {
         if (mediaPlayer == null) return;
         mediaPlayer.pause();
     }
+
     public static void resumeMusic() {
         if (mediaPlayer == null) return;
         mediaPlayer.start();
     }
 
-    private static HashMap<Integer, Integer> soundIdMap = new HashMap<>();
     public static void playEffect(final int resId) {
         if (!isSoundPoolLoaded) {
-            SoundPool pool = getSoundPool();
-            pool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            loadSoundPool(new OnSoundPoolLoadedListener() {
                 @Override
-                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                    // 로드가 완료되면 playEffect를 호출합니다.
-                    playEffect(resId);
+                public void onSoundPoolLoaded() {
+                    playSoundEffect(resId);
                 }
             });
+        } else {
+            if (soundIdMap.containsKey(resId)) {
+                int soundId = soundIdMap.get(resId);
+                playSoundEffect(soundId);
+            } else {
+                loadSoundEffect(resId);
+            }
         }
+    }
+
+    private static void loadSoundEffect(final int resId) {
+        if (soundLoadingMap.containsKey(resId) && soundLoadingMap.get(resId)) {
+            return;
+        }
+        soundLoadingMap.put(resId, true);
 
         SoundPool pool = getSoundPool();
-        int soundId;
-        if (soundIdMap.containsKey(resId)) {
-            soundId = soundIdMap.get(resId);
-        } else {
-            soundId = pool.load(GameView.view.getContext(), resId, 1);
-            soundIdMap.put(resId, soundId);
-        }
+        final int soundId = pool.load(GameView.view.getContext(), resId, 1);
+        pool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                soundIdMap.put(resId, soundId);
+                soundLoadingMap.put(resId, false);
+                playSoundEffect(soundId);
+            }
+        });
+    }
+
+    private static void playSoundEffect(int soundId) {
+        SoundPool pool = getSoundPool();
         pool.play(soundId, 1f, 0.8f, 1, 0, 1f);
     }
 
@@ -71,5 +92,21 @@ public class Sound {
                 .build();
         isSoundPoolLoaded = true;
         return soundPool;
+    }
+
+    private static void loadSoundPool(final OnSoundPoolLoadedListener listener) {
+        SoundPool pool = getSoundPool();
+        pool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                if (listener != null) {
+                    listener.onSoundPoolLoaded();
+                }
+            }
+        });
+    }
+
+    private interface OnSoundPoolLoadedListener {
+        void onSoundPoolLoaded();
     }
 }

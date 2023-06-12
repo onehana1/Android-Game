@@ -21,7 +21,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float JUMP_POWER = 10.0f;
     private static final float GRAVITY = 17.0f;
 
-    private static final float RUN_SPEED = 15.0f;
+    private static final float RUN_SPEED = 4.0f;
+    private static final float BACK_SPEED = 16.0f;
     private static final float CHOICE_SPEED = 0.01f;
 
     float bgspeed = RUN_SPEED;
@@ -284,6 +285,9 @@ public class Player extends AnimSprite implements IBoxCollidable {
                         makeRects(704), //old worker choice
                 };
             }
+        }
+        if(film!=0){
+            this.bgspeed =BACK_SPEED;
         }
 
 

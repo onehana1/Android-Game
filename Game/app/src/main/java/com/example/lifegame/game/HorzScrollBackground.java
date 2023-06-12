@@ -50,74 +50,72 @@ public class HorzScrollBackground extends Sprite {
 
     public void setPlayerAgeBasedOnCurrentImage() {
         int age = 1;
-        int currentImageResId = bitmapResIds.get(currentIndex);
-        // 이미지 리소스 ID에 따라 플레이어의 나이를 설정
-        if(film == 0) {
-            if (currentImageResId == R.mipmap.playground1) {
-                this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-                setSize(Metrics.game_height, width);
-                age = 1;
+        if (currentIndex >= 0 && currentIndex < bitmapResIds.size()) {
+            int currentImageResId = bitmapResIds.get(currentIndex);
+            // 이미지 리소스 ID에 따라 플레이어의 나이를 설정
+            if (film == 0) {
+                if (currentImageResId == R.mipmap.playground1) {
+                    this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+                    setSize(Metrics.game_height, width);
+                    age = 1;
 
-            } else if (currentImageResId == R.mipmap.school1) {
+                } else if (currentImageResId == R.mipmap.school1) {
+                    this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+                    setSize(Metrics.game_height, width);
+                    age = 2;
+                } else if (currentImageResId == R.mipmap.company1 || currentImageResId == R.mipmap.paintermap || currentImageResId == R.mipmap.singermap) {
+                    this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+                    setSize(Metrics.game_height, width);
+                    age = 3;
+                } else if (currentImageResId == R.mipmap.house1 || currentImageResId == R.mipmap.house2 || currentImageResId == R.mipmap.house3) {
+                    this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+                    setSize(Metrics.game_height, width);
+                    age = 4;
+                } else if (currentImageResId == R.mipmap.officemap2 || currentImageResId == R.mipmap.singermap2 || currentImageResId == R.mipmap.paintermap2) {
+                    this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+                    setSize(Metrics.game_height, width);
+                    age = 5;
+                } else if (currentImageResId == R.mipmap.house_1 || currentImageResId == R.mipmap.house_2 || currentImageResId == R.mipmap.house_3) {
+                    this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+                    setSize(Metrics.game_height, width);
+                    age = 6;
+                } else if (currentImageResId == R.mipmap.house_1c || currentImageResId == R.mipmap.house_2c || currentImageResId == R.mipmap.house_3c) {
+                    this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+                    setSize(Metrics.game_height, width);
+                    age = 6;
+                } else if (currentImageResId == R.mipmap.endingmap) {
+                    this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
+                    setSize(Metrics.game_height, width);
+                    age = 7;
+                    film = 1;
+                }
+            } else if (film == 1) {
+                //recurrentImageResId = bitmapReverseResIds.get(currentIndex);
+
                 this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
                 setSize(Metrics.game_height, width);
-                age = 2;
-            } else if (currentImageResId == R.mipmap.company1 || currentImageResId == R.mipmap.paintermap || currentImageResId == R.mipmap.singermap) {
+                age = 8;
+
+                if (currentImageResId == R.mipmap.playground1) {
+                    System.out.println("엔딩씬으로가자");
+                    film = 2;
+                    player.setFilm(2);
+                }
+
+            } else {
+                System.out.println("버그다!!!!!!!!!");
+
                 this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
                 setSize(Metrics.game_height, width);
-                age = 3;
-            } else if (currentImageResId == R.mipmap.house1 || currentImageResId == R.mipmap.house2 || currentImageResId == R.mipmap.house3) {
-                this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-                setSize(Metrics.game_height, width);
-                age = 4;
-            } else if (currentImageResId == R.mipmap.officemap2 || currentImageResId == R.mipmap.singermap2 || currentImageResId == R.mipmap.paintermap2) {
-                this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-                setSize(Metrics.game_height, width);
-                age = 5;
-            } else if (currentImageResId == R.mipmap.house_1 || currentImageResId == R.mipmap.house_2 || currentImageResId == R.mipmap.house_3) {
-                this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-                setSize(Metrics.game_height, width);
-                age = 6;
-            } else if (currentImageResId == R.mipmap.house_1c || currentImageResId == R.mipmap.house_2c || currentImageResId == R.mipmap.house_3c) {
-                this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-                setSize(Metrics.game_height, width);
-                age = 6;
-            } else if (currentImageResId == R.mipmap.endingmap) {
-                this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-                setSize(Metrics.game_height, width);
-                age = 7;
-                film = 1;
+                age = 8;
+
+                if (currentImageResId == R.mipmap.endingmap) {
+                    film = 2;
+                    player.setFilm(2);
+                }
             }
-        }
-
-        else if(film == 1) {
-            //recurrentImageResId = bitmapReverseResIds.get(currentIndex);
-
-            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-            setSize(Metrics.game_height, width);
-            age = 8;
-
-            if(currentImageResId == R.mipmap.playground1){
-                System.out.println("엔딩씬으로가자");
-                film =2;
-                player.setFilm(2);
-            }
 
         }
-        else{
-            System.out.println("버그다!!!!!!!!!");
-
-            this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
-            setSize(Metrics.game_height, width);
-            age = 8;
-
-            if(currentImageResId == R.mipmap.endingmap){
-                film =2;
-                player.setFilm(2);
-            }
-        }
-
-
 
         player.setAge(age);
     }
