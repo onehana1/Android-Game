@@ -49,11 +49,11 @@ public class EndingScene extends BaseScene {
 
 
         // 엔딩 이미지 추가
-        if(coin<500){
+        if(coin<300){
             endingImages.add( R.mipmap.poorending);
           // add(Layer.bg, new Sprite(R.mipmap.poorending, bgX, bgY, 16.0f, 9.0f));
         }
-        else if(coin<1000){
+        else if(coin<1400){
             endingImages.add( R.mipmap.normalending);
           //  add(Layer.bg, new Sprite(R.mipmap.normalending, bgX, bgY, 16.0f, 9.0f));
         }

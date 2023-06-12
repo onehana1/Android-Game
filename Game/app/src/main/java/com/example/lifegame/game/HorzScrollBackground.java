@@ -160,11 +160,12 @@ public class HorzScrollBackground extends Sprite {
 
 
                 if (currentIndex == 2) {
-                    if (scene.score.getMoneyScore() > 1000 && forhouse == 0) {
+                    System.out.println("집");
+                    if (scene.score.getMoneyScore() > 800 && forhouse == 0) {
                         bitmapResIds.add(R.mipmap.house1);
 
                         forhouse = 1;
-                    } else if (scene.score.getMoneyScore() > 500 && forhouse == 0) {
+                    } else if (scene.score.getMoneyScore() > 300 && forhouse == 0) {
                         bitmapResIds.add(R.mipmap.house2);
 
                         forhouse = 1;
@@ -176,14 +177,26 @@ public class HorzScrollBackground extends Sprite {
 
                 if (currentIndex == 3) {
                     if (player.getJob() == Player.JOB.employee && forjob == 0) {
+                        if(scene.score.getMoneyScore() > 200) {
+                            bitmapResIds.remove(3);
+                            bitmapResIds.add(R.mipmap.house2);
+                        }
                         bitmapResIds.add(R.mipmap.officemap2);
 
                         forjob = 1;
                     } else if (player.getJob() == Player.JOB.painter && forjob == 0) {
+                        if(scene.score.getMoneyScore() > 200) {
+                            bitmapResIds.remove(3);
+                            bitmapResIds.add(R.mipmap.house2);
+                        }
                         bitmapResIds.add(R.mipmap.paintermap2);
 
                         forjob = 1;
                     } else if (forjob == 0) {
+                        if(scene.score.getMoneyScore() > 200) {
+                            bitmapResIds.remove(3);
+                            bitmapResIds.add(R.mipmap.house2);
+                        }
                         bitmapResIds.add(R.mipmap.singermap2);
 
                         forjob = 1;
@@ -195,7 +208,7 @@ public class HorzScrollBackground extends Sprite {
                         bitmapResIds.add(R.mipmap.house_1c);
                         bitmapResIds.add(R.mipmap.endingmap);
                         forhouse = 2;
-                    } else if (scene.score.getMoneyScore() > 500 && forhouse == 1) {
+                    } else if (scene.score.getMoneyScore() > 300 && forhouse == 1) {
                         bitmapResIds.add(R.mipmap.house_2c);
                         bitmapResIds.add(R.mipmap.endingmap);
                         forhouse = 2;
@@ -205,6 +218,7 @@ public class HorzScrollBackground extends Sprite {
                         forhouse = 2;
                     }
                 }
+                
             }
 
         }
@@ -290,9 +304,11 @@ public class HorzScrollBackground extends Sprite {
                         }
                     }
 
-                    setBitmapResource(bitmapResIds.get(index));
-                    dstRect.set(curr, 1, next, Metrics.game_height - 1);
-                    canvas.drawBitmap(bitmap, null, dstRect, null);
+                    if (index >= 0 && index < bitmapResIds.size()) {
+                        setBitmapResource(bitmapResIds.get(index));
+                        dstRect.set(curr, 1, next, Metrics.game_height - 1);
+                        canvas.drawBitmap(bitmap, null, dstRect, null);
+                    }
                 }
 
                 curr += width;

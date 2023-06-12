@@ -176,11 +176,11 @@ public class MapLoaderObject implements IGameObject {
 
             else { // 플레이어의 나이에 해당하지 않는 경우
                 choiceObjs = new ChoiceObj[3];
-                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.b1, 0, by);
+                choiceObjs[0] = ChoiceObj.get(ChoiceObj.Type.b1, 17, -by);
                 choiceObjs[0].setType(ChoiceObj.Type.s1);
-                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.b2, 0, by);
+                choiceObjs[1] = ChoiceObj.get(ChoiceObj.Type.b2, 24, -by);
                 choiceObjs[1].setType(ChoiceObj.Type.s2);
-                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.b2, 0, -by);
+                choiceObjs[2] = ChoiceObj.get(ChoiceObj.Type.b2, 28, -by);
                 choiceObjs[2].setType(ChoiceObj.Type.s2);
             }
 
