@@ -79,7 +79,7 @@ public class EndingScene extends BaseScene {
             endingImages.add( R.mipmap.excitiedending);
 
 
-        if(smoke>=7)
+        if(smoke>=170)
         {   endingImages.clear();
             endingImages.add( R.mipmap.smoke_ending);
             // add(Layer.bg, new Sprite(R.mipmap.smoke_ending, bgX, bgY, 16.0f, 9.0f));

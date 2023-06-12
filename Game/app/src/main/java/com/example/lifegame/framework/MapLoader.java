@@ -37,7 +37,6 @@ public class MapLoader implements IGameObject {
         // 플레이어의 나이가 변경되었을 때 코인 생성 수 초기화
         if (player.isAgeChanged()) {
             coinCount = 0;
-            System.out.println("0ㅇ로!!");
             player.resetAgeChanged();
 
         }

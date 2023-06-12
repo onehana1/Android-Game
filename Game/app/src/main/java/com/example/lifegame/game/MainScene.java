@@ -232,13 +232,13 @@ public class MainScene extends BaseScene {
             new EndingScene().pushScene();
         }
 
-        if (score.getSmokeScore() >= 70) {
+        if (score.getSmokeScore() >= 170) {
             // 엔딩씬으로 전환
             BaseScene.getTopScene().changeToEndingScene();
             // new EndingScene().pushScene();
         }
 
-        if (player.getAge() == 8) {
+        if (player.getFilm() == 2) {
             BaseScene.getTopScene().changeToEndingScene();
             // new EndingScene().pushScene();
         }

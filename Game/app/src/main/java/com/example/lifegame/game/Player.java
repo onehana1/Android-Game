@@ -43,7 +43,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
     private JOB job;
 
-
+    private int film = 0;
     private boolean hobby_s, hobby_p,hobby_m;
 
 
@@ -260,6 +260,30 @@ public class Player extends AnimSprite implements IBoxCollidable {
             }
         }
 
+        else {
+            if (this.job == JOB.employee) {
+                srcRects = new Rect[][]{
+                        makeRects(300, 301, 302, 303), //old worker run
+                        makeRects(304), //old worker jump
+                        makeRects(304), //old worker choice
+                };
+            }
+            else if (this.job == JOB.painter) {
+                srcRects = new Rect[][]{
+                        makeRects(500, 501, 502, 503), //old worker run
+                        makeRects(504), //old worker jump
+                        makeRects(504), //old worker choice
+                };
+            }
+            else if (this.job == JOB.singer) {
+                srcRects = new Rect[][]{
+                        makeRects(700, 701, 702, 703), //old worker run
+                        makeRects(704), //old worker jump
+                        makeRects(704), //old worker choice
+                };
+            }
+        }
+
 
     }
 
@@ -273,6 +297,13 @@ public class Player extends AnimSprite implements IBoxCollidable {
     public int getAge() {
         return age;
     }
+    public int getFilm() {
+        return film;
+    }
+    public void setFilm(int flim) {
+        this.film = flim;
+    }
+
 
 
     private float getX() {

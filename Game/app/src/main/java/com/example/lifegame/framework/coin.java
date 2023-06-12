@@ -81,7 +81,7 @@ public class coin extends MapObject{
                 return a5;
 
             default:
-                System.out.println("안오면 좋겠어");
+               // System.out.println("안오면 좋겠어");
                 return -1;
         }
     }
