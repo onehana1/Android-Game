@@ -74,8 +74,9 @@ public class MainScene extends BaseScene {
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
                     player.choice();
-
                     Sound.playEffect(R.raw.call);
+
+
                     cooltimeChoice.setCoolingTime(3);
                     choiceButton.setCooling(true);
 
@@ -110,6 +111,8 @@ public class MainScene extends BaseScene {
                     player.pressHobby();
                     cooltime1.setCoolingTime(5); // 5초 동안 쿨타임 설정
                     System.out.println("눌렀다");
+                    Sound.playEffect(R.raw.choice);
+
                     hobbyButton1.setCooling(true); // 버튼을 쿨타임 상태로 설정
                 }
                 return true;
@@ -131,6 +134,8 @@ public class MainScene extends BaseScene {
                     player.pressHobby();
                     cooltime2.setCoolingTime(5); // 5초 동안 쿨타임 설정
                     System.out.println("눌렀다");
+                    Sound.playEffect(R.raw.choice);
+
                     hobbyButton2.setCooling(true); // 버튼을 쿨타임 상태로 설정
                 }
                 return true;
@@ -151,6 +156,8 @@ public class MainScene extends BaseScene {
                     player.pressHobby();
                     cooltime3.setCoolingTime(5); // 5초 동안 쿨타임 설정
                     System.out.println("눌렀다");
+                    Sound.playEffect(R.raw.choice);
+
                     hobbyButton3.setCooling(true); // 버튼을 쿨타임 상태로 설정
                 }
                 return true;
@@ -246,6 +253,15 @@ public class MainScene extends BaseScene {
             // new EndingScene().pushScene();
         }
 
+
+        if(player.getFilm()!=0){
+            hobbyButton3.setActivation(false);
+            hobbyButton1.setActivation(false);
+            hobbyButton2.setActivation(false);
+            choiceButton.setActivation(false);
+            jumpButton.setActivation(false);
+
+        }
 
     }
 

@@ -10,6 +10,9 @@ import com.example.lifegame.framework.BaseScene;
 import com.example.lifegame.framework.Emotion;
 import com.example.lifegame.framework.Emotions;
 import com.example.lifegame.framework.IBoxCollidable;
+import com.example.lifegame.framework.Sound;
+
+import java.util.Random;
 
 public class Player extends AnimSprite implements IBoxCollidable {
     private RectF collisionRect = new RectF();
@@ -51,7 +54,6 @@ public class Player extends AnimSprite implements IBoxCollidable {
         super(R.mipmap.player1, 2.0f, 6.8f, 2.0f, 2.0f, 8, 1);
         this.ground = y;
 
-        emotion = new Emotion();
         emotions = new Emotions();
         age = 0; // 초기 나이 설정
         job = JOB.NONE;
@@ -367,8 +369,15 @@ public class Player extends AnimSprite implements IBoxCollidable {
             System.out.println("Player is in choice state.");
 
 
+            int randomNumber = new Random().nextInt(2);
+            if (randomNumber == 0) {
+                emotions.setplay(2);
+                Sound.playEffect(R.raw.fail);
+            } else {
+                emotions.setplay(1);
+                Sound.playEffect(R.raw.success);
 
-            emotions.setplay(1);
+            }
         }
     }
     public void setCanchoice(boolean i){
