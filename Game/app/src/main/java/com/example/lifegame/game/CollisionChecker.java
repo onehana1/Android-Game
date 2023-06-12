@@ -48,8 +48,14 @@ public class CollisionChecker implements IGameObject {
             }
             if (CollisionHelper.collides(player, (IBoxCollidable) gobj)) {
                 player.setCanchoice(true);
-                if(player.getState()== player.state.CHOICE)
+                if(player.getState()== player.state.CHOICE) {
+                    if (player.getcheck() == 2) {
+                        player.setsf2();
+                        player.setsf();
+                        return;
+                    }
                     handleChoiceCollision((ChoiceObj) gobj);
+                }
             }
             else {
                 player.setCanchoice(false);

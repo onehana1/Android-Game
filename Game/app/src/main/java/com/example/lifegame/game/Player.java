@@ -22,7 +22,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float GRAVITY = 17.0f;
 
     private static final float RUN_SPEED = 4.0f;
-    private static final float BACK_SPEED = 16.0f;
+    private static final float BACK_SPEED = 24.0f;
     private static final float CHOICE_SPEED = 0.01f;
 
     float bgspeed = RUN_SPEED;
@@ -50,6 +50,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private int film = 0;
     private boolean hobby_s, hobby_p,hobby_m;
 
+    private int sf=0;
+    private int sf2=0;
 
     public Player() {
         super(R.mipmap.player1, 2.0f, 6.8f, 2.0f, 2.0f, 8, 1);
@@ -74,9 +76,24 @@ public class Player extends AnimSprite implements IBoxCollidable {
     }
 
     public Hobby getHobby(){
-       return hobby;
+        if(sf==1)
+            return hobby;
+        else
+            return Hobby.NONE;
+    }
+    public void setsf(){
+        sf=0;
+    }
+    public void setsf2(){
+        sf2=0;
     }
 
+    public int getcheck(){
+        if(sf2==1)
+            return 1;
+        else
+            return 2;
+    }
     public boolean getHobbytrue(Hobby hobby){
         if(hobby == Hobby.PAINT)
             return hobby_p;
@@ -286,9 +303,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
                 };
             }
         }
-        if(film!=0){
-            this.bgspeed =BACK_SPEED;
-        }
+
 
 
     }
@@ -376,9 +391,14 @@ public class Player extends AnimSprite implements IBoxCollidable {
             int randomNumber = new Random().nextInt(2);
             if (randomNumber == 0) {
                 emotions.setplay(2);
+                this.sf=2;
+                this.sf2=2;
+
                 Sound.playEffect(R.raw.fail);
             } else {
                 emotions.setplay(1);
+                this.sf=1;
+                this.sf2=1;
                 Sound.playEffect(R.raw.success);
 
             }
@@ -437,6 +457,10 @@ public class Player extends AnimSprite implements IBoxCollidable {
             state = State.running;
            // System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
 
+        }
+
+        if(film==1){
+            setBgSpeed(BACK_SPEED);
         }
 
 

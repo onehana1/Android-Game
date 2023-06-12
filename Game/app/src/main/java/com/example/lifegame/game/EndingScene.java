@@ -49,11 +49,11 @@ public class EndingScene extends BaseScene {
 
 
         // 엔딩 이미지 추가
-        if(coin<200){
+        if(coin<500){
             endingImages.add( R.mipmap.poorending);
           // add(Layer.bg, new Sprite(R.mipmap.poorending, bgX, bgY, 16.0f, 9.0f));
         }
-        else if(coin<1500){
+        else if(coin<1000){
             endingImages.add( R.mipmap.normalending);
           //  add(Layer.bg, new Sprite(R.mipmap.normalending, bgX, bgY, 16.0f, 9.0f));
         }
@@ -63,17 +63,17 @@ public class EndingScene extends BaseScene {
 
         }
 
-        if(hobby<30)
+        if(hobby<10)
             endingImages.add( R.mipmap.nohobbyending);
         else
             endingImages.add( R.mipmap.hobbyending);
 
-        if(friend<3)
+        if(friend<100)
             endingImages.add( R.mipmap.aloneending);
         else
             endingImages.add( R.mipmap.friendending);
 
-        if(happy<1000)
+        if(happy<10)
             endingImages.add( R.mipmap.depressionending);
         else
             endingImages.add( R.mipmap.excitiedending);

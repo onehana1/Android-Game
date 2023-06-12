@@ -64,7 +64,7 @@ public class MainScene extends BaseScene {
                     player.jump();
                     Sound.playEffect(R.raw.jump);
 
-                    cooltimeJump.setCoolingTime(2);
+                    cooltimeJump.setCoolingTime(1);
                     jumpButton.setCooling(true);
                 }
                 return true;
@@ -72,7 +72,7 @@ public class MainScene extends BaseScene {
         });
 
         cooltimeJump = new cooltime(R.mipmap.blue_number, 13.5f, 8.1f, 0.2f);
-        cooltimeJump.setcoltime(2);
+        cooltimeJump.setcoltime(1);
         cooltimeJump.setButtoncool(jumpButton); // cooltime 클래스에 hobbyButton 설정
         add(Layer.coolui, cooltimeJump);
 
@@ -91,12 +91,7 @@ public class MainScene extends BaseScene {
 
                 }
 
-                if(player.getHobby()==Player.Hobby.PAINT)
-                    hobbyButton3.setActivation(true);
-                if(player.getHobby()==Player.Hobby.STUDY)
-                    hobbyButton2.setActivation(true);
-                if(player.getHobby()==Player.Hobby.MUSIC)
-                    hobbyButton1.setActivation(true);
+
 
                 return true;
             }
@@ -264,6 +259,14 @@ public class MainScene extends BaseScene {
             // new EndingScene().pushScene();
         }
 
+        if(player.getHobby()==Player.Hobby.PAINT)
+            hobbyButton3.setActivation(true);
+
+        if(player.getHobby()==Player.Hobby.STUDY)
+            hobbyButton2.setActivation(true);
+
+        if(player.getHobby()==Player.Hobby.MUSIC)
+            hobbyButton1.setActivation(true);
 
         if(player.getFilm()!=0){
             hobbyButton3.setActivation(false);

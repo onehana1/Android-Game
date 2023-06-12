@@ -36,7 +36,7 @@ public class Score implements IGameObject {
     private int hp;
 
     private int happyScore;
-    private int maxhappy = 100;
+    private int maxhappy = 50;
 
 
 
@@ -48,7 +48,7 @@ public class Score implements IGameObject {
 
 
     //================체력=================
-    private final int maxHp = 100; // 최대 체력
+    private final int maxHp = 50; // 최대 체력
     private final float hpGaugeWidth = 3.5f; // 체력 게이지 너비
     private final float hpGaugeHeight = 0.5f; // 체력 게이지 높이
     private final float hpGaugeX = 0.8f; // 체력 게이지 위치 X 좌표
@@ -132,7 +132,7 @@ public class Score implements IGameObject {
 
     @Override
     public void update() {
-        int diff = score - displayScore;
+        int diff = moneyScore - displayScore;
         if (diff == 0) return;
         if (-10 < diff && diff < 0) {
             displayScore--;
@@ -204,6 +204,7 @@ public class Score implements IGameObject {
         if (index == 1) {
             //moneyScore++; // 인덱스 1의 코인을 얻으면 돈 점수 상승
             moneyScore += amount;
+            hp -= 1;
             happyScore -= 2;
             score += amount;
       //      System.out.println("moneyScore - " + moneyScore);
@@ -238,7 +239,7 @@ public class Score implements IGameObject {
         if (index == 5) {
             if(happyScore<maxhappy)
                 happyScore += 1;
-            hp -= 1;
+            hp -= 2;
          //   System.out.println("hp - " + hp);
         }
         if (index == 6) {
@@ -252,8 +253,8 @@ public class Score implements IGameObject {
             smokeScore += 1;
             if(happyScore<maxhappy)
                 happyScore += 1;
-            hp -= 1;
-            lifeScore -=amount;
+            hp -= 3;
+            lifeScore -=1;
            // System.out.println("hp - " + hp);
         }
 

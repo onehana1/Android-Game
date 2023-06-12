@@ -91,7 +91,7 @@ public class HorzScrollBackground extends Sprite {
                 }
             } else if (film == 1) {
                 //recurrentImageResId = bitmapReverseResIds.get(currentIndex);
-
+                player.setFilm(1);
                 this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
                 setSize(Metrics.game_height, width);
                 age = 8;
