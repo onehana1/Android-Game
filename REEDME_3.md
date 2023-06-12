@@ -12,7 +12,7 @@
 
 
 # 진행 상황
-![image](https://github.com/onehana1/Android-Game/assets/73771420/ca187616-9391-4cab-a48c-99bfb501a77e)
+![image](https://github.com/onehana1/Android-Game/assets/73771420/e4079b5d-e223-4fa1-842b-4c270f337cca)
 
 # 깃커밋 자료
 ![image](https://github.com/onehana1/Android-Game/assets/73771420/adce127a-185e-4684-a7fb-42ef0152f559)
