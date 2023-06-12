@@ -20,6 +20,7 @@ public class HorzScrollBackground extends Sprite {
     private float speed;
     private float width;
     private float scroll;
+    private float scroll2;
     private int currentIndex;
 
     static int forhouse =0;
@@ -38,6 +39,8 @@ public class HorzScrollBackground extends Sprite {
     public HorzScrollBackground(ArrayList<Integer> bitmapResIds, float speed, Player player) {
         super(bitmapResIds.get(0), Metrics.game_width / 2, Metrics.game_height / 2, Metrics.game_width, Metrics.game_height);
         this.bitmapResIds = bitmapResIds;
+
+
         this.speed = speed;
         this.player = player;
         this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
@@ -88,11 +91,13 @@ public class HorzScrollBackground extends Sprite {
         }
 
         else if(film == 1) {
+            //recurrentImageResId = bitmapReverseResIds.get(currentIndex);
+
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
             age = 8;
 
-            if(currentImageResId == R.mipmap.endingmap){
+            if(currentImageResId == R.mipmap.playground1){
                 System.out.println("엔딩씬으로가자");
                 film =2;
                 player.setFilm(2);
@@ -124,10 +129,13 @@ public class HorzScrollBackground extends Sprite {
 
         if (player.getBgSpeed() != 0)
             speed = player.getBgSpeed();
+
         scroll -= speed * BaseScene.frameTime;
+        scroll2 += speed * BaseScene.frameTime;
 
 
         // 이미지 전환을 위해 체크
+        if(film==0)
         if (scroll <= -width) {
             scroll += width;
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
@@ -135,62 +143,69 @@ public class HorzScrollBackground extends Sprite {
 
             currentIndex++;
 
-            if (currentIndex == 1) {
-                if (player.getJob() == Player.JOB.employee)
-                    bitmapResIds.add(R.mipmap.company1);
-                else if (player.getJob() == Player.JOB.painter)
-                    bitmapResIds.add(R.mipmap.paintermap);
-                else if (player.getJob() == Player.JOB.singer)
-                    bitmapResIds.add(R.mipmap.singermap);
-                else
-                    bitmapResIds.add(R.mipmap.company1);
-            }
+             {
+                if (currentIndex == 1) {
+                    if (player.getJob() == Player.JOB.employee) {
+                        bitmapResIds.add(R.mipmap.company1);
+                    }
+                    else if (player.getJob() == Player.JOB.painter) {
+                        bitmapResIds.add(R.mipmap.paintermap);
+                    }
+                    else if (player.getJob() == Player.JOB.singer) {
+                        bitmapResIds.add(R.mipmap.singermap);
 
-
-            if (currentIndex == 2) {
-                if (scene.score.getMoneyScore() > 1000 && forhouse == 0) {
-                    bitmapResIds.add(R.mipmap.house1);
-
-                    forhouse = 1;
-                } else if (scene.score.getMoneyScore() > 500 && forhouse == 0) {
-                    bitmapResIds.add(R.mipmap.house2);
-
-                    forhouse = 1;
-                } else if (forhouse == 0) {
-                    bitmapResIds.add(R.mipmap.house3);
-                    forhouse = 1;
+                    }
+                    else {
+                        bitmapResIds.add(R.mipmap.company1);
+                    }
                 }
-            }
 
-            if (currentIndex == 3) {
-                if (player.getJob() == Player.JOB.employee && forjob == 0) {
-                    bitmapResIds.add(R.mipmap.officemap2);
 
-                    forjob = 1;
-                } else if (player.getJob() == Player.JOB.painter && forjob == 0) {
-                    bitmapResIds.add(R.mipmap.paintermap2);
+                if (currentIndex == 2) {
+                    if (scene.score.getMoneyScore() > 1000 && forhouse == 0) {
+                        bitmapResIds.add(R.mipmap.house1);
 
-                    forjob = 1;
-                } else if (forjob == 0) {
-                    bitmapResIds.add(R.mipmap.singermap2);
+                        forhouse = 1;
+                    } else if (scene.score.getMoneyScore() > 500 && forhouse == 0) {
+                        bitmapResIds.add(R.mipmap.house2);
 
-                    forjob = 1;
+                        forhouse = 1;
+                    } else if (forhouse == 0) {
+                        bitmapResIds.add(R.mipmap.house3);
+                        forhouse = 1;
+                    }
                 }
-            }
 
-            if (currentIndex == 4) {
-                if (scene.score.getMoneyScore() > 1000 && forhouse == 1) {
-                    bitmapResIds.add(R.mipmap.house_1c);
-                    bitmapResIds.add(R.mipmap.endingmap);
-                    forhouse = 2;
-                } else if (scene.score.getMoneyScore() > 500 && forhouse == 1) {
-                    bitmapResIds.add(R.mipmap.house_2c);
-                    bitmapResIds.add(R.mipmap.endingmap);
-                    forhouse = 2;
-                } else if (forhouse == 1) {
-                    bitmapResIds.add(R.mipmap.house_3c);
-                    bitmapResIds.add(R.mipmap.endingmap);
-                    forhouse = 2;
+                if (currentIndex == 3) {
+                    if (player.getJob() == Player.JOB.employee && forjob == 0) {
+                        bitmapResIds.add(R.mipmap.officemap2);
+
+                        forjob = 1;
+                    } else if (player.getJob() == Player.JOB.painter && forjob == 0) {
+                        bitmapResIds.add(R.mipmap.paintermap2);
+
+                        forjob = 1;
+                    } else if (forjob == 0) {
+                        bitmapResIds.add(R.mipmap.singermap2);
+
+                        forjob = 1;
+                    }
+                }
+
+                if (currentIndex == 4) {
+                    if (scene.score.getMoneyScore() > 1000 && forhouse == 1) {
+                        bitmapResIds.add(R.mipmap.house_1c);
+                        bitmapResIds.add(R.mipmap.endingmap);
+                        forhouse = 2;
+                    } else if (scene.score.getMoneyScore() > 500 && forhouse == 1) {
+                        bitmapResIds.add(R.mipmap.house_2c);
+                        bitmapResIds.add(R.mipmap.endingmap);
+                        forhouse = 2;
+                    } else if (forhouse == 1) {
+                        bitmapResIds.add(R.mipmap.house_3c);
+                        bitmapResIds.add(R.mipmap.endingmap);
+                        forhouse = 2;
+                    }
                 }
             }
 
@@ -205,20 +220,28 @@ public class HorzScrollBackground extends Sprite {
         // 플레이어의 나이 업데이트
         setPlayerAgeBasedOnCurrentImage();
 
-        // bitmapResIds 리스트를 역순으로 정렬
-        if (player.getAge() == 7) {
-            currentIndex=0;
+        if(film==1){
             if (scroll <= -width) {
                 scroll += width;
+
+                currentIndex--;
+
+                if (currentIndex < 0) {
+                    currentIndex = bitmapReverseResIds.size() - 1;
+                }
+
                 this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
                 setSize(Metrics.game_height, width);
 
-                currentIndex++;
-
             }
-                System.out.println("역순으로 저장");
-            bitmapReverseResIds = new ArrayList<>(bitmapResIds);
-            Collections.reverse(bitmapReverseResIds);
+            // bitmapResIds 리스트를 역순으로 정렬
+            if (player.getAge() == 7) {
+              //  currentIndex = 0;
+
+//                System.out.println("역순으로 저장");
+//                bitmapReverseResIds = new ArrayList<>(bitmapResIds);
+//                Collections.reverse(bitmapReverseResIds);
+            }
         }
 
 
@@ -235,19 +258,19 @@ public class HorzScrollBackground extends Sprite {
 
 
         if (film == 1) {
-            if (bitmapReverseResIds != null) {
-
-                while (curr < width) {
+            if (bitmapResIds != null) {
+                while (curr < Metrics.game_width) {
                     if (next > 0) {
                         int index = currentIndex;
                         if (next > width) {
-                            index++;
-                            if (index >= bitmapReverseResIds.size()) {
-                                index = 0;
+                            index--;
+                            if (index < 0) {
+                                index = bitmapResIds.size() - 1;
                             }
                         }
-                        setBitmapResource(bitmapReverseResIds.get(index));
-                        dstRect.set(curr, 1, next, Metrics.game_height - 1);
+
+                        setBitmapResource(bitmapResIds.get(index));
+                        dstRect.set(Metrics.game_width - next, 1, Metrics.game_width - curr, Metrics.game_height - 1);
                         canvas.drawBitmap(bitmap, null, dstRect, null);
                     }
 
@@ -255,6 +278,7 @@ public class HorzScrollBackground extends Sprite {
                     next += width;
                 }
             }
+
         }
         else {
 
