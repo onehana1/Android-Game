@@ -117,6 +117,10 @@ public class Player extends AnimSprite implements IBoxCollidable {
             makeRects(304), //old worker jump
             makeRects(304), //old worker choice
 
+            makeRects(400, 401, 402, 403), //old worker run
+            makeRects(404), //old worker jump
+            makeRects(404), //old worker choice
+
     };
 
     private void updateSrcRects() {
@@ -133,27 +137,80 @@ public class Player extends AnimSprite implements IBoxCollidable {
                     makeRects(104), // baby choice
             };
         } else if (age == 3) {
-            srcRects = new Rect[][]{
-                    makeRects(200, 201, 202, 203), // worker run
-                    makeRects(204), // worker jump
-                    makeRects(204), // worker choice
-            };
-        } else if (age == 4) {
-            srcRects = new Rect[][]{
-                    makeRects(300, 301, 302, 303), // elderly run
-                    makeRects(304), // elderly jump
-                    makeRects(304), // elderly choice
-            };
+            if(this.job== JOB.employee) {
+                System.out.println("employ");
+                srcRects = new Rect[][]{
+                        makeRects(200, 201, 202, 203), // worker run
+                        makeRects(204), // worker jump
+                        makeRects(204), // worker choice
+                };
+            }
+            else if(this.job== JOB.painter) {
+                System.out.println("painter");
 
+                srcRects = new Rect[][]{
+                        makeRects(400, 401, 402, 403), //old worker run
+                        makeRects(404), //old worker jump
+                        makeRects(404), //old worker choice
+                };
+            }
+            else if( this.job== JOB.singer) {
+                System.out.println("singer");
 
+                srcRects = new Rect[][]{
+                        makeRects(600, 601, 602, 603), //old worker run
+                        makeRects(604), //old worker jump
+                        makeRects(604), //old worker choice
+                };
+            }
+        }
+        else if (age == 4) {
+            if (this.job == JOB.employee) {
+                srcRects = new Rect[][]{
+                        makeRects(300, 301, 302, 303), //old worker run
+                        makeRects(304), //old worker jump
+                        makeRects(304), //old worker choice
+                };
+            }
+            else if (this.job == JOB.painter) {
+                srcRects = new Rect[][]{
+                        makeRects(500, 501, 502, 503), //old worker run
+                        makeRects(504), //old worker jump
+                        makeRects(504), //old worker choice
+                };
+            }
+            else if (this.job == JOB.singer) {
+                srcRects = new Rect[][]{
+                        makeRects(700, 701, 702, 703), //old worker run
+                        makeRects(704), //old worker jump
+                        makeRects(704), //old worker choice
+                };
+            }
         }
 
+
         else if (age == 5) {
-            srcRects = new Rect[][]{
-                    makeRects(300, 301, 302, 303), // elderly run
-                    makeRects(304), // elderly jump
-                    makeRects(304), // elderly choice
-            };
+            if (this.job == JOB.employee) {
+                srcRects = new Rect[][]{
+                        makeRects(300, 301, 302, 303), //old worker run
+                        makeRects(304), //old worker jump
+                        makeRects(304), //old worker choice
+                };
+            }
+            else if (this.job == JOB.painter) {
+                srcRects = new Rect[][]{
+                        makeRects(500, 501, 502, 503), //old worker run
+                        makeRects(504), //old worker jump
+                        makeRects(504), //old worker choice
+                };
+            }
+            else if (this.job == JOB.singer) {
+                srcRects = new Rect[][]{
+                        makeRects(700, 701, 702, 703), //old worker run
+                        makeRects(704), //old worker jump
+                        makeRects(704), //old worker choice
+                };
+            }
 
 
         }
@@ -246,6 +303,19 @@ public class Player extends AnimSprite implements IBoxCollidable {
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
 
+
+        if(scene.score.getPaintScore()>5){
+            this.job = JOB.painter;
+        }
+        else if(scene.score.getSingScore()>5){
+            this.job = JOB.singer;
+        }
+        else {
+            this.job = JOB.employee;
+
+        }
+
+
         if (state == State.jump) {
             float dy = jumpSpeed * BaseScene.frameTime;
             jumpSpeed += GRAVITY * BaseScene.frameTime;
@@ -278,16 +348,6 @@ public class Player extends AnimSprite implements IBoxCollidable {
             state = State.running;
            // System.out.println("플레이어의 배경속도: " + this.getBgSpeed());
 
-        }
-
-        if(scene.score.getPaintScore()>5){
-            this.job = JOB.painter;
-        }
-        else if(scene.score.getSingScore()>5){
-            this.job = JOB.singer;
-        }
-        else {
-            this.job = JOB.employee;
         }
 
 

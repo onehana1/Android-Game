@@ -54,7 +54,7 @@ public class HorzScrollBackground extends Sprite {
             setSize(Metrics.game_height, width);
             age = 2;
         }
-            else if (currentImageResId == R.mipmap.company1) {
+            else if (currentImageResId == R.mipmap.company1||currentImageResId == R.mipmap.paintermap||currentImageResId == R.mipmap.singermap) {
             this.width = bitmap.getWidth() * Metrics.game_height / bitmap.getHeight();
             setSize(Metrics.game_height, width);
             age = 3;
@@ -103,7 +103,6 @@ public class HorzScrollBackground extends Sprite {
             currentIndex++;
 
             if(currentIndex==1){
-                System.out.println("들어옴?");
                 if(player.getJob() == Player.JOB.employee)
                     bitmapResIds.add(R.mipmap.company1);
                 else if(player.getJob() == Player.JOB.painter)

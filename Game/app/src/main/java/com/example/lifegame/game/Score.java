@@ -98,7 +98,7 @@ public class Score implements IGameObject {
         this.friendScore=0;
 
         this.paintScore = 0;
-        this.singScore = 0;
+        this.singScore = 100;
         this.studyScore = 0;
 
         this.hp = maxHp;
